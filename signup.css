@@ -1,0 +1,244 @@
+* {
+  margin: 0;
+  padding-top: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "century gothic";
+}
+.myForm {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+}
+.wraper {
+  display: flex;
+  position: relative;
+  background-color: #ffffff;
+  padding: 3em 3em;
+  border-radius: 25px;
+  width: 55%;
+  overflow: hidden;
+  box-shadow: 0px 0px 15px lightgrey;
+}
+
+.inline {
+  display: inline-flex;
+}
+
+h2 {
+  padding-bottom: 5px;
+}
+
+input {
+  /* border:2px solid #2669fc;  */
+  border: 1px solid lightgrey;
+  background-color: inherit;
+  width: 15em;
+  margin-top: 3em;
+  font-size: 0.8em;
+  border-radius: 5px;
+  padding: 10px;
+}
+input:focus {
+  border: 2px solid #2669fc;
+}
+#confirm-Password {
+  width: 11.5em;
+}
+
+.lastName {
+  position: absolute;
+  margin-top: -4.84em;
+  margin-left: 12em;
+}
+.confirmPassword {
+  position: absolute;
+  margin-top: -4.7em;
+  margin-left: 12em;
+}
+
+label {
+  position: absolute;
+  color: grey;
+  transition: 0.3s;
+}
+label[for="firstName"] {
+  margin-top: 3em;
+  padding: 0 10px;
+  margin-left: -12em;
+}
+.lastName > label[for="lastName"] {
+  margin-left: -12em;
+  margin-top: 3em;
+  padding: 0 10px;
+}
+label[for="UserName"] {
+  margin-top: 3em;
+  margin-left: -25em;
+  padding: 0 10px;
+}
+label[for="email"] {
+  margin-top: 3em;
+  margin-left: -25em;
+  padding: 0 10px;
+}
+
+label[for="Password"] {
+  margin-top: 3em;
+  margin-left: -12em;
+  padding: 0 10px;
+}
+
+label[for="confirm-Password"] {
+  margin-top: 2.8em;
+  padding: 0 10px;
+  margin-left: -9.2em;
+}
+.sample-name {
+  position: absolute;
+  margin-top: -30px;
+  margin-left: 21em;
+}
+.image-pane {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0px 0px 5px grey;
+  background-color: red;
+}
+.long-width {
+  width: 31.2em;
+}
+.push {
+  margin-left: 15px;
+}
+
+input[type="submit"] {
+  margin-top: 30px;
+  margin-left: 12.5em;
+  background-color: #2669fc;
+  color: #fff;
+  width: 6em;
+  height: 2.5em;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  border: none;
+}
+#signup:focus {
+  outline: none;
+}
+
+#signup:hover {
+  border: none;
+  background-color: rgba(0, 0, 255, 255);
+}
+#signup:active {
+  transform: scale(0.99);
+  box-shadow: none;
+}
+p {
+  margin-top: 1px;
+  color: #000;
+  font-size: 0.9rem;
+}
+
+#instead {
+  color: #ffffff;
+  margin-left: em;
+  margin-top: 40px;
+}
+#instead a {
+  text-decoration: none;
+}
+
+p > span {
+  color: rgb(94, 94, 255);
+  font-weight: bolder;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+span:active {
+  color: blue;
+}
+
+span:visited {
+  color: blue;
+}
+#visibility-checker2 {
+  position: absolute;
+  margin-left: 11em;
+  margin-top: 48px;
+}
+
+#push2 {
+  margin-left: 2em;
+}
+
+input:focus ~ label[for="firstName"],
+input:valid ~ label[for="firstName"] {
+  color: #2669fc;
+  margin-top: 30px;
+  font-size: 13px;
+  background-color: #fff;
+  padding: 0 4px;
+  margin-left: -14em;
+}
+
+input:focus ~ label[for="lastName"],
+input:valid ~ label[for="lastName"] {
+  color: #2669fc;
+  margin-top: 30px;
+  font-size: 13px;
+  background-color: #fff;
+  padding: 0 4px;
+  margin-left: -14em;
+}
+input:required {
+  outline: none;
+}
+
+input:focus ~ label[for="UserName"],
+input:valid ~ label[for="UserName"] {
+  color: #2669fc;
+  margin-top: 30px;
+  font-size: 13px;
+  background-color: #fff;
+  padding: 0 4px;
+  margin-left: -30em;
+}
+input:focus ~ label[for="email"],
+input:valid ~ label[for="email"] {
+  color: #2669fc;
+  margin-top: 30px;
+  font-size: 13px;
+  background-color: #fff;
+  padding: 0 4px;
+  margin-left: -30em;
+}
+
+input:focus ~ label[for="Password"],
+input:valid ~ label[for="Password"] {
+  color: #2669fc;
+  margin-top: 30px;
+  font-size: 13px;
+  background-color: #fff;
+  padding: 0 4px;
+  margin-left: -14em;
+}
+
+input:focus ~ label[for="confirm-Password"],
+input:valid ~ label[for="confirm-Password"] {
+  color: #2669fc;
+  margin-top: 30px;
+  font-size: 13px;
+  background-color: #fff;
+  padding: 0 4px;
+  margin-left: -10.6em;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UBTECH Media</title>
+ <link rel="stylesheet" href="sign-up.css">
+ <script src="https://kit.fontawesome.com/e3e21a4bac.js" crossorigin="anonymous"></script>
+   <script  defer src="mainSignup.js"></script>
+             <!-- HOW TO TARGET AN ATTRIBUTE
+       document.getElementByTagName(input).getAttribute("type") -->
+</head>
+<body>
+
+<div class="myForm">       
+     <!-- <div class="head-icon">
+         <i class="fas fa-user-circle fa-4x"></i>
+        </div> -->
+
+    <div class="wraper">
+        <img src="ggleLogo.png" alt="google logo">
+        <img src="oneAcc4ggle.png" alt="one Account" class="svg">
+        
+    <form >
+        <h2>Create your Google Account</h2>
+        <br>
+         <div class="firstName">
+                        <!--  -->
+            <!-- <i class="fas fa-user-circle" id="down"></i> -->
+            <input class="firstName" class="short-width first-name" type="text" required>
+             <label for="firstName">First name</label>
+             </div>
+                    <!-- last name -->
+        <div class="lastName">
+            <input class="short-width push" id="last-name" type="text" required>
+         <label for="lastName">Last name</label>
+       </div>
+
+    <!-- User name -->
+    <!-- <i class="fas fa-user-tag" id="down"></i> -->
+        
+        <input class="long-width username" type="text" required>
+        <label for="UserName"> Username</label>
+        <p class="sample-name">@gmail.com</p>
+        <p class="err">You can use letters, numbers & periods</p>
+
+ <!-- -->
+   <div class="password">
+        
+        <!-- <i class="fas fa-unlock"></i>  -->
+<!-- <i class="fas fa-eye-slash" id="visibility-checker">q</i> -->
+<input class="short-width key" type="password" id="password" required>
+<label for="Password"> Password</label>
+ </div> 
+
+<div class="confirmPassword">
+<!-- confirm-password-->
+        
+        <!-- <i class="fas fa-unlock" id="push2"></i>-->
+        <i class="fas fa-eye-slash" id="visibility-checker2"></i>  
+<input class="short-width push" type="password" id="confirm2" required>
+<label for="confirm-Password">Confirm</label>
+</div>
+<p id="valid">Use 8 or more characters with a mix of letters numbers & <br>symbols</p>
+   
+
+  <!-- button-->
+   <div class="inline">
+        <p id="instead">
+             <span class="signin"> <a href="form.html">Sign in instead</a></span> 
+        </p>
+        <button type="submit" id="signup">Next</button>
+
+    </div> 
+    </form>
+
+    </div>
+    </div>    
+</body>
+</html>
