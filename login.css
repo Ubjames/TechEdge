@@ -9,8 +9,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+  background-color: #fafafad8;
 }
-.container {
+
+.password-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,8 +23,32 @@ body {
   padding: 0px 20px;
   min-width: 30%;
   height: 400px;
-  box-shadow: 0px 0px 5px lightgrey;
+  box-shadow: 0px 0px 5px rgb(197, 197, 197);
+  transform: translatex(300%);
+  transition: ease-in-out 1000ms;
 }
+.username-container {
+  /* border:1px solid rgba(199, 199, 199, 0.781); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 0px 20px;
+  min-width: 30%;
+  height: 400px;
+  box-shadow: 0px 0px 5px rgb(197, 197, 197);
+  transition: ease-in-out 1s;
+}
+
+.verify-user {
+  transform: translatex(-1%);
+}
+.login-user {
+  transform: translateY(200%);
+}
+
 .group1 {
   display: flex;
   justify-content: center;
@@ -47,6 +74,7 @@ input[type="password"] {
   font-size: 0.8em;
   border-radius: 5px;
   padding: 10px;
+  font-size: 18px;
 }
 
 input:focus {
@@ -66,7 +94,7 @@ label[for="remember_me"] {
 
 label[for="UserName"],
 label[for="password"] {
-  margin-top: 3.3em;
+  margin-top: 4.3em;
   margin-left: -18em;
   padding: 0 10px;
 }
@@ -74,7 +102,7 @@ label[for="password"] {
 input:focus ~ label[for="UserName"],
 input:valid ~ label[for="UserName"] {
   color: #2669fc;
-  margin-top: 30px;
+  margin-top: 47px;
   font-size: 13px;
   background-color: #fff;
   padding: 0 4px;
@@ -84,36 +112,37 @@ input:valid ~ label[for="UserName"] {
 input:focus ~ label[for="password"],
 input:valid ~ label[for="password"] {
   color: #2669fc;
-  margin-top: 30px;
+  margin-top: 47px;
   font-size: 13px;
   background-color: #fff;
   padding: 0 4px;
   margin-left: -26em;
 }
 
-#remember_me{
-    margin-right: 5px;
+#remember_me {
+  margin-right: 5px;
 }
 
 input[type="submit"] {
   margin-top: 20px;
   margin-left: 7em;
-  background-color: #2669fc;
+  background-color: #26aefc;
   color: #fff;
-  width: 5em;
-  height: 2.5em;
+  padding: 10px 20px;
+  /* width: 5em; */
+  /* height: 2.5em; */
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
   border: none;
+  text-align: center;
 }
 #signup:focus {
   outline: none;
 }
 
-#signup:hover {
-  border: none;
-  background-color: rgba(0, 0, 255, 255);
+input[type="submit"]:hover {
+  background-color: #0180ca;
 }
 #signup:active {
   transform: scale(0.99);
@@ -140,4 +169,29 @@ input:required {
   background: rgb(113, 122, 121);
   box-shadow: 0px 0px 2px grey;
   overflow: hidden;
+}
+
+#visibility-checker {
+  position: absolute;
+  color: #6b6b6b;
+  top: 240px;
+  right: 40px;
+  transition: ease-in-out 10s;
+  visibility: hidden;
+  animation: fade 15s;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+#create-account{
+  text-decoration: none;
+  color: rgb(68, 68, 68);
 }

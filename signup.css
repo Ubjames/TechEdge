@@ -1,10 +1,12 @@
 * {
   margin: 0;
   padding-top: 0;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 body {
   font-family: "century gothic";
+  overflow: hidden;
+
 }
 .myForm {
   position: relative;
@@ -12,7 +14,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff;
+  background-color: #fafafad8;
 }
 .wraper {
   display: flex;
@@ -20,9 +22,9 @@ body {
   background-color: #ffffff;
   padding: 3em 3em;
   border-radius: 25px;
-  width: 55%;
+  width: 650px;
   overflow: hidden;
-  box-shadow: 0px 0px 15px lightgrey;
+  box-shadow: 0px 0px 10px rgba(211, 211, 211, 0.808);
 }
 
 .inline {
@@ -34,12 +36,11 @@ h2 {
 }
 
 input {
-  /* border:2px solid #2669fc;  */
   border: 1px solid lightgrey;
   background-color: inherit;
-  width: 15em;
-  margin-top: 3em;
-  font-size: 0.8em;
+  width: 13em;
+  margin-top: 2.3em;
+  font-size: 15px;
   border-radius: 5px;
   padding: 10px;
 }
@@ -48,18 +49,17 @@ input:focus {
 }
 #confirm-Password {
   width: 11.5em;
+  margin-left:10px;
 }
 
 .lastName {
-  position: absolute;
-  margin-top: -4.84em;
-  margin-left: 12em;
+  margin-left: 10px;
 }
-.confirmPassword {
+/* .confirmPassword {
   position: absolute;
   margin-top: -4.7em;
   margin-left: 12em;
-}
+} */
 
 label {
   position: absolute;
@@ -77,8 +77,9 @@ label[for="firstName"] {
   padding: 0 10px;
 }
 label[for="UserName"] {
-  margin-top: 3em;
-  margin-left: -25em;
+  position: absolute;
+  top: 225px;
+  left: 47px;
   padding: 0 10px;
 }
 label[for="email"] {
@@ -94,9 +95,10 @@ label[for="Password"] {
 }
 
 label[for="confirm-Password"] {
-  margin-top: 2.8em;
+  position: absolute;
+  top: 388px;
   padding: 0 10px;
-  margin-left: -9.2em;
+  left: 255px;
 }
 .sample-name {
   position: absolute;
@@ -111,17 +113,21 @@ label[for="confirm-Password"] {
   box-shadow: 0px 0px 5px grey;
   background-color: red;
 }
+
 .long-width {
-  width: 31.2em;
+  width: 400px;
 }
-.push {
-  margin-left: 15px;
+
+.block-1{
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
 }
 
 input[type="submit"] {
   margin-top: 30px;
   margin-left: 12.5em;
-  background-color: #2669fc;
+  background-color: rgb(0, 106, 177);;
   color: #fff;
   width: 6em;
   height: 2.5em;
@@ -136,7 +142,7 @@ input[type="submit"] {
 
 #signup:hover {
   border: none;
-  background-color: rgba(0, 0, 255, 255);
+  background-color: rgb(0, 97, 161);;
 }
 #signup:active {
   transform: scale(0.99);
@@ -171,15 +177,17 @@ span:active {
 span:visited {
   color: blue;
 }
-#visibility-checker2 {
+#visibility-checker {
   position: absolute;
-  margin-left: 11em;
-  margin-top: 48px;
+  top: 390px;
+  padding:0 10px;
+  left: 420px;
+  color:rgb(95, 95, 95);
 }
 
-#push2 {
+/* #push2 {
   margin-left: 2em;
-}
+} */
 
 input:focus ~ label[for="firstName"],
 input:valid ~ label[for="firstName"] {
@@ -207,11 +215,11 @@ input:required {
 input:focus ~ label[for="UserName"],
 input:valid ~ label[for="UserName"] {
   color: #2669fc;
-  margin-top: 30px;
+  top: 220px;
   font-size: 13px;
   background-color: #fff;
   padding: 0 4px;
-  margin-left: -30em;
+  left: 30px;
 }
 input:focus ~ label[for="email"],
 input:valid ~ label[for="email"] {
@@ -236,9 +244,61 @@ input:valid ~ label[for="Password"] {
 input:focus ~ label[for="confirm-Password"],
 input:valid ~ label[for="confirm-Password"] {
   color: #2669fc;
-  margin-top: 30px;
+  top: 372px;
   font-size: 13px;
   background-color: #fff;
   padding: 0 4px;
-  margin-left: -10.6em;
+  left: 265px;
+}
+
+.alertbox{
+  position:absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 550px;
+  height: 120px;
+  box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.698);
+  background-color: #fff;
+  border-radius: 10px 10px 0 0;
+  padding: 10px 10px;
+  transform: translateY(340%);
+  transition: ease-in-out 400ms;
+  margin-top: -100px;
+  
+}
+.showalert{
+  transform: translateY(240%);
+}
+.alertbox > div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgb(46, 55, 63);
+  margin-bottom: 40px;
+  
+}
+
+.alertbox > div > p{
+  font-size: 15px;
+}
+.closealert{
+  position: absolute;
+  padding:3px 10px;
+  background-color: #fff;
+  color:rgb(4, 83, 98);
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(128, 128, 128, 0.781);
+  text-align: center;
+  right: 10px;
+  top:9px;
+  cursor:pointer;
+}
+
+.signin > a{
+  color:rgb(80, 80, 80)
+}
+.signin > a:hover{
+  color:rgb(0, 93, 168)
 }

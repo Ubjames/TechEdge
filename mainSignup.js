@@ -1,60 +1,76 @@
 const signUpbtn = document.querySelector("#signup"); //signupbutton
 const passwordField = document.querySelector(".key"); //passwordfield
-const errMsg = document.querySelector("#valid"); //the <p>text to be highlighted red if false
-const lastName = document.querySelector("#last-name"); //lastname field
-const email = document.querySelector(".email"); //email field
+const lastName = document.querySelector("#lastName"); //lastname field
+const email = document.querySelector("#email"); //email field
 const firstName = document.querySelector(".firstName"); //firstname feild
-const confirmed = document.querySelector("#confirm2"); //2nd password eild for confirmation
-const errAlert = document.querySelector(".err");
-//  let msgToDisplay = errAlert.innerHTML = "one or more fields are empty";
+// const password = document.querySelector("#password"); //password
+const confirmed = document.querySelector("#confirm-password"); //password for confirmation
+const passwordErorr = document.querySelector(".password-erorr");
+const emailErorr = document.querySelector(".email-erorr");
 
-signUpbtn.addEventListener("submit", (e) => {
-  // e.preventDefault()
-  errMsg.style.color = "";
-  if (lastName.value === "" || email.value === "" || firstName.value === "") {
-    //   msgToDisplay;
-    // msgToDisplay.style.color="red";
-  }
-
-  if (passwordField.value.trim() === "" || passwordField.value.length < 8) {
-    errMsg.style.color = "red";
-    passwordField.focus();
-  }
+/* signUpbtn.addEventListener("click", (e) => {
   if (
-    confirmed.value.trim() === passwordField.value &&
-    confirmed.value !== ""
+    lastName.value.trim() === "" ||
+    email.value.trim() === "" ||
+    firstName.value.trim() === ""
   ) {
-    return true;
-  } else {
+    lastName.focus();
+    e.preventDefault();
+  }
+
+  if (password.value.length < 8) {
+    // errMsg.style.color = "red";
+    password.focus();
+    e.preventDefault();
+  }else if (confirmed.value.trim() !== password.value) {
+    e.preventDefault();
     return false;
   }
-});
+}); */
 
 //for toggling password visibity [for confirm password feild]
 const password = document.querySelector("#password");
-const password2 = document.querySelector("#confirm2");
-const Checker2 = document.querySelector("#visibility-checker2");
+const confirmPassword = document.querySelector("#confirm-password");
+const Checker = document.querySelector("#visibility-checker");
 
-Checker2.addEventListener("click", confirmPassword);
-
-function confirmPassword() {
+function toggleVisibility1() {
   if (
-    password2.getAttribute("type") == "password" &&
-    password.getAttribute("type") == "password"
+    password.getAttribute("type") == "password" &&
+    confirmPassword.getAttribute("type") == "password"
   ) {
-    Checker2.removeAttribute("class");
-    Checker2.setAttribute("class", "fas fa-eye");
-    password.removeAttribute("type");
+    Checker.setAttribute("class", "fas fa-eye-slash");
     password.setAttribute("type", "text");
-    password2.removeAttribute("type");
-    password2.setAttribute("type", "text");
+    confirmPassword.setAttribute("type", "text");
   } else {
-    password2.removeAttribute("type");
-    password2.setAttribute("type", "password");
-    password.removeAttribute("type");
+    Checker.setAttribute("class", "fas fa-eye");
     password.setAttribute("type", "password");
-    Checker2.removeAttribute("class");
-    Checker2.setAttribute("class", "fas fa-eye-slash");
+    confirmPassword.setAttribute("type", "password");
+  }
+}
+function toggleVisibility2() {
+  if (password.getAttribute("type") == "password") {
+    Checker.setAttribute("class", "fas fa-eye-slash");
+    password.setAttribute("type", "text");
+  } else {
+    Checker.setAttribute("class", "fas fa-eye");
+    password.setAttribute("type", "password");
   }
 }
 
+function showalert() {
+  let alertbox = document.querySelector(".alertbox");
+  let closealert = document.querySelector(".closealert");
+  alertbox.classList.add("showalert");
+  closealert.addEventListener("click", () => {
+    alertbox.classList.remove("showalert");
+  });
+}
+
+function showChecker() {
+  setInterval(() => {
+    Checker.style.visibility = "visible";
+  }, 1000);
+  password.oninput = (e)=>{
+    console.log(e)
+  }
+}

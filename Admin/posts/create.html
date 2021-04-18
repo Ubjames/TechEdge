@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlogAssisit - Admin</title>
+    <link rel="stylesheet" href="../dashboard.css">
+    <link rel="stylesheet" href="../../fontawesome-free-5.13.1-web/css/all.css">
+    <script defer src="../script.js"></script>
+    
+</head>
+<body>
+
+    <div class="header">
+        <div class="name-plate">
+            <img src="../../Assets/logo1.png" alt="logo" width="40">
+            <!-- <h2>BlogAssist</h2> -->
+        </div>
+        <div class="user-detail" onclick="dropdownUserDetails()">
+            <div class="user-image">
+                <div class="online"></div>
+            </div>            
+        </div>
+
+<!-- drop down user details -->
+    <div class="user-dropdown-details">
+
+        <div class="content">
+            <div class="image">
+                <i class="fa fa-user fa-4x" style="margin-right:10px ;color:#fff;"></i>
+            </div>
+            <span id="user">Ubong James</span>
+            <span id="user-type">Admin</span>
+            <button>Manange your BlogAssist Account</button>
+        </div>
+    </div>
+
+    </div>
+
+    <div class="body-wraper">
+       <nav>
+           <div class="group-1">
+               <div class="main">
+                    <p class="item ">Posts</p>
+                    <i class="fa fa-angle-down"></i>
+               </div>
+                    <div class="list">
+                        <a href="create.php">Add</a>
+                        <a href="manage.php">Manage</a>
+                    </div>
+           </div>
+
+           <div class="group-2">
+               <div class="main-2">
+                   <p class="item ">Users</p>
+                   <i class="fa fa-angle-down"></i>
+               </div>
+               <div class="list-2">
+                    <a href ="../users/create.php">Add</a>
+                    <a href ="../users/manage.php">Manage</a>
+            </div>
+           </div>
+
+           <div class="group-3">
+               <div  class="main-3">
+                   <p class="item ">Topics</p>
+                   <i class="fa fa-angle-down"></i>
+               </div>
+                <div class="list-3">
+                    <a href="topics/create.php">Add</a>
+                    <a href="topics/manage.php">Manage</a>
+                </div>
+
+           </div>
+       </nav>
+       <section>
+        <div class="all-content-wrapper">
+            <form action="" method="post" id="postForm">
+                <h2>Add new post</h2>
+                <div>
+                    <input type="text" name="title" id="title" placeholder="Enter title here">
+                </div>
+                <div>
+                    <textarea name="content" id="content"> </textarea>
+                </div>
+                <!-- <div class="action-button">
+                    <button type="submit" form="">Publish</button>
+                    <button type="submit">Save draft</button>
+                </div> -->
+            </form>
+            <aside>
+                <div class="publish">
+                    <div class="pub-control" onclick="expandmoreOption()">
+                        <p>Publish</p>
+                        <span style='font-size:22px;'>&#9662;</span>
+                    </div>
+                    <div class="more-option">
+                        <div class="action-button">
+                            <input type="submit" form="postForm" value="Save Draft">
+                            <input type="submit" form="postForm" value="Preview">
+                        </div>
+                        <div class="options">
+                            <div class="status">
+                                <i class="fa fa-key"></i>
+                                <label for="">Status:<strong><span>Draft</span></strong></label>
+                                <button id="edit">Edit</button>
+                            </div>
+                            <div class="status">
+                                <i class="fa fa-eye"></i>
+                                <label for="">Visibity:<strong><span>Public</span></strong></label>
+                                <button id="edit">Edit</button>
+                            </div>
+                            <div class="status">
+                                <i class="fa fa-calendar"></i>
+                                <label for="">Publish:<strong><span>Immediately</span></strong></label>
+                                <button id="edit">Edit</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-method">
+                        <input type="submit" form="postForm" value="Move to trash"> 
+                        <input type="submit" form="postForm" value="Publish"> 
+                    </div>
+                </div>
+
+            </aside>
+
+        </div>
+       </section>
+    </div>
+    </body>
+    <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
+
+    <script defer>
+        ClassicEditor
+    .create( document.querySelector( '#content' ), {
+        toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+        heading: {
+            options: [
+                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+            ]
+        }
+    } )
+    .catch( error => {
+        console.log( error );
+    } );
+    setTimeout(() => {
+        let ck = document.querySelector('.ck-blurred')
+        
+        ck.style.height="400px";
+    }, 1000);
+    </script>
+</html>

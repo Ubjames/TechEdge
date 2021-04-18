@@ -31,6 +31,8 @@ nav > p:hover {
   border-bottom: 1px solid rgb(11, 83, 112);
 }
 
+nav > .group-3 .main-3:hover,
+nav > .group-2 .main-2:hover,
 nav > .group-1 .main:hover {
   background-color: rgb(6, 76, 109);
   border-bottom: 1px solid rgb(6, 76, 109);
@@ -42,8 +44,9 @@ nav > p {
   border-bottom: 1px solid rgb(1, 40, 56);
 }
 
-
-nav > div > .main{
+nav > div > .main-3,
+nav > div > .main-2,
+nav > div > .main {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -52,37 +55,55 @@ nav > div > .main{
   border-bottom: 1px solid rgb(1, 40, 56);
 }
 
-
+nav > .group-2 > .list-2,
+nav > .group-3 > .list-3,
 nav > .group-1 > .list {
   display: flex;
   flex-direction: column;
-  height: 70px;
   justify-content: space-evenly;
-  /* border: 1px solid red; */
   background-color: rgb(6, 76, 109);
-  
+  overflow: hidden;
 }
+nav > .group-2 > .list-2,
+nav > .group-3 > .list-3,
+nav > .group-1 > .list {
+  height: 0px;
+  transition: ease-in-out 400ms;
+}
+/* nav > .group-2 > .list-2 > div,
+nav > .group-3 > .list-3 > div,
 nav > .group-1 > .list > div {
+  transition: ease-in-out 400ms;
+} */
+
+nav > .group-2 > .list-2 > a,
+nav > .group-3 > .list-3 > a,
+nav > .group-1 > .list > a {
   padding: 5px 35px;
+  color: #ffffff;
+  text-decoration: none;
 }
-nav > .group-1 > .list > div:hover {
-  background-color: rgb(255, 255, 255);
+nav > .group-2 > .list-2 > a:hover,
+nav > .group-3 > .list-3 > a:hover,
+nav > .group-1 > .list > a:hover {
+  /* background-color: rgb(255, 255, 255);
   color: rgb(1, 56, 82);
-  border-radius: 50px 0 0 50px;
-
+  border-radius: 50px 0 0 50px; */
+  padding-left: 37px;
+  transition: ease-in-out 400ms;
 }
 
-nav > .active {
+/* nav > .active {
   border-radius: 50px 0 0 50px;
   background: rgb(250, 250, 250);
   color: rgb(0, 46, 68);
-}
+} */
 
 .user-detail {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 200px;
+  /* width: 200px; */
 }
 .user-detail > div,
 span,
@@ -94,6 +115,88 @@ i {
   height: 30px;
   border-radius: 50px;
   background: rgb(138, 165, 165);
+  cursor: pointer;
+}
+.online {
+  position: absolute;
+  background-color: rgb(1, 156, 1);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  top: 39px;
+  right: 20px;
+}
+
+.user-image:hover {
+  border: 4px solid rgb(178, 199, 199);
+  transition: ease-in-out 250ms;
+}
+
+.user-dropdown-details {
+  overflow: hidden;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 0px;
+  width: 280px;
+  background: #ffffff;
+  color: black;
+  border-radius: 5px;
+  box-shadow: 0px 0px 6px #4e4e4e6c;
+  top: 60px;
+  right: 10px;
+  transition: ease-in-out 400ms;
+  z-index: 999;
+}
+.dropdown {
+  height: 330px;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* position: absolute; */
+}
+.user-dropdown-details > .content .image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  height: 100px;
+  width: 100px;
+  background: rgb(2, 63, 98);
+  border-radius: 50%;
+}
+
+.user-dropdown-details > .content #user {
+  margin-top: 5px;
+  font-size: 15pt;
+  font-weight: 600;
+}
+
+.user-dropdown-details > .content #user-type {
+  color: grey;
+}
+
+.user-dropdown-details > .content button {
+  margin-top: 30px;
+  border-radius: 20px;
+  width: 230px;
+  height: 40px;
+  background: inherit;
+  border: 1px solid rgb(190, 189, 189);
+  cursor: pointer;
+  color: rgb(68, 68, 68);
+}
+
+.content > button:hover {
+  background: rgb(18, 83, 109);
+  color: #ffffff;
+  border: none;
 }
 .name-plate {
   display: flex;
@@ -103,20 +206,174 @@ i {
 
 section {
   display: flex;
-  align-items: center;
   flex-direction: column;
   width: 100%;
+  align-items: flex-start;
+  background: rgb(238, 238, 238);
+  overflow-y: scroll;
+  padding: 10px 30px;
 }
 
-.control-buttons {
-  margin-top: 20px;
+.all-content-wrapper {
+  display: flex;
+  justify-content: center;
 }
-.control-buttons > button {
+aside {
+  margin-top: 40px;
+  margin-left: 25px;
+}
+aside > .publish {
+  background: #ffffff;
+  width: 250px;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0px 0.3px 1px rgb(160, 160, 160);
+}
+.pub-control {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(219, 219, 219);
+  padding-bottom: 10px;
+}
+.fa-play {
+  font-size: 11px;
+  color: rgb(31, 31, 31);
+  transform: rotate(90deg);
+  /* transform-origin: center; */
+  margin-right: 7px;
+  transition: ease-in-out 500ms;
+  /* z-index: 99; */
+}
+.more-option {
+  overflow: hidden;
+  height: 0px;
+  transition: ease-in-out 500ms;
+}
+.expand-options {
+  height: 150px;
+}
+
+.action-button {
+  display: flex;
+  justify-content: space-between;
+}
+.action-button > input {
+  margin-top: 5px;
+  padding: 4px 6px;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(243, 243, 243);
+}
+.options {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-size: 14px;
+  height: 100px;
+  margin-bottom: 10px;
+}
+.options > .status > button {
+  font-size: 13px;
+  border: none;
+  background: none;
+  color: blue;
+  text-decoration: underline;
+}
+.post-method {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgb(219, 219, 219);
+  padding: 5px 0px;
+}
+.post-method > input:first-child {
+  color: red;
+  border: none;
+  background: none;
+}
+.post-method > input {
+  color: #fff;
+  border: none;
+  background: rgb(2, 63, 98);
+  padding: 8px 10px;
+}
+#title {
+  margin-top: 10px;
+  width: 720px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  padding-left: 20px;
+  font-size: 16pt;
+  box-shadow: 0px 0.3px 1px rgb(160, 160, 160);
+}
+#title:focus {
+  outline: none;
+  box-shadow: 0px 0px 3px rgb(175, 175, 175);
+}
+
+#content {
+  box-shadow: 0px 0.3px 1px rgb(160, 160, 160);
+  margin-top: 20px;
+  width: 700px;
+  height: 400px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+#content:focus {
+  outline: none;
+  box-shadow: 0px 0px 3px rgb(175, 175, 175);
+}
+
+.action-button > button {
+  font-size: large;
   border: none;
   background: rgb(0, 46, 68);
   color: #ffffff;
-  width: 100px;
+  width: 120px;
   height: 40px;
   border-radius: 5px;
-  margin-left: 10px;
+  margin-right: 30px;
+  cursor: pointer;
+}
+
+.action-button {
+  margin-top: 10px;
+}
+
+button:focus {
+  outline: none;
+}
+button:hover {
+  background: rgb(0, 73, 107);
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 50px auto 200px 300px;
+  grid-template-rows: 50px 50px 50px;
+  grid-gap: 5px;
+  background: cornflowerblue;
+  text-align: center;
+}
+.grid-container > div {
+  border: 1px solid rgb(238, 238, 238);
+}
+.action-buttons > button {
+  border: none;
+  background: rgb(0, 46, 68);
+  color: #ffffff;
+  width: 70px;
+  height: 30px;
+  border-radius: 3px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.action-buttons > #edit {
+  background: darkblue;
+}
+.action-buttons > #delete {
+  background: red;
+}
+.action-buttons > #publish {
+  background: green;
 }
