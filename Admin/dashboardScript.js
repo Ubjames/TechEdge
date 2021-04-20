@@ -4,8 +4,9 @@ let list2 = document.querySelector(".list-2");
 let list3 = document.querySelector(".list-3");
 let main3 = document.querySelector(".main-3");
 let main2 = document.querySelector(".main-2");
+
 main.onclick = () => {
-  let icon = main.childNodes[3];
+  let icon = main.children[2];
   if (icon.classList.contains("fa-angle-up")) {
     icon.classList.remove("fa-angle-up");
     icon.classList.add("fa-angle-down");
@@ -17,7 +18,7 @@ main.onclick = () => {
   }
 };
 main2.onclick = () => {
-  let icon = main2.childNodes[3];
+  let icon = main2.children[2];
   if (icon.classList.contains("fa-angle-up")) {
     icon.classList.remove("fa-angle-up");
     icon.classList.add("fa-angle-down");
@@ -29,7 +30,7 @@ main2.onclick = () => {
   }
 };
 main3.onclick = () => {
-  let icon = main3.childNodes[3];
+  let icon = main3.children[2];
   if (icon.classList.contains("fa-angle-up")) {
     icon.classList.remove("fa-angle-up");
     icon.classList.add("fa-angle-down");
@@ -58,3 +59,6 @@ function expandmoreOption() {
   }
   //
 }
+
+
+

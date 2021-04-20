@@ -53,7 +53,7 @@ if(!empty($username)){
                     echo "<script>
                     document.querySelector('#UserName').focus();
                     </script>";
-                }
+                } 
             }
             ?>
             </div>

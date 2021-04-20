@@ -34,6 +34,7 @@ const confirmPassword = document.querySelector("#confirm-password");
 const Checker = document.querySelector("#visibility-checker");
 
 function toggleVisibility1() {
+  
   if (
     password.getAttribute("type") == "password" &&
     confirmPassword.getAttribute("type") == "password"
@@ -71,6 +72,6 @@ function showChecker() {
     Checker.style.visibility = "visible";
   }, 1000);
   password.oninput = (e)=>{
-    console.log(e)
+    // console.log(e)
   }
 }

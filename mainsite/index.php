@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="fontawesome-free-5.13.1-web/css/all.css">
-    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../fontawesome-free-5.13.1-web/css/all.css">
+    <script defer src="../script.js"></script>
     <title>BlogAssist</title>
 </head>
 <body>
     <nav>
         <div class="logo">
-            <img src="Assets/blogassist3.png" width="150">
+            <img src="../assets/blogassist3.png" width="150">
         </div>
         <div class="nav1">
             <a href="index.html">Home</a>
@@ -47,21 +47,21 @@
     <div class="features">
         <div class="f1">
             <div class="icon">
-                <img src="assets/fast.png" alt="" width="50">
+                <img src="../assets/fast.png" alt="" width="50">
             </div>
             <h3>Fast/Relaible</h3>
             <p>BlogAssist products and services are designed to provide superior speed, design and performance for your dream websites.</p>
         </div>
         <div class="f2">
             <div class="icon">
-                <img src="assets/safe.png" alt="" width="50">
+                <img src="../assets/safe.png" alt="" width="50">
             </div>
             <h3>Safe/Secure</h3>
             <p>BlogAssist offer provides a safer web services in all our products with uptodate and strict security technologies</p>
         </div>
         <div class="f3">
             <div class="icon">
-                <img src="assets/responsiveness1.png" alt="" width="50">
+                <img src="../assets/responsiveness1.png" alt="" width="50">
             </div>
             <h3>Mobile Friendly</h3>
             <p>View and manage your blog on any device, BlogAssist runs perfectly accross browsers and with full responsiveness</p>
@@ -75,28 +75,28 @@
         </div>
         <div class="f5">
             <div class="icon">
-                <img src="assets/customize.png" alt="" width="50">
+                <img src="../assets/customize.png" alt="" width="50">
             </div>
             <h3>Highly Customizable</h3>
             <p>With BlogAssist you can fully customise your blog appearance, restructure your functionalities and even rebuild some logics without writing a single line of code</p>
         </div>
         <div class="f6">
             <div class="icon">
-                <img src="assets/messaging.png" alt="" width="50">
+                <img src="../assets/messaging.png" alt="" width="50">
             </div>
             <h3>Built-in Messaging System</h3>
             <p>your audience can also their feelings on a post and even interacting with the author, it's safe, fast and secure </p>
         </div>
         <div class="f7">
             <div class="icon">
-                <img src="assets/supoport.png" alt="" width="50">
+                <img src="../assets/supoport.png" alt="" width="50">
             </div>
             <h3>Customer's Support</h3>
             <p>BlogAssist is always at your service</p>
         </div>
         <div class="f8">
             <div class="icon">
-                <img src="assets/free.png" alt="" width="50">
+                <img src="../assets/free.png" alt="" width="50">
             </div>
             <h3>Completely Free</h3>
             <p>blog With us today, BlogAssist is completely Free.</p>

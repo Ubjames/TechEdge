@@ -1,49 +1,10 @@
-<?php
-include('../connection.php');
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlogAssisit - Admin</title>
-    <link rel="stylesheet" href="dashboard.css">
-    <link rel="stylesheet" href="../fontawesome-free-5.13.1-web/css/all.css">
-    <script defer src="script.js"></script>
-    
-</head>
 <body>
-
-    <div class="header">
-        <div class="name-plate">
-            <!-- <img src="" alt="logo"> -->
-            <h2>BlogAssist</h2>
-        </div>
-        <div class="user-detail" onclick="dropdownUserDetails()">
-            <div class="user-image">
-                <div class="online"></div>
-            </div>            
-        </div>
-
-<!-- drop down user details -->
-    <div class="user-dropdown-details">
-
-        <div class="content">
-            <div class="image">
-                <i class="fa fa-user fa-4x" style="margin-right:10px;color:#fff;"></i>
-            </div>
-            <span id="user">Ubong James</span>
-            <span id="user-type">Admin</span>
-            <button>Manange your BlogAssist Account</button>
-        </div>
-    </div>
-
-    </div>
 
     <div class="body-wraper">
        <nav>
            <div class="group-1">
                <div class="main">
+                   <i class="fa fa-tags"></i>
                     <p class="item ">Posts</p>
                     <i class="fa fa-angle-down"></i>
                </div>
@@ -55,6 +16,7 @@ include('../connection.php');
 
            <div class="group-2">
                <div class="main-2">
+                   <i class="fa fa-users"></i>
                    <p class="item ">Users</p>
                    <i class="fa fa-angle-down"></i>
                </div>
@@ -107,23 +69,7 @@ include('../connection.php');
                </div>
            </div>
        </nav>
+    
        <section>
-           
-            <div><input type="text" name="" id=""></div>
-       </section>
-    </div>
-
-    <!-- <form method="POST">
-        <div>
-            <input type="text" id="title" name="title">
-        </div>
-        <div>
-            <textarea id="content" name="content"></textarea>
-        </div>
-        <div class="proceed">
-            <input type="submit" value=" Draft">
-            <input type="submit" value="Publish">
-        </div>
-    </form> -->
-</body>
-</html>
+          
+      

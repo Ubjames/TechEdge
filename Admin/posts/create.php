@@ -1,79 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlogAssisit - Admin</title>
-    <link rel="stylesheet" href="../dashboard.css">
-    <link rel="stylesheet" href="../../fontawesome-free-5.13.1-web/css/all.css">
-    <script defer src="../script.js"></script>
-    
-</head>
-<body>
+<?php
+require_once "../../lib/connection.php";
+include "../../lib/head.php";
+include "../../lib/header.php";
+include "../../lib/nav.php";
+?>
 
-    <div class="header">
-        <div class="name-plate">
-            <img src="../../Assets/logo1.png" alt="logo" width="40">
-            <!-- <h2>BlogAssist</h2> -->
-        </div>
-        <div class="user-detail" onclick="dropdownUserDetails()">
-            <div class="user-image">
-                <div class="online"></div>
-            </div>            
-        </div>
-
-<!-- drop down user details -->
-    <div class="user-dropdown-details">
-
-        <div class="content">
-            <div class="image">
-                <i class="fa fa-user fa-4x" style="margin-right:10px ;color:#fff;"></i>
-            </div>
-            <span id="user">Ubong James</span>
-            <span id="user-type">Admin</span>
-            <button>Manange your BlogAssist Account</button>
-        </div>
-    </div>
-
-    </div>
-
-    <div class="body-wraper">
-       <nav>
-           <div class="group-1">
-               <div class="main">
-                    <p class="item ">Posts</p>
-                    <i class="fa fa-angle-down"></i>
-               </div>
-                    <div class="list">
-                        <a href="create.php">Add</a>
-                        <a href="manage.php">Manage</a>
-                    </div>
-           </div>
-
-           <div class="group-2">
-               <div class="main-2">
-                   <p class="item ">Users</p>
-                   <i class="fa fa-angle-down"></i>
-               </div>
-               <div class="list-2">
-                    <a href ="../users/create.php">Add</a>
-                    <a href ="../users/manage.php">Manage</a>
-            </div>
-           </div>
-
-           <div class="group-3">
-               <div  class="main-3">
-                   <p class="item ">Topics</p>
-                   <i class="fa fa-angle-down"></i>
-               </div>
-                <div class="list-3">
-                    <a href="topics/create.php">Add</a>
-                    <a href="topics/manage.php">Manage</a>
-                </div>
-
-           </div>
-       </nav>
-       <section>
         <div class="all-content-wrapper">
             <form action="" method="post" id="postForm">
                 <h2>Add new post</h2>
@@ -126,9 +57,9 @@
             </aside>
 
         </div>
-       </section>
-    </div>
-    </body>
+
+   
+   
     <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
 
     <script defer>
@@ -145,6 +76,7 @@
     } )
     .catch( error => {
         console.log( error );
+        
     } );
     setTimeout(() => {
         let ck = document.querySelector('.ck-blurred')
@@ -152,4 +84,8 @@
         ck.style.height="400px";
     }, 1000);
     </script>
-</html>
+
+
+<?php
+include('../../lib/footer.php');
+?>
