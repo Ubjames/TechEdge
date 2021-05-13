@@ -1,10 +1,10 @@
 <?php
-require_once "../lib/connection.php";
-include "../lib/head.php";
-include "../lib/header.php";
-include "../lib/nav.php";
+require_once "../../lib/connection.php";
+include "../../lib/head.php";
+include "../../lib/header.php";
+include "../../lib/nav.php";
 ?>
-       <section>
+       
            <h2>Manage posts</h2>
            <div class="grid-container">
                <div>S/N</div>
@@ -36,8 +36,8 @@ include "../lib/nav.php";
                     <button type="submit" name="publish" id="publish">Publish</button>
                 </div>
             </div>
-       </section>
-    </div>
+    
+
   <?php
-  include "../lib/footer.php"
+  include "../../lib/footer.php"
   ?>

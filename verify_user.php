@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include('connection.php');
+include('lib/connection.php');
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     if(!isset($_SESSION['UID'])){
@@ -46,7 +46,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     
 
                         if($result['password'] == md5($password)){
-                            header("location: index.html");
+                            header("location: mainsite/index.php");
                         }
                         else{
                             echo "<p id='username_err'>Incorrect password</p>";

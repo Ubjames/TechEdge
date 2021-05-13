@@ -1,5 +1,5 @@
 <?php 
-include('connection.php');
+include('lib/connection.php');
 $firstname = "";
 $lastname = "";
 $username = "";

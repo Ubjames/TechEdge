@@ -60,5 +60,46 @@ function expandmoreOption() {
   //
 }
 
+let nav = document.querySelector("nav");
+let body = document.querySelector("section");
+let control = document.querySelector(".navControl");
+let controlbtn = document.querySelector(".navControl > i");
 
+body.addEventListener("mouseover", (e) => {
+  control.classList.remove("active-nav-control");
+});
+control.addEventListener("mouseover", (e) => {
+  control.classList.add("active-nav-control");
+});
+nav.addEventListener("mouseover", (e) => {
+  let X = e.clientX;
+  let Y = e.clientY;
 
+  control.classList.add("active-nav-control");
+  // control.classList.remove("active-nav-control");
+});
+
+control.addEventListener("click", () => {
+  let text = document.querySelectorAll(".item");
+  let ic = document.querySelectorAll(".ic");
+
+  text.forEach((v) => {
+    v.classList.toggle("hide");
+  });
+  ic.forEach((v2) => {
+    v2.classList.toggle("hide");
+  });
+
+  nav.classList.toggle("reduce-bar");
+
+  if (
+    nav.className.includes("reduce-bar") &&
+    controlbtn.className.includes("fa-angle-left")
+  ) {
+    controlbtn.classList.remove("fa-angle-left");
+    controlbtn.classList.add("fa-angle-right");
+  } else {
+    controlbtn.classList.remove("fa-angle-right");
+    controlbtn.classList.add("fa-angle-left");
+  }
+});

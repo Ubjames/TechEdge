@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("connection.php");
+include("lib/connection.php");
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 $isUser = false;
 $username = mysqli_real_escape_string($conn, $_POST['username']);
