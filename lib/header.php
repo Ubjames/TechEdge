@@ -1,10 +1,18 @@
 <div class="header">
         <div class="name-plate">
             <!-- <img src="" alt="logo"> -->
-            <h2>BlogAssist</h2>
+            <!-- <h2>BlogAssist</h2> -->
+            <a href="../home/index.php"><i class="fas fa-home"></i></a>
+        </div>
+        <div class="search-bar">
+            <form action="" method="post">
+                <input type="search" name="search" id=adminsearch>
+                <input type="submit" value="Search" name="submitsearch" id="submitsearch">
+            </form>
         </div>
         <div class="user-detail" onclick="dropdownUserDetails()">
             <div class="user-image">
+                <i class="fas fa-user"></i>
                 <div class="online"></div>
             </div>            
         </div>

@@ -44,20 +44,27 @@ main3.onclick = () => {
 
 function dropdownUserDetails() {
   let userdetail = document.querySelector(".user-dropdown-details");
-  userdetail.classList.toggle("dropdown");
+
+  if(userdetail.style.display == "flex"){
+    userdetail.classList.remove("zoomIn");
+    userdetail.style.display = "none";
+  }
+  else{
+    userdetail.classList.add("zoomIn");
+  userdetail.style.display = "flex";
+  }
 }
+
+
+
 function expandmoreOption() {
-  let updown = document.querySelector(".fa-play");
+  let updown = document.querySelector(".angle");
   let moreoption = document.querySelector(".more-option");
   moreoption.classList.toggle("expand-options");
-  if (moreoption.className.includes("expand-options")) {
-    updown.style.transform = "rotate(-90deg)";
-    updown.style.transformOrigin = "0 0";
-  } else {
-    updown.style.transform = "rotate(90deg)";
-    updown.style.transformOrigin = "0 0";
-  }
-  //
+
+  updown.classList.toggle("rotate");
+  // updown.style.transform = "rotate(-90deg)";
+  // updown.style.transformOrigin = "0 0";
 }
 
 let nav = document.querySelector("nav");
@@ -103,3 +110,39 @@ control.addEventListener("click", () => {
     controlbtn.classList.add("fa-angle-left");
   }
 });
+
+let first3Elements = [
+  document.querySelector(".group-1"),
+  document.querySelector(".group-2"),
+  document.querySelector(".group-3"),
+];
+
+first3Elements.forEach((element) => {
+  element.addEventListener("click", (e) => {
+    nav.classList.remove("reduce-bar");
+  });
+});
+
+function confirmOperation() {
+  let confm = confirm(
+    "This operation can not be undone. \nAre you sure you want to Proceed?"
+  );
+  if (confm == true) {
+  }
+}
+
+let pcd = document.querySelector(".alert-container");
+let alert = pcd.firstElementChild;
+function ConfirmPassword() {
+  pcd.style.display = "flex";
+  alert.classList.add("slideIn");
+  alert.classList.remove("slideOut");
+}
+
+function closeConfirmBox() {
+  alert.classList.remove("slideIn");
+  alert.classList.add("slideOut");
+  setTimeout(() => {
+    pcd.style.display = "none";
+  }, 150);
+}

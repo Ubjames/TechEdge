@@ -7,12 +7,12 @@ include "../../lib/nav.php";
 
         <div class="all-content-wrapper">
             <form action="" method="post" id="postForm">
-                <h2>Add new post</h2>
+                <h2 style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">Add new post</h2>
                 <div>
-                    <input type="text" name="title" id="title" placeholder="Enter title here">
+                    <input type="text" name="title" id="title" placeholder="Enter title here" class="magicbox" style="animation: fadeInUp 0.5s ease-in 0.1ms forwards; visibility:hidden;">
                 </div>
                 <div>
-                    <textarea name="content" id="content"> </textarea>
+                    <textarea name="content" id="content" class="magicbox" style="animation: fadeInUp 0.5s ease-in 0.2ms forwards; visibility:hidden;"> </textarea>
                 </div>
                 <!-- <div class="action-button">
                     <button type="submit" form="">Publish</button>
@@ -20,10 +20,10 @@ include "../../lib/nav.php";
                 </div> -->
             </form>
             <aside>
-                <div class="publish">
+                <div class="publish" style="animation: fadeInUp 0.5s ease-in 100ms forwards; visibility:hidden;">
                     <div class="pub-control" onclick="expandmoreOption()">
                         <p>Publish</p>
-                        <span style='font-size:22px;'>&#9662;</span>
+                        <span class="angle">&#9662;</span>
                     </div>
                     <div class="more-option">
                         <div class="action-button">

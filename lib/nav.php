@@ -11,8 +11,8 @@
                     <i class="fas  fa-angle-down ic"></i>
                </div>
                     <div class="list">
-                        <a href="create.php">Add</a>
-                        <a href="manage.php">Manage</a>
+                        <a href="../posts/create.php">Add</a>
+                        <a href="../posts/manage.php">Manage</a>
                     </div>
            </div>
 
@@ -23,20 +23,20 @@
                    <i class="fas  fa-angle-down ic"></i>
                </div>
                <div class="list-2">
-                    <a href ="create.php">Add</a>
-                    <a href ="manage.php">Manage</a>
+                    <a href ="../users/create.php">Add</a>
+                    <a href ="../users/manage.php">Manage</a>
             </div>
            </div>
 
            <div class="group-3">
-               <div  class="main-3">
+               <div class="main-3">
                <i class="fa fa-poll-h"></i>
                    <p class="item ">Categories</p>
                    <i class="fas  fa-angle-down ic"></i>
                </div>
                 <div class="list-3">
-                    <a href="create.php">Add</a>
-                    <a href="manage.php">Manage</a>
+                    <a href="../topics/create.php">Add</a>
+                    <a href="../topics/manage.php">Manage</a>
                 </div>
 
            </div>
@@ -46,10 +46,6 @@
                    <p class="item ">Tags</p>
                   
                </div>
-                <div class="list-3">
-                    <a href="create.php">Add</a>
-                    <a href="manage.php">Manage</a>
-                </div>
 
            </div>
            <div class="group-3">
@@ -98,8 +94,23 @@
            </div>
        </nav>
          
-       
+        
+    <div class="alert-container">
+        <div class="alert">
+            <h4>For security reasons please enter your password to proceed</h4>
+            <form action="">
+                    <!-- <p style="color:red; margin-bottom:5px">Incorrect password</p> -->
+            <input type="password" name="actionPassword" id="actionPassword" class="magicbox" placeholder="Password">
+            
+            <div class="confirmButtons">
+                <input type="submit" value="Proceed" class="magicbutton" id="proceed" >
+                <input type="button" value="Cancel" class="magicbutton" id="cancel" onclick="closeConfirmBox()">
+            </div>
+            
+            </form>
+        </div>
+    </div>
        
        <section>
           
-      
+     
