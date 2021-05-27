@@ -2,7 +2,7 @@
 
     <div class="body-wraper">
       
-       <nav>
+       <nav class="floatmenu">
            <div class="contdiv">
            <div class="group-1">
                <div class="main">
@@ -82,7 +82,7 @@
                </div>
            </div>
 
-           <div class="group-3">
+           <div class="group-3" onclick="window.location='../setting.php'">
                <div  class="main-3">
                <i class="fa fa-cog"></i>
                    <p class="item ">Settings</p>

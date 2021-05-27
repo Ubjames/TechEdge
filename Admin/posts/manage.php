@@ -6,16 +6,16 @@ include "../../lib/nav.php";
 ?>
        
            <h2>Manage posts</h2>
-           <div class="grid-container">
+           <div class="grid-container ">
            
-               <div style="font-weight:bolder">S/N</div>
-               <div style="font-weight:bolder">TITLE</div>
-               <div style="font-weight:bolder">AUTHOR</div>
-               <div style="font-weight:bolder">ACTION</div>
+               <div class="col-head">S/N</div>
+               <div class="col-head">TITLE</div>
+               <div class="col-head">AUTHOR</div>
+               <div class="col-head">ACTION</div>
           
                 <div style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">1</div>
-                <div style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">How to start a blog in 20 mins</div>
-                <div style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">Ubong James</div>
+                <div style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">How to start a blog in 20 Lorem ipsum dolor sit, amet consectetur adipisicing. mins</div>
+                <div style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">Ubong James </div>
                 <div class="action-buttons" style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">
                     <button onclick="confirmOperation()" type="submit" name="publish" id="publish">
                         <i class="fas fa-check"></i>

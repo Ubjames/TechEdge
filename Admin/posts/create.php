@@ -20,7 +20,7 @@ include "../../lib/nav.php";
                 </div> -->
             </form>
             <aside>
-                <div class="publish" style="animation: fadeInUp 0.5s ease-in 100ms forwards; visibility:hidden;">
+                <div class="publish " style="animation: fadeInUp 0.5s ease-in 100ms forwards; visibility:hidden;">
                     <div class="pub-control" onclick="expandmoreOption()">
                         <p>Publish</p>
                         <span class="angle">&#9662;</span>

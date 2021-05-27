@@ -7,11 +7,11 @@ include "../../lib/nav.php";
 
 
 <h2>Manage Users</h2>
-<div class="grid-container3">
-  <div style="font-weight: bolder">S/N</div>
-  <div style="font-weight: bolder">MEMBERS</div>
-  <div style="font-weight: bolder">ROLE</div>
-  <div style="font-weight: bolder">ACTION</div>
+<div class="grid-container3 ">
+  <div class="col-head">S/N</div>
+  <div class="col-head">MEMBERS</div>
+  <div class="col-head">ROLE</div>
+  <div class="col-head">ACTION</div>
 
   <div style="animation: fadeInUp 0.5s ease-in 0.2ms forwards; visibility:hidden;">1</div>
   <div style="animation: fadeInUp 0.5s ease-in 0.2ms forwards; visibility:hidden;">James Ubong</div>
