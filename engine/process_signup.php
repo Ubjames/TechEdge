@@ -8,9 +8,9 @@ function formData(){
     $required = ['firstName','lastName','username','email','password1','password2'];
     $is_error;
     if(isset($_POST)){
-        foreach ($required as $fields) {
+        foreach($required as $fields) {
             !empty($_POST[$fields]) ?$is_error = false :$is_error = true; 
-        
+           
     }
 
     if(!$is_error){
@@ -37,8 +37,9 @@ function formData(){
                 echo json_encode($msg);
             }else{
                 $passwordHash = md5($password2);    
-                $sql = "INSERT INTO user(`firstName`, `lastName`, `username`, `email`, `passwordHash`,`registeredAt`) VALUES('$firstname', '$lastname', '$username', '$email', '$passwordHash',now());";
-                // $runQuery = mysqli_query($conn, $sql);
+                $sql = "INSERT INTO user(`firstName`, `lastName`, `userName`, `email`, `passwordHash`,`registeredAt`) VALUES('$firstname', '$lastname', '$username', '$email', '$passwordHash',now());";
+                $runQuery = mysqli_query($conn, $sql);
+                
                 $msg = ['success' => 'Registration successful']; 
                 echo json_encode($msg);
                 // echo $msg['success']; 

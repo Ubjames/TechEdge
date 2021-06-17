@@ -7,8 +7,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         if(!isset($_SESSION['UID'])){
             header("location: ../login.php");
-
         }
+
         else if(empty($_POST['password'])){
             $msg = ['failed' => 'Passsword field is required']; 
             echo json_encode($msg);

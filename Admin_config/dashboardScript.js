@@ -499,3 +499,40 @@ function manageProfile() {
   xhr.open("GET", "lib/setting.php", true);
   xhr.send();
 }
+
+
+
+function configProfile() {
+  let url = "lib/setting.php";
+  fetch(url)
+    .then((response) => {
+      let data = response.text();
+      return data;
+    })
+    .then((data) => {
+      configProfileData(data);
+    });
+
+}
+
+function configProfileData(data) {
+  let url = "lib/profileData.php";
+  let parser = new DOMParser();
+  let document = parser.parseFromString(data, "text/html");
+  let myprofile = document.querySelector(".myprofile");
+  let role = document.getElementById("role");
+  let sex = document.getElementById("sex");
+  let country = document.getElementById("country");
+  let bio = document.getElementById("bio");
+  let fullname = document.getElementById("fullname");
+  let username = document.getElementById("username");
+  let email = document.getElementById("email");
+  let phone = document.getElementById("phone");
+  let address = document.getElementById("address");
+  let regDate = document.getElementById("regDate");
+
+  fetch(url).then((response) => {
+    let data = response.json();
+    console.log(data);
+  });
+}

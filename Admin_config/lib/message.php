@@ -13,6 +13,10 @@
   </div>
 </div>
 
+
+
+
+<!-- SUCCESS MESSAGE -->
 <div class="success msg-wraper">
   <div class="msg-body springZoomIn">
     <i onclick="closeMsg()" class="fas fa-times-circle closeSuccMsg"></i>
@@ -28,6 +32,8 @@
   </div>
 </div>
 
+
+
 <script>
   function closeMsg() {
     let msgs = document.querySelectorAll(".msg-wraper");
@@ -35,9 +41,12 @@
       let msg_body = msg.firstElementChild;
         msg_body.classList.remove("springZoomIn");
         msg_body.classList.add("zoomOut");
+        
+        setTimeout(() => {
+          msg.style.display = "none";
+          msg_body.classList.add("springZoomIn");
+          msg_body.classList.remove("zoomOut");
 
-      setTimeout(() => {
-        msg.style.display = "none";
       }, 150);
     });
   }

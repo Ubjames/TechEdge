@@ -27,7 +27,7 @@ body {
   box-shadow: 0px 0px 10px rgba(211, 211, 211, 0.808);
 }
 #login-user {
-  display: none;
+  display: flex;
   background-color: #ffffff;
   padding: 3em 3em;
   border-radius: 25px;
@@ -37,7 +37,7 @@ body {
   box-shadow: 0px 0px 10px rgba(211, 211, 211, 0.808);
 }
 #verify-user {
-  display: flex;
+  display: none;
   background-color: #ffffff;
   padding: 3em 3em;
   border-radius: 25px;
