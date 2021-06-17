@@ -13,6 +13,10 @@ let conts = document.getElementsByClassName("magicbox");
 let switcher = document.querySelector(".modeSwitcher");
 let thumb = document.querySelector(".mode-thumb");
 let custombox = document.querySelectorAll(".magicbox");
+let failedAlert = document.querySelector(".failed");
+let failedMassage = document.querySelector(".failed p");
+let successAlert = document.querySelector(".success");
+let successMassage = document.querySelector(".success p");
 let divs = [
   document.querySelector(".grid-container"),
   document.querySelector(".grid-container2"),
@@ -21,7 +25,6 @@ let divs = [
 ];
 let iconLogo = document.getElementsByClassName("fa");
 if (nav.className.includes("reduce-bar")) {
-  console.log("closed");
   iconLogo.forEach((e) => {
     e.setAttribute("title", "new");
   });
@@ -376,7 +379,6 @@ function checkImg(element) {
   if (img == "" || img == null) {
     document.querySelector(".img-option").lastElementChild.style.display =
       "none";
-    console.log("no image to view");
   } else {
     document.querySelector(".img-option").lastElementChild.style.display =
       "block";
@@ -500,8 +502,6 @@ function manageProfile() {
   xhr.send();
 }
 
-
-
 function configProfile() {
   let url = "lib/setting.php";
   fetch(url)
@@ -512,13 +512,13 @@ function configProfile() {
     .then((data) => {
       configProfileData(data);
     });
-
 }
 
 function configProfileData(data) {
   let url = "lib/profileData.php";
   let parser = new DOMParser();
   let document = parser.parseFromString(data, "text/html");
+
   let myprofile = document.querySelector(".myprofile");
   let role = document.getElementById("role");
   let sex = document.getElementById("sex");
@@ -531,8 +531,136 @@ function configProfileData(data) {
   let address = document.getElementById("address");
   let regDate = document.getElementById("regDate");
 
-  fetch(url).then((response) => {
-    let data = response.json();
-    console.log(data);
-  });
+  fetch(url)
+    .then((response) => {
+      let data = response.json();
+      return data;
+    })
+    .then((data) => {
+      sex.innerHTML = data["sex"];
+      country.innerHTML = data["country"];
+      bio.innerHTML = data["profile"];
+      email.innerHTML = data["email"];
+      phone.innerHTML = data["mobile"];
+      address.innerHTML = data["address"];
+      username.innerHTML = data["userName"];
+      regDate.innerHTML = data["registeredAt"];
+      fullname.innerHTML =
+        data["lastName"] + " " + data["firstName"] + " " + data["middleName"];
+      data["role"] > 0
+        ? (role.innerHTML = "Admin")
+        : (role.innerHTML = "Author");
+
+      if (contentContainer.innerHTML != "") {
+        contentContainer.innerHTML = "";
+        contentContainer.appendChild(myprofile);
+      }
+    });
+}
+
+function updateProfile() {
+  let url = "lib/updateProfile.php";
+  fetch(url)
+    .then((response) => {
+      let data = response.text();
+      return data;
+    })
+    .then((data) => {
+      configUserData(data);
+    });
+}
+
+function configUserData(data) {
+  let url = "lib/profileData.php";
+  let parser = new DOMParser();
+  let document = parser.parseFromString(data, "text/html");
+
+  let updateWraper = document.querySelector(".update-wraper");
+  let sex = document.getElementById("sex");
+  let country = document.getElementById("country");
+  let bio = document.getElementById("bio");
+  let firstName = document.getElementById("firstName");
+  let lastname = document.getElementById("lastname");
+  let Othernames = document.getElementById("Othernames");
+  let username = document.getElementById("username");
+  let email = document.getElementById("email");
+  let phone = document.getElementById("phone");
+  let address = document.getElementById("address");
+
+  fetch(url)
+    .then((response) => {
+      let data = response.json();
+      return data;
+    })
+    .then((data) => {
+      sex.value = data["sex"];
+      country.value = data["country"];
+      bio.value = data["profile"];
+      email.value = data["email"];
+      phone.value = data["mobile"];
+      address.value = data["address"];
+      username.value = data["userName"];
+      lastname.value = data["lastName"];
+      firstName.value = data["firstName"];
+      Othernames.value = data["middleName"];
+
+      if (contentContainer.innerHTML != "") {
+        contentContainer.innerHTML = "";
+        contentContainer.appendChild(updateWraper);
+      }
+    });
+}
+
+//UPDATE USER DATA TO DATABASE
+
+function saveUpdate() {
+  uploadPhoto();
+  let xhr = new XMLHttpRequest();
+  let sex = document.getElementById("sex").value;
+  let country = document.getElementById("country").value;
+  let bio = document.getElementById("bio").value;
+  let firstName = document.getElementById("firstName").value;
+  let lastname = document.getElementById("lastname").value;
+  let Othernames = document.getElementById("Othernames").value;
+  let username = document.getElementById("username").value;
+  let email = document.getElementById("email").value;
+  let phone = document.getElementById("phone").value;
+  let address = document.getElementById("address").value;
+  let photo = document.getElementById("fileUpload");
+
+  xhr.open("POST", "lib/saveUpdate.php", true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  let data = `firstname=${firstName}&lastname=${lastname}&username=${username}&email=${email}&phone=${phone}&address=${address}&bio=${bio}&country=${country}&sex=${sex}&middlename=${Othernames}&image=${photo.files[0]}`;
+
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      let response = JSON.parse(xhr.responseText);
+      if (response["failed"]) {
+        failedAlert.style.display = "flex";
+        failedMassage.innerHTML = response["failed"];
+      } else if (response["success"]) {
+        successAlert.style.display = "flex";
+        successMassage.innerHTML = response["success"];
+        document
+          .querySelector(".closeSuccMsg")
+          .addEventListener("click", () => {
+            configProfile();
+          });
+      }
+    }
+  };
+  // xhr.onprogress = () => {
+  // };
+
+  xhr.send(data);
+}
+
+function uploadPhoto(){
+// let xhr = new XMLHttpRequest();
+let photo = document.getElementById("fileUpload").files;
+let formdata = new FormData()
+formdata.append('file',photo)
+console.log(formdata)
+
 }

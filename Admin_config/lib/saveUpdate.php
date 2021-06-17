@@ -2,9 +2,9 @@
 session_start();
 require_once "../../engine/connection.php";
 
-$msg= [];
+$msg= [];/*
 if(isset($_POST)){
-/*     $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
+  $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
     $middlename = mysqli_real_escape_string($conn, $_POST['middlename']);
     $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
     $username = mysqli_real_escape_string($conn, $_POST['username']);
@@ -44,8 +44,8 @@ if(isset($_POST)){
             }
         }
         if(isset($username)){
-            if($user_data['username'] != $username || $user_data['username'] ==""){
-                $update4 = "UPDATE `user` SET `username` = '$username' WHERE `id` = '$UID';";
+            if($user_data['userName'] != $username || $user_data['userName'] ==""){
+                $update4 = "UPDATE `user` SET `userName` = '$username' WHERE `id` = '$UID';";
                  mysqli_query($conn, $update4);
                  
             }
@@ -98,21 +98,24 @@ if(isset($_POST)){
         
         
 
-        // $msg = ['success'=> 'Your data was updated successfully'];
-        //  echo json_encode($msg);
+        $msg = ['success'=> 'Your data was updated successfully'];
+         echo json_encode($msg);
     }
- */
-
-}
-
- if(isset($_FILES['image']['name'])){
-    echo 'yes';
-
- }else{
-     echo 'not seen';
- }
-/* 
  
+
+}*/
+
+if(isset($_POST)){
+
+    if(isset($_FILES['image']['name'])){
+        echo 'yes';
+        
+    }else{
+        echo 'not seen';
+    }
+}
+ 
+/*  
     $target_dir = 'uploads/';
     $target_file = $target_dir.basename($_FILES['image']['techedge_userIMG']);
     $uploadOk = 1;
@@ -129,9 +132,9 @@ if(isset($_POST)){
             
         }
         
-    } */
+    }
 
-/*    if(file_exists($target_file)){
+   if(file_exists($target_file)){
         $msg = ['Failed' => 'Sorry, file already exists'];
         echo json_encode($msg);
         $uploadOk =0;

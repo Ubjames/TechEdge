@@ -1,8 +1,7 @@
 <div class="update-wraper">
 <div style="width: 100%" class="profile-picture">
-<form method="post" enctype="multipart/form-data">
-  
-  <input type="file" name="file" id="fileUpload" style="display: none" />
+<form enctype="multipart/form-data">
+    <input type="file" name="file" id="fileUpload" style="display: none" />
 </form>
   <div
     class="dp"
@@ -118,7 +117,7 @@
     <p style="color: grey; font-size: 16px; margin-bottom: 5px">
       Tell people more about yourself, keep it simple
     </p>
-    <textarea id="bio" class="magicbox" cols="30" rows="30"></textarea>
+    <textarea id="bio" class="magicbox" col="30" row="30"></textarea>
   </div>
 </div>
 
