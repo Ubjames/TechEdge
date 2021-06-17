@@ -1,182 +1,152 @@
+:root{
+  --warm-blue:#3776fd;
+}
 * {
   margin: 0;
   padding-top: 0;
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
 }
 body {
   font-family: "century gothic";
-  overflow: hidden;
-
-}
-.myForm {
-  position: relative;
+  display: flex !important;
+  justify-content: center!important;
+  align-items: center !important;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #fafafad8;
+  background-color: rgb(230, 230, 230) !important;
 }
+
 .wraper {
   display: flex;
-  position: relative;
+  /* flex-direction: column; */
   background-color: #ffffff;
   padding: 3em 3em;
   border-radius: 25px;
-  width: 650px;
+  width: 600px;
+  height: 500px;
   overflow: hidden;
   box-shadow: 0px 0px 10px rgba(211, 211, 211, 0.808);
 }
-
-.inline {
-  display: inline-flex;
+#login-user {
+  display: none;
+  background-color: #ffffff;
+  padding: 3em 3em;
+  border-radius: 25px;
+  width: 400px !important;
+  height: 400px !important;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px rgba(211, 211, 211, 0.808);
+}
+#verify-user {
+  display: flex;
+  background-color: #ffffff;
+  padding: 3em 3em;
+  border-radius: 25px;
+  width: 400px !important;
+  height: 400px !important;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px rgba(211, 211, 211, 0.808);
+}
+.wraper form{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
 }
 
-h2 {
-  padding-bottom: 5px;
+.wraper form .block{
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 100%;
 }
 
-input {
+
+@media screen and (max-width:400px) {
+  .wraper form h2{
+font-size: 15px;
+  }
+  .btnz{
+    height: 70px !important;
+  }
+  .wraper form .block{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100px;
+  /* border:1px solid red */
+  }
+  
+}
+.wraper form input {
   border: 1px solid lightgrey;
   background-color: inherit;
-  width: 13em;
-  margin-top: 2.3em;
+  width: 100% !important;
   font-size: 15px;
   border-radius: 5px;
-  padding: 10px;
-}
-input:focus {
-  border: 2px solid #2669fc;
-}
-#confirm-Password {
-  width: 11.5em;
-  margin-left:10px;
+  padding: 12px 10px;
 }
 
-.lastName {
-  margin-left: 10px;
-}
-/* .confirmPassword {
-  position: absolute;
-  margin-top: -4.7em;
-  margin-left: 12em;
-} */
-
-label {
-  position: absolute;
-  color: grey;
-  transition: 0.3s;
-}
-label[for="firstName"] {
-  margin-top: 3em;
-  padding: 0 10px;
-  margin-left: -12em;
-}
-.lastName > label[for="lastName"] {
-  margin-left: -12em;
-  margin-top: 3em;
-  padding: 0 10px;
-}
-label[for="UserName"] {
-  position: absolute;
-  top: 225px;
-  left: 47px;
-  padding: 0 10px;
-}
-label[for="email"] {
-  margin-top: 3em;
-  margin-left: -25em;
-  padding: 0 10px;
-}
-
-label[for="Password"] {
-  margin-top: 3em;
-  margin-left: -12em;
-  padding: 0 10px;
-}
-
-label[for="confirm-Password"] {
-  position: absolute;
-  top: 388px;
-  padding: 0 10px;
-  left: 255px;
-}
-.sample-name {
-  position: absolute;
-  margin-top: -30px;
-  margin-left: 21em;
-}
-.image-pane {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: 3px solid #fff;
-  box-shadow: 0px 0px 5px grey;
-  background-color: red;
-}
-
-.long-width {
-  width: 400px;
-}
-
-.block-1{
-  display: flex;
-  /* justify-content: center; */
-  align-items: center;
-}
-
-input[type="submit"] {
-  margin-top: 30px;
-  margin-left: 12.5em;
-  background-color: rgb(0, 106, 177);;
-  color: #fff;
-  width: 6em;
-  height: 2.5em;
+.wraper form input[type="checkbox"] {
+  border: 1px solid lightgrey;
+  background-color: inherit;
+  width: 30px !important;
+  font-size: 15px;
   border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  border: none;
+  /* padding: 12px 10px; */
 }
-#signup:focus {
+.wraper form input:focus {
+  border: 2px solid var(--warm-blue);
   outline: none;
 }
 
-#signup:hover {
-  border: none;
-  background-color: rgb(0, 97, 161);;
+.wraper form .feild{
+  position: relative;
+  width: 100%;
 }
-#signup:active {
-  transform: scale(0.99);
-  box-shadow: none;
+  
+
+.wraper .feild label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: grey;
+  transition: 0.3s;
+  cursor: text;
 }
-p {
-  margin-top: 1px;
-  color: #000;
-  font-size: 0.9rem;
+.wraper .feild label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: grey;
+  transition: 0.3s;
+  cursor: text;
 }
 
-#instead {
-  color: #ffffff;
-  margin-left: em;
-  margin-top: 40px;
+.wraper .block .feild {
+width: 49%;
 }
-#instead a {
+@media screen and (max-width:400px) {
+  .wraper .block .feild {
+  width: 100%;
+  }
+
+  
+}
+
+.block a {
   text-decoration: none;
+  color: var(--warm-blue);
+}
+.wraper .block button {
+  background-color: var(--warm-blue);
+  color: #fff;
 }
 
-p > span {
-  color: rgb(94, 94, 255);
-  font-weight: bolder;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
 
-span:active {
-  color: blue;
-}
-
-span:visited {
-  color: blue;
-}
 #visibility-checker {
   position: absolute;
   top: 390px;
@@ -185,71 +155,17 @@ span:visited {
   color:rgb(95, 95, 95);
 }
 
-/* #push2 {
-  margin-left: 2em;
-} */
-
-input:focus ~ label[for="firstName"],
-input:valid ~ label[for="firstName"] {
-  color: #2669fc;
-  margin-top: 30px;
+input:focus ~ label,
+input:valid ~ label {
+  /* position: absolute; */
+  top: -8px !important;
+  left: 3px !important;
   font-size: 13px;
+  color: var(--warm-blue) !important;
   background-color: #fff;
   padding: 0 4px;
-  margin-left: -14em;
 }
 
-input:focus ~ label[for="lastName"],
-input:valid ~ label[for="lastName"] {
-  color: #2669fc;
-  margin-top: 30px;
-  font-size: 13px;
-  background-color: #fff;
-  padding: 0 4px;
-  margin-left: -14em;
-}
-input:required {
-  outline: none;
-}
-
-input:focus ~ label[for="UserName"],
-input:valid ~ label[for="UserName"] {
-  color: #2669fc;
-  top: 220px;
-  font-size: 13px;
-  background-color: #fff;
-  padding: 0 4px;
-  left: 30px;
-}
-input:focus ~ label[for="email"],
-input:valid ~ label[for="email"] {
-  color: #2669fc;
-  margin-top: 30px;
-  font-size: 13px;
-  background-color: #fff;
-  padding: 0 4px;
-  margin-left: -30em;
-}
-
-input:focus ~ label[for="Password"],
-input:valid ~ label[for="Password"] {
-  color: #2669fc;
-  margin-top: 30px;
-  font-size: 13px;
-  background-color: #fff;
-  padding: 0 4px;
-  margin-left: -14em;
-}
-
-input:focus ~ label[for="confirm-Password"],
-input:valid ~ label[for="confirm-Password"] {
-  color: #2669fc;
-  top: 372px;
-  font-size: 13px;
-  background-color: #fff;
-  padding: 0 4px;
-  left: 265px;
-}
 
 .alertbox{
   position:absolute;
@@ -296,9 +212,52 @@ input:valid ~ label[for="confirm-Password"] {
   cursor:pointer;
 }
 
-.signin > a{
-  color:rgb(80, 80, 80)
+
+ .wraper .title{
+  display: flex;
+  justify-content: center;align-items: center;
+  width: 100%;
+  flex-direction: column;
+  color: grey;
 }
-.signin > a:hover{
-  color:rgb(0, 93, 168)
+.wraper .title h2{
+  color: var(--warm-blue);
+  margin-bottom: 10px;
+}
+
+.profile-picture img{
+ width: 100%;
+ height: auto; 
+}
+.profile-picture {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 4px solid #ffffff;
+  box-shadow: 0px 0px 4px rgb(184, 184, 184);
+  overflow: hidden;
+ 
+}
+
+.wraper .userInfo{
+  display: flex;
+  justify-content: space-around; align-items: center; 
+  flex-direction: column; margin:-20px 0px 20px 0;
+  height: 140px;
+  /* border-bottom: 1px solid rgb(230, 230, 230); */
+}
+.wraper .userInfo p{
+  /* color:grey; */
+  color:var(--warm-blue);
+  padding: 5px 10px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 3px rgb(219, 219, 219);
+  border-radius: 50px;
+}
+.wraper .userInfo p > span{
+  color:var(--warm-blue);
+  font-weight: bolder;
 }

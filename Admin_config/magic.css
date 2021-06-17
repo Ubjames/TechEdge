@@ -1,0 +1,225 @@
+/* .fadeInUp {
+  animation-name: fadeInUp;
+  animation-duration: 1000ms;
+} */
+
+/* .fadeIn {
+  animation-name: fadeIn;
+  animation-duration: 200ms;
+} */
+
+.springZoomIn {
+  animation-name: springZoomIn;
+  animation-duration: 500ms;
+}
+.zoomIn {
+  animation-name: zoomIn;
+  animation-duration: 200ms;
+}
+.zoomOut {
+  animation-name: zoomOut;
+  animation-duration: 200ms;
+}
+.slideIn {
+  animation-name: slideIn;
+  animation-duration: 500ms;
+}
+.slideInRight {
+  animation-name: slideInRight;
+  animation-duration: 400ms;
+  animation-fill-mode: forwards;
+}
+.slideOutLeft {
+  animation-name: slideOutLeft;
+  animation-duration: 400ms;
+  animation-fill-mode: forwards;
+}
+.slideOut {
+  animation-name: slideOut;
+  animation-duration: 250ms;
+}
+
+.spin {
+  animation: spin 600ms linear infinite forwards;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+    transform-origin: center center;
+  }
+  to {
+    transform: rotate(360deg);
+    transform-origin: center center;
+  }
+}
+
+@keyframes springZoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5, 0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1, 1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8, 0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+@keyframes zoomOut {
+  from {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.8, 1.8);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+    visibility: visible;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(200%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-200%);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+.magicbutton {
+  font-size: large;
+  border: none;
+  background: rgb(0, 46, 68);
+  color: #ffffff;
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  margin-left: 100%;
+  transform: translateX(-100%);
+  cursor: pointer;
+}
+
+.magicbox {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  padding-left: 20px;
+  font-size: 16pt;
+  box-shadow: 0px 0.3px 1px rgb(160, 160, 160);
+  transition: ease-in-out 200ms;
+  box-sizing: border-box;
+  background-color: #ffffff;
+}
+.magicbox:focus {
+  outline: none;
+  box-shadow: 0px 0px 3px rgb(175, 175, 175);
+}
+.magicbox:hover {
+  box-shadow: 4px 8px 10px rgb(173, 173, 173);
+}
+
+.magicbutton2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* font-size: larger; */
+  border: none;
+  padding: 10px;
+  width: 82px;
+  height: 35.5px;
+  border-radius: 3px;
+  box-shadow: 0 0.3px 1px #000;
+  transition: ease-in-out 200ms;
+  cursor: pointer;
+}
+.magicbutton2:hover {
+  box-shadow: 3px 4px 5px rgb(121, 121, 121);
+  /* color:#ffffff; */
+  /* background-color: inherit !important; */
+}
+
+.magicInputLabel input:focus ~ label,
+.magicInputLabel textarea:focus ~ label,
+.magicInputLabel textarea:valid ~ label,
+.magicInputLabel input:valid ~ label {
+  color: #ffffff;
+  top: -10px;
+  font-size: 13px;
+  background-color: rgb(42, 93, 170);
+  padding: 2px 4px;
+  border-radius: 2px;
+  left: 10px;
+}
+.magicInputLabel {
+  position: relative;
+  margin-top: 15px;
+}
