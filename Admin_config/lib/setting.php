@@ -7,8 +7,8 @@
         class="dp"
         style="animation: fadeIn 1s ease-in 300ms forwards; visibility: hidden"
       >
-        <i class="fas fa-user"></i>
-        <img src="" />
+        <i class="fas fa-user" style="display:none"></i>
+        <img id="userPhoto" src="" />
       </div>
     </div>
 

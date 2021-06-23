@@ -56,9 +56,9 @@ include "message.php";
 
     <div class="user-detail" onclick="dropdownUserDetails()">
       <div class="user-image">
-        <i class="fas fa-user"></i>
-        <div class="online"></div>
+        <img id="userPhoto40px" src="">
       </div>
+      <div class="online"></div>
     </div>
   </div>
 
@@ -66,13 +66,19 @@ include "message.php";
   <div class="user-dropdown-details">
     <div class="content">
       <div class="image">
-        <i class="fa fa-user fa-4x" style="margin-right: 10px; color: #fff"></i>
+       <img id="userPhoto100px" src="">
       </div>
-      <span id="user">Ubong James</span>
-      <span id="user-type">Admin</span>
-      <button onclick="window.location='../home/setting.php'">
-        Manange your Account
+      <span id="user-name"></span>
+      <span id="user-role"></span>
+      <div class="ctrlBtn">
+      <button onclick="configProfile()">
+        Manage your Account
       </button>
+      <button onclick="window.location = '../logout.php'">
+        Log out
+      </button>
+      </div>
+      
     </div>
   </div>
 </div>

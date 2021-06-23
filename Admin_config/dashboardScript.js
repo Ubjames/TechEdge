@@ -337,7 +337,7 @@ function processUpdate(btn) {
   xhr.send();
 }
 
-function pickImageToUpload(displaybox) {
+/* function pickImageToUpload(displaybox) {
   let file = document.getElementById("fileUpload");
   let e = window.event;
   if (file.files[0] && e.target.className.includes("fa-eye")) {
@@ -355,7 +355,7 @@ function pickImageToUpload(displaybox) {
       };
     };
   }
-}
+} */
 
 function showMoreoption(param) {
   document.querySelector(".darkOption").style.display = "flex";
@@ -520,6 +520,7 @@ function configProfileData(data) {
   let document = parser.parseFromString(data, "text/html");
 
   let myprofile = document.querySelector(".myprofile");
+  let userPhoto = document.getElementById("userPhoto");
   let role = document.getElementById("role");
   let sex = document.getElementById("sex");
   let country = document.getElementById("country");
@@ -537,6 +538,7 @@ function configProfileData(data) {
       return data;
     })
     .then((data) => {
+      userPhoto.setAttribute("src", data["passport"]);
       sex.innerHTML = data["sex"];
       country.innerHTML = data["country"];
       bio.innerHTML = data["profile"];
@@ -576,6 +578,7 @@ function configUserData(data) {
   let document = parser.parseFromString(data, "text/html");
 
   let updateWraper = document.querySelector(".update-wraper");
+  let userDp = document.getElementById("userDp");
   let sex = document.getElementById("sex");
   let country = document.getElementById("country");
   let bio = document.getElementById("bio");
@@ -593,6 +596,7 @@ function configUserData(data) {
       return data;
     })
     .then((data) => {
+      userDp.setAttribute("src", data["passport"]);
       sex.value = data["sex"];
       country.value = data["country"];
       bio.value = data["profile"];
@@ -610,11 +614,44 @@ function configUserData(data) {
       }
     });
 }
+window.imageisset = false;
+function pickImageToUpload(displaybox) {
+  let eyeIcon = document.querySelector(".img-option .fa-eye");
+  let file = document.getElementById("fileUpload");
+  file.onchange = () => {
+    if (file.files[0]) {
+      window.imageisset = true;
+      // saveUpdate(imageisset);
+    }
+  };
+  let e = window.event;
+  if (eyeIcon == e.target) return;
+  file.click();
+}
 
 //UPDATE USER DATA TO DATABASE
-
 function saveUpdate() {
-  uploadPhoto();
+  let file = document.getElementById("fileUpload");
+  if (window.imageisset == true) {
+    const form = new FormData();
+    const data = file.files[0];
+    form.append("file", data);
+
+    const url = "lib/saveUpdate.php";
+    const request = new Request(url, {
+      method: "POST",
+      body: form,
+    });
+    fetch(request)
+      .then((response) => {
+        response.json();
+        return response;
+      })
+      .then((response) => {
+        // console.log(response);
+      });
+  }
+
   let xhr = new XMLHttpRequest();
   let sex = document.getElementById("sex").value;
   let country = document.getElementById("country").value;
@@ -626,12 +663,11 @@ function saveUpdate() {
   let email = document.getElementById("email").value;
   let phone = document.getElementById("phone").value;
   let address = document.getElementById("address").value;
-  let photo = document.getElementById("fileUpload");
 
   xhr.open("POST", "lib/saveUpdate.php", true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-  let data = `firstname=${firstName}&lastname=${lastname}&username=${username}&email=${email}&phone=${phone}&address=${address}&bio=${bio}&country=${country}&sex=${sex}&middlename=${Othernames}&image=${photo.files[0]}`;
+  let data = `firstname=${firstName}&lastname=${lastname}&username=${username}&email=${email}&phone=${phone}&address=${address}&bio=${bio}&country=${country}&sex=${sex}&middlename=${Othernames}`;
 
   xhr.onreadystatechange = () => {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -656,11 +692,38 @@ function saveUpdate() {
   xhr.send(data);
 }
 
-function uploadPhoto(){
-// let xhr = new XMLHttpRequest();
-let photo = document.getElementById("fileUpload").files;
-let formdata = new FormData()
-formdata.append('file',photo)
-console.log(formdata)
+document.addEventListener("DOMContentLoaded", () => {
+  let url = "lib/profileData.php";
+  fetch(url)
+    .then((response) => {
+      let data = response.json();
+      return data;
+    })
+    .then((data) => {
+      loadDataToAppropratePlaces(data);
+    });
+});
 
+function loadDataToAppropratePlaces(data) {
+  let img40px = document.querySelector("#userPhoto40px");
+  let img100px = document.querySelector("#userPhoto100px");
+  let userNAME = document.querySelector("#user-name");
+  let userROLE = document.querySelector("#user-role");
+
+  if (
+    data["passport"] == "" ||
+    data["passport"] == null ||
+    data["passport"] == undefined ||
+    !data
+  ) {
+    img40px.setAttribute("src", "Assets/placeholder_image.jpg");
+    img100px.setAttribute("src", "Assets/placeholder_image.jpg");
+  } else {
+    img100px.setAttribute("src", data["passport"]);
+    img40px.setAttribute("src", data["passport"]);
+  }
+  userNAME.innerHTML = data["firstName"] + " " + data["lastName"];
+  data["role"] > 0
+    ? (userROLE.innerHTML = "Admin")
+    : (userROLE.innerHTML = "Author");
 }

@@ -12,7 +12,9 @@ if(isset($_POST)){
         if($user_data){
             $_SESSION['UID'] = $user_data['id'];
             $msg = ['success' => 'User authentication succesful']; 
-                echo json_encode($msg);
+            $newArray = [$msg,$user_data];
+            echo json_encode($newArray) ;
+                
                 
         } else{
         $msg = ['failed' => 'Username is Incorrect']; 

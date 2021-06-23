@@ -218,7 +218,13 @@ nav .contdiv > .group-1 > .list > a:hover {
   /* width: 200px; */
 }
 
+.user-image img {
+  width: 100%;
+  height: auto;
+}
+
 .user-image {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -228,22 +234,25 @@ nav .contdiv > .group-1 > .list > a:hover {
   background: rgb(138, 165, 165);
   cursor: pointer;
   box-sizing: border-box;
-}
-.online {
-  /* position: absolute; */
-  background-color: rgb(1, 156, 1);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 2px solid #ffffff;
-  margin-top: 26px;
-  margin-right: -10px;
+  overflow: hidden;
 }
 
-.user-image:hover {
+.online {
+  position: absolute;
+  background-color: rgb(1, 156, 1);
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 2px solid var(--deepgreen);
+  top: 38px;
+  right: 20px;
+  z-index: 100;
+}
+
+/* .user-image:hover {
   border: 4px solid rgb(178, 199, 199);
   transition: ease-in-out 250ms;
-}
+} */
 
 .user-dropdown-details {
   overflow: hidden;
@@ -270,6 +279,30 @@ nav .contdiv > .group-1 > .list > a:hover {
   flex-direction: column;
   /* position: absolute; */
 }
+.user-dropdown-details > .content .image img {
+  width: 100%;
+  height: auto;
+}
+.user-dropdown-details > .content .ctrlBtn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  /* height: max-content;  */
+  margin-top: 30px;
+}
+.user-dropdown-details > .content .ctrlBtn button:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border:none;
+  width: fit-content;
+  font-weight: bolder;
+  color: var(--softgreen);
+ 
+}
+
 .user-dropdown-details > .content .image {
   display: flex;
   justify-content: center;
@@ -279,20 +312,22 @@ nav .contdiv > .group-1 > .list > a:hover {
   width: 100px;
   background: rgb(2, 63, 98);
   border-radius: 50%;
+  overflow: hidden;
 }
 
-.user-dropdown-details > .content #user {
+.user-dropdown-details > .content #user-name {
   margin-top: 5px;
   font-size: 15pt;
   font-weight: 600;
 }
 
-.user-dropdown-details > .content #user-type {
+.user-dropdown-details > .content #user-role {
   color: grey;
 }
 
 .user-dropdown-details > .content button {
-  margin-top: 30px;
+  font-family: 'century gothic';
+  font-size: 16px;
   border-radius: 20px;
   width: 230px;
   height: 40px;
@@ -302,7 +337,14 @@ nav .contdiv > .group-1 > .list > a:hover {
   color: rgb(68, 68, 68);
 }
 
-.content > button:hover {
+.content .ctrlBtn > button:last-child:hover {
+  background:none !important;
+  color: var(--softgreen) !important;
+  text-decoration: underline;
+  border: none;
+}
+
+.content .ctrlBtn > button:hover {
   background: rgb(18, 83, 109);
   color: #ffffff;
   border: none;
@@ -1063,10 +1105,16 @@ input[type="search"]:focus {
   color: #000000;
 }
 
+.myprofile h5 {
+  font-size: 15px !important;
+}
+.myprofile span {
+  font-size: 16px !important;
+}
 .myprofile {
   width: 100%;
   max-width: 500px;
-  height: 900px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1101,8 +1149,9 @@ input[type="search"]:focus {
 .dp img {
   width: 100%;
   height: auto;
-  display: none;
+  display: block;
 }
+
 .dp {
   width: 245px;
   height: 245px;
@@ -1118,6 +1167,41 @@ input[type="search"]:focus {
   border: 5px solid #fff;
   margin-left: 50%;
   transform: translateX(-50%);
+}
+
+@media screen and (max-width: 700px) {
+  .update-wraper {
+    width: 100% !important;
+  }
+  
+}
+@media screen and (max-width: 400px) {
+  .update-wraper .dp {
+    width: 200px;
+    height: 200px;
+  }
+  
+}
+
+.magicInputLabel select{
+  color: grey !important;
+  font-size: 16px !important;
+  font-family: 'century gothic' !important;
+  padding-left: 10px;
+}
+
+.magicInputLabel input{
+  color: grey !important;
+  font-size: 16px !important;
+  font-family: 'century gothic' !important;
+}
+textarea{
+  font-family: 'century gothic';
+}
+.magicInputLabel textarea{
+ width: 100%;
+ height: 90px;
+ font-size:17px;
 }
 
 .myprofile .wrapped {
@@ -1165,13 +1249,15 @@ input[type="search"]:focus {
   }
   .myprofile h5,
   .myprofile span {
-    font-size: 15px;
+    font-size: 15px !important;
   }
   .myprofile .wrapped .confields div {
     height: 50px;
   }
   .f2 {
-    height: 50px !important;
+    height: fit-content !important;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 }
 

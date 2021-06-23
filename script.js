@@ -130,12 +130,30 @@ function ProcessLogin() {
   xhr.onreadystatechange = () => {
     if (xhr.readyState == 4 && xhr.status == 200) {
       let response = JSON.parse(xhr.responseText);
+
       if (response["failed"]) {
         failedAlert.style.display = "flex";
         failedMassage.innerHTML = response["failed"];
-      } else if (response["success"]) {
+      } else if (response[1] !== null) {
         successAlert.style.display = "flex";
-        successMassage.innerHTML = response["success"];
+        successMassage.innerHTML = response[0].success;
+        let verifiedPhoto = document.querySelector("#verifiedPhoto");
+        let verifiedNAME = document.querySelector(".userInfo p > span");
+        if (response[1].passport =="" || response[1].passport == null) {
+          
+          verifiedPhoto.removeAttribute('src');
+          verifiedPhoto.setAttribute(
+            "src",
+            "admin_config/Assets/placeholder_image.jpg"
+          );
+        } else {
+          verifiedPhoto.setAttribute(
+            "src",
+            "admin_config/" + response[1].passport
+          );
+        }
+        verifiedNAME.innerHTML =
+          response[1].firstName + " " + response[1].lastName;
 
         document
           .querySelector(".closeSuccMsg")

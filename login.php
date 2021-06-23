@@ -35,9 +35,9 @@ include "admin_config/lib/message.php";
      <form>
          <div class="userInfo">
             <div class="profile-picture">
-                <img src="../BlogAssist/Assets/my-pix.png" alt="user's profile picture">
+                <img id="verifiedPhoto" src="" alt="user's profile picture">
             </div>
-            <p>Welcome <span>Ubong James</span></p>
+            <p>Welcome <span>__</span></p>
         </div>
             <div class="password feild" >
                 <input type="password" required name="password" id="password" onfocus="showChecker()">

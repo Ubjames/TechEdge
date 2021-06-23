@@ -1,8 +1,11 @@
 <div class="update-wraper">
 <div style="width: 100%" class="profile-picture">
-<form enctype="multipart/form-data">
-    <input type="file" name="file" id="fileUpload" style="display: none" />
+
+<form action="" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" id="fileUpload" style="display:none" >
+    <input type="button" name="submit"  id="submit" value="" style="display:none" onclick="uploadPhoto()">
 </form>
+
   <div
     class="dp"
     style="animation: fadeIn 1s ease-in 300ms forwards; visibility: hidden"
@@ -21,7 +24,7 @@
     >
       <div class="img-option">
         <i class="fas fa-camera"></i>
-        <i class="fas fa-eye"></i>
+        <i class="fas fa-eye" onclick="previewImage()"></i>
       </div>
     </div>
   </div>
@@ -30,7 +33,7 @@
 <div class="inputfields">
   <div
     class="magicInputLabel"
-    style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility: hidden"
+    style="animation: fadeInUp 0.3s ease-in 0ms forwards; visibility: hidden"
   >
     <input type="text" id="firstName" class="input1 inputs magicbox" required />
     <label for="firstName"> First name</label>
@@ -38,7 +41,7 @@
 
   <div
     class="magicInputLabel"
-    style="animation: fadeInUp 0.5s ease-in 100ms forwards; visibility: hidden"
+    style="animation: fadeInUp 0.3s ease-in 100ms forwards; visibility: hidden"
   >
     <input type="text" id="lastname" class="input1 inputs magicbox" required />
     <label for="lastname"> Last name</label>
@@ -46,7 +49,7 @@
 
   <div
     class="magicInputLabel"
-    style="animation: fadeInUp 0.5s ease-in 200ms forwards; visibility: hidden"
+    style="animation: fadeInUp 0.3s ease-in 200ms forwards; visibility: hidden"
   >
     <input
       type="text"
@@ -59,7 +62,7 @@
 
   <div
     class="magicInputLabel"
-    style="animation: fadeInUp 0.5s ease-in 300ms forwards; visibility: hidden"
+    style="animation: fadeInUp 0.3s ease-in 300ms forwards; visibility: hidden"
   >
     <input type="text" id="email" class="input1 inputs magicbox" required />
     <label for="email"> Email</label>
@@ -67,7 +70,7 @@
 
   <div
     class="magicInputLabel"
-    style="animation: fadeInUp 0.5s ease-in 400ms forwards; visibility: hidden"
+    style="animation: fadeInUp 0.3s ease-in 400ms forwards; visibility: hidden"
   >
     <input type="text" id="username" class="input1 inputs magicbox" required />
     <label for="username"> Username</label>
@@ -75,7 +78,7 @@
 
   <div
     class="magicInputLabel"
-    style="animation: fadeInUp 0.5s ease-in 500ms forwards; visibility: hidden"
+    style="animation: fadeInUp 0.3s ease-in 500ms forwards; visibility: hidden"
   >
     <select id="country" class="magicbox">
       <option value="default">Country</option>
@@ -88,20 +91,20 @@
 
   <div
     class="magicInputLabel"
-    style="animation: fadeInUp 0.5s ease-in 600ms forwards; visibility: hidden"
+    style="animation: fadeInUp 0.3s ease-in 600ms forwards; visibility: hidden"
   >
     <input type="text" id="phone" class="input1 inputs magicbox" required />
     <label for="phone"> Phone Number</label>
   </div>
 
-  <div class="magicInputLabel">
+  <div class="magicInputLabel" style="animation: fadeInUp 0.3s ease-in 700ms forwards; visibility: hidden">
     <input type="text" id="address" class="input1 inputs magicbox" required />
     <label for="address"> Address</label>
   </div>
 
   <div
     class="magicInputLabel"
-    style="animation: fadeInUp 0.5s ease-in 700ms forwards; visibility: hidden"
+    style="animation: fadeInUp 0.3s ease-in 800ms forwards; visibility: hidden"
   >
     <select id="sex" class="magicbox">
       <option value="default">Gender</option>
@@ -112,18 +115,18 @@
 
   <div
     class="magicInputLabel"
-    style="animation: fadeInUp 0.5s ease-in 800ms forwards; visibility: hidden"
+    style="animation: fadeInUp 0.3s ease-in 900ms forwards; visibility: hidden"
   >
     <p style="color: grey; font-size: 16px; margin-bottom: 5px">
       Tell people more about yourself, keep it simple
     </p>
-    <textarea id="bio" class="magicbox" col="30" row="30"></textarea>
+    <textarea id="bio" class="magicbox" maxlength="100"></textarea>
   </div>
 </div>
 
 <div
   class="btn"
-  style="animation: fadeInUp 0.5s ease-in 800ms forwards; visibility: hidden"
+  style="animation: fadeInUp 0.3s ease-in 1000ms forwards; visibility: hidden"
 >
   <button class="magicbutton2" onclick="saveUpdate(this)"><i class="fas fa-save"></i> Save</button>
 </div>
