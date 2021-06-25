@@ -8,12 +8,9 @@
                     <input type="text" name="title" id="title" placeholder="Enter title here" class="magicbox" style="animation: fadeInUp 0.5s ease-in 0.1ms forwards; visibility:hidden;">
                 </div>
                 <div>
-                    <textarea name="content" id="content" class="magicbox" style="animation: fadeInUp 0.5s ease-in 0.2ms forwards; visibility:hidden;"> </textarea>
+                    <textarea name="content" id="content" class="magicbox" name="content" style="animation: fadeInUp 0.5s ease-in 0.2ms forwards; visibility:hidden;"> </textarea>
                 </div>
-                <!-- <div class="action-button">
-                    <button type="submit" form="">Publish</button>
-                    <button type="submit">Save draft</button>
-                </div> -->
+             
             </div>
             </form>
             <aside>
@@ -44,10 +41,20 @@
                                 <button id="edit">Edit</button>
                             </div>
                         </div>
+
+                        <div class="magicInputLabel">
+                            <input class="magicbox" type="text" id="slug" name="slug" required>
+                            <label for="slug">Enter post address</label>
+                        </div>
+                        <div class="magicInputLabel">
+                            <input class="magicbox" type="text" id="metatitle" name="metatitle" required>
+                            <label for="metatitle">Add post meta title</label>
+                        </div>
+
                     </div>
                     <div class="post-method">
                         <input type="submit" form="postForm" value="Move to trash"> 
-                        <button class="main-pulish" type="button" form="postForm" onclick="publish(this)">Publish</button>
+                        <button class="main-pulish" type="button" form="postForm" onclick="publishPost(this)">Publish</button>
                     </div>
                 </div>
 

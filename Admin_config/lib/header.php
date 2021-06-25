@@ -75,7 +75,7 @@ include "message.php";
         Manage your Account
       </button>
       <button onclick="window.location = '../logout.php'">
-        Log out
+      <span>Log out</span>  <i style="color: #b7b7b7" class="fas fa-sign-out-alt"></i> 
       </button>
       </div>
       

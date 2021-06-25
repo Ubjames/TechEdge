@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         } 
         else if(isset($_SESSION['UID'])){
         $UID = $_SESSION['UID'];
-        $query = "SELECT * FROM user WHERE id = '$UID' LIMIT 1;";
+        $query = "SELECT * FROM `user` WHERE `userId` = '$UID' LIMIT 1;";
         $runQuery = mysqli_query($conn, $query);
 
         $result = mysqli_fetch_assoc($runQuery);

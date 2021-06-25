@@ -21,7 +21,7 @@ if(isset($_FILES)){
             echo json_encode($msg);
      }else if(move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
          $imgagePATH = 'lib/'. htmlspecialchars($target_file);
-         $updatePhoto = "UPDATE `user` SET `passport` = '$imgagePATH' WHERE `id` = '$UID';";
+         $updatePhoto = "UPDATE `user` SET `passport` = '$imgagePATH' WHERE `userId` = '$UID';";
          $uploadOk = 1;
          mysqli_query($conn, $updatePhoto);
         $smg = ["success" => "Your photo has been uploaded Successfully"];
@@ -57,7 +57,7 @@ if(isset($_POST)){
     $country = mysqli_real_escape_string($conn, $_POST['country']);
     
     
-    $query = "SELECT * FROM user WHERE id ='$UID' LIMIT 1;";
+    $query = "SELECT * FROM user WHERE userId ='$UID' LIMIT 1;";
     $run_query = mysqli_query($conn, $query);
     
     if(mysqli_num_rows($run_query) > 0){
@@ -65,7 +65,7 @@ if(isset($_POST)){
         if(isset($firstname)){
             
             if($user_data['firstName'] != $firstname || $user_data['firstName'] ==""){
-                $update1 = "UPDATE user SET `firstName` = '$firstname' WHERE `id` = '$UID';";
+                $update1 = "UPDATE user SET `firstName` = '$firstname' WHERE `userId` = '$UID';";
                 mysqli_query($conn, $update1);
                 
             }
@@ -73,34 +73,34 @@ if(isset($_POST)){
         
         if(isset($lastname)){
             if($user_data['lastName'] !=$lastname || $user_data['lastName'] ==""){
-                $update2 = "UPDATE `user` SET `lastName` = '$lastname' WHERE `id` = '$UID';";
+                $update2 = "UPDATE `user` SET `lastName` = '$lastname' WHERE `userId` = '$UID';";
                 mysqli_query($conn, $update2);
             }
         }
         if(isset($middlename)){
             if($user_data['middleName'] != $middlename || $user_data['middleName']=="" ){
-                $update3 = "UPDATE `user` SET `middleName` = '$middlename' WHERE `id` = '$UID';";
+                $update3 = "UPDATE `user` SET `middleName` = '$middlename' WHERE `userId` = '$UID';";
                 mysqli_query($conn, $update3);
                 
             }
         }
         if(isset($username)){
             if($user_data['userName'] != $username || $user_data['userName'] ==""){
-                $update4 = "UPDATE `user` SET `userName` = '$username' WHERE `id` = '$UID';";
+                $update4 = "UPDATE `user` SET `userName` = '$username' WHERE `userId` = '$UID';";
                 mysqli_query($conn, $update4);
                 
             }
         }
         if(isset($email)){
             if($user_data['email']!=$email || $user_data['email'] ==""){
-                $update5 = "UPDATE `user` SET `email` = '$email' WHERE `id` = '$UID';";
+                $update5 = "UPDATE `user` SET `email` = '$email' WHERE `userId` = '$UID';";
                  mysqli_query($conn, $update5);
                  
             }
         }
         if(isset($phone)){
             if($user_data['mobile']!= $phone || $user_data['mobile'] ==""){
-                $update6 = "UPDATE `user` SET `mobile` = '$phone' WHERE `id` = '$UID';";
+                $update6 = "UPDATE `user` SET `mobile` = '$phone' WHERE `userId` = '$UID';";
                 mysqli_query($conn, $update6);
                  
             }
@@ -109,7 +109,7 @@ if(isset($_POST)){
         if(isset($address)){
             
             if($user_data['address']!=$address  || $user_data['address'] ==""){
-                $update7 = "UPDATE `user` SET `address` = '$address' WHERE `id` = '$UID';";
+                $update7 = "UPDATE `user` SET `address` = '$address' WHERE `userId` = '$UID';";
                  mysqli_query($conn, $update7);
                  
             }
@@ -117,21 +117,21 @@ if(isset($_POST)){
         if(isset($sex)){
             
             if($user_data['sex']!=$sex || $user_data['sex'] =""){
-                $update8 = "UPDATE `user` SET `sex` = '$sex' WHERE `id` = '$UID';";
+                $update8 = "UPDATE `user` SET `sex` = '$sex' WHERE `userId` = '$UID';";
                 mysqli_query($conn, $update8);
                 
             }
         }
         if(isset($country)){
             if($user_data['country']!=$country || $user_data['country'] ==""){
-                $update9 = "UPDATE `user` SET `country` = '$country' WHERE `id` = '$UID';";
+                $update9 = "UPDATE `user` SET `country` = '$country' WHERE `userId` = '$UID';";
                 mysqli_query($conn, $update9);
                 
             }
         }
         if(isset($bio)){
             if($user_data['profile']!=$bio || $user_data['profile'] ==""){
-                $update10 = "UPDATE `user` SET `profile` = '$bio' WHERE `id` = '$UID';";
+                $update10 = "UPDATE `user` SET `profile` = '$bio' WHERE `userId` = '$UID';";
                 mysqli_query($conn, $update10);
                 
             }

@@ -4,12 +4,18 @@
            
                <div class="col-head">S/N</div>
                <div class="col-head">TITLE</div>
+               <div class="col-head">DATE CREATED</div>
                <div class="col-head">AUTHOR</div>
                <div class="col-head">ACTION</div>
           
-                <div style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">1</div>
-                <div style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">How to start a blog in 20 Lorem ipsum dolor sit, amet consectetur adipisicing. mins</div>
-                <div style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">Ubong James </div>
+                <div id ="sn" style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">1</div>
+
+                <div id="post-title" style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">--</div>
+
+                <div id="date-created" style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">--</div>
+
+                <div id="author" style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">-- </div>
+
                 <div class="action-buttons" style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">
                     <button onclick="confirmOperation()" type="submit" name="publish" id="publish">
                         <i class="fas fa-check"></i>
@@ -17,39 +23,7 @@
                     <button type="submit" name="edit" id="edit"><i class="fas fa-edit"></i></button>
                     <button onclick="confirmOperation()" type="submit" name="delete" id="delete"><i class="fas fa-trash"></i></button>
                 </div>
-           
-                <div style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">1</div>
-                <div style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">How to start a blog in 20 Lorem ipsum dolor sit, amet consectetur adipisicing. mins</div>
-                <div style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">Ubong James </div>
-                <div class="action-buttons" style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">
-                    <button onclick="confirmOperation()" type="submit" name="publish" id="publish">
-                        <i class="fas fa-check"></i>
-                    </button>
-                    <button type="submit" name="edit" id="edit"><i class="fas fa-edit"></i></button>
-                    <button onclick="confirmOperation()" type="submit" name="delete" id="delete"><i class="fas fa-trash"></i></button>
-                </div>
-           
-                <div style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">1</div>
-                <div style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">How to start a blog in 20 Lorem ipsum dolor sit, amet consectetur adipisicing. mins</div>
-                <div style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">Ubong James </div>
-                <div class="action-buttons" style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">
-                    <button onclick="confirmOperation()" type="submit" name="publish" id="publish">
-                        <i class="fas fa-check"></i>
-                    </button>
-                    <button type="submit" name="edit" id="edit"><i class="fas fa-edit"></i></button>
-                    <button onclick="confirmOperation()" type="submit" name="delete" id="delete"><i class="fas fa-trash"></i></button>
-                </div>
-           
-                <div style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">1</div>
-                <div style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">How to start a blog in 20 Lorem ipsum dolor sit, amet consectetur adipisicing. mins</div>
-                <div style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">Ubong James </div>
-                <div class="action-buttons" style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">
-                    <button onclick="confirmOperation()" type="submit" name="publish" id="publish">
-                        <i class="fas fa-check"></i>
-                    </button>
-                    <button type="submit" name="edit" id="edit"><i class="fas fa-edit"></i></button>
-                    <button onclick="confirmOperation()" type="submit" name="delete" id="delete"><i class="fas fa-trash"></i></button>
-                </div>
+    
            
             </div>
     

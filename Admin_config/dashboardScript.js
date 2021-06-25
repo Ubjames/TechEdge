@@ -427,15 +427,15 @@ function managePost() {
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
     if (xhr.readyState == 4 && xhr.status == 200) {
+      console.log(document.querySelector("#id"));
       contentContainer.innerHTML = xhr.responseText;
     }
   };
-  // xhr.onprogress = () => {
-  // };
 
   xhr.open("GET", "posts/manage.php", true);
   xhr.send();
 }
+
 function addUser() {
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
@@ -538,7 +538,17 @@ function configProfileData(data) {
       return data;
     })
     .then((data) => {
-      userPhoto.setAttribute("src", data["passport"]);
+      if (
+        data["passport"] == "" ||
+        data["passport"] == null ||
+        data["passport"] == undefined ||
+        !data
+      ) {
+        userPhoto.setAttribute("src", "Assets/placeholder_image.jpg");
+      } else {
+        userPhoto.setAttribute("src", data["passport"]);
+      }
+
       sex.innerHTML = data["sex"];
       country.innerHTML = data["country"];
       bio.innerHTML = data["profile"];
@@ -672,6 +682,7 @@ function saveUpdate() {
   xhr.onreadystatechange = () => {
     if (xhr.readyState == 4 && xhr.status == 200) {
       let response = JSON.parse(xhr.responseText);
+
       if (response["failed"]) {
         failedAlert.style.display = "flex";
         failedMassage.innerHTML = response["failed"];
@@ -726,4 +737,45 @@ function loadDataToAppropratePlaces(data) {
   data["role"] > 0
     ? (userROLE.innerHTML = "Admin")
     : (userROLE.innerHTML = "Author");
+}
+
+function publishPost() {
+  let title = document.getElementById("title");
+  let content = document.getElementById("content");
+  let slug = document.getElementById("slug");
+  let metatitle = document.getElementById("metatitle");
+
+  const form = new FormData();
+  form.append("title", title.value);
+  form.append("content", content.value);
+  form.append("slug", slug.value);
+  form.append("metatitle", metatitle.value);
+
+  const url = "lib/process_post.php";
+  const request = new Request(url, {
+    method: "POST",
+    body: form,
+  });
+  fetch(request)
+    .then((response) => {
+      let data = response.json();
+      return data;
+    })
+    .then((data) => {
+      if (data["failed"]) {
+        failedAlert.style.display = "flex";
+        failedMassage.innerHTML = data["failed"];
+      } else if (data["success"]) {
+        successAlert.style.display = "flex";
+        successMassage.innerHTML = data["success"];
+        document
+          .querySelector(".closeSuccMsg")
+          .addEventListener("click", () => {
+            title.value = "";
+            content.value = "";
+            slug.value = "";
+            metatitle.value = "";
+          });
+      }
+    });
 }

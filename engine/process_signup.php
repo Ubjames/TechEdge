@@ -23,17 +23,15 @@ function formData(){
 
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
             $msg = ['failed' => 'enter a valid email address'];
-            // echo $msg['failed'];
             echo json_encode($msg);
          }
          else if($password2 != $_POST['password1'] ){
              $msg = ['failed'=> 'password did not match'];
              echo json_encode($msg);
-        //    echo $msg['failed'];
         }else{
             if(strlen($password1) < 6){
                 $msg = ['failed' => 'password must not be less than six characters'];
-                // echo $msg['failed'];
+
                 echo json_encode($msg);
             }else{
                 $passwordHash = md5($password2);    
@@ -42,15 +40,14 @@ function formData(){
                 
                 $msg = ['success' => 'Registration successful']; 
                 echo json_encode($msg);
-                // echo $msg['success']; 
+   
             }
 
         }
     }
     else{
         $msg = ['failed' => 'one or more fields are empty'];
-    // echo $msg['failed'];
-    echo json_encode($msg);
+        echo json_encode($msg);
     }
     
     }
@@ -114,24 +111,24 @@ formData();
                 //  if(count($errors) > 0){
                 //      foreach($errors as $err){
                 //          if(in_array('please enter a valid email address', $err)){
-                //              echo "<p id='valid' style='color:red;'>$err[email_err]</p>";
+                //              echo "<p userId='valid' style='color:red;'>$err[email_err]</p>";
                 //          }
                 //         }
                       
                         
                 //      }
-                if(isset($newerr['email_err']))echo "<p id='valid' style='color:red;'>$newerr[email_err]</p>";
+                if(isset($newerr['email_err']))echo "<p userId='valid' style='color:red;'>$newerr[email_err]</p>";
                  } }
                  
              
 
               if($_SERVER['REQUEST_METHOD'] === "POST"){
                 if(isset($newerr['pwd_mismatch_err']))
-                echo "<p id='valid' style='color:red;'>{$newerr['pwd_mismatch_err']}</p>";
+                echo "<p userId='valid' style='color:red;'>{$newerr['pwd_mismatch_err']}</p>";
                 if(isset($newerr['pwd_err']))
-                echo "<p id='valid' style='color:red;'>{$newerr['pwd_err']}</p>";
+                echo "<p userId='valid' style='color:red;'>{$newerr['pwd_err']}</p>";
                 if(isset($newerr['pwd_strangth_err']))
-                echo "<p id='valid' style='color:red;'>{$newerr['pwd_strangth_err']}</p>";
+                echo "<p userId='valid' style='color:red;'>{$newerr['pwd_strangth_err']}</p>";
                  
              } 
 

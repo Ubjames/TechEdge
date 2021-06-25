@@ -10,7 +10,7 @@ if(isset($_POST)){
         $run_query = mysqli_query($conn, $query);
         $user_data = mysqli_fetch_assoc($run_query);
         if($user_data){
-            $_SESSION['UID'] = $user_data['id'];
+            $_SESSION['UID'] = $user_data['userId'];
             $msg = ['success' => 'User authentication succesful']; 
             $newArray = [$msg,$user_data];
             echo json_encode($newArray) ;
