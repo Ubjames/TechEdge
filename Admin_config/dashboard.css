@@ -7,6 +7,7 @@
   --dark-body-bg: rgb(8 17 26 / 97%);
   --darkdivs: rgb(146 172 179 / 45%);
   --fore-color: rgb(104, 104, 104);
+  --row-shades:#c2c3c361;
 }
 
 * {
@@ -246,7 +247,7 @@ nav .contdiv > .group-1 > .list > a:hover {
   border: 2px solid #ffffff;
   top: 38px;
   right: 20px;
-  z-index: 100;
+  z-index: 1 0;
 }
 
 /* .user-image:hover {
@@ -525,7 +526,15 @@ aside > .publish {
   /* width: 720px; */
   height: 50px;
 }
+.catCon{
+  width: 100%;
+}
 
+.topicDescr{
+  height: 200px!important;
+  width: 100%;
+  font-size: 16px;
+}
 #content {
   margin-top: 20px;
   height: 400px;
@@ -574,7 +583,7 @@ button:hover {
 }
 .grid-container3 {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 2fr);
   grid-template-rows: auto;
   text-align: center;
   margin-top: 20px;
@@ -618,7 +627,7 @@ button:hover {
 .grid-container > div,
 .grid-container2 > div,
 .grid-container3 > div {
-  border-top: 1px solid rgba(177, 177, 177, 0.514);
+  /* border-top: 1px solid rgba(177, 177, 177, 0.514); */
   border-right: 1px solid rgba(177, 177, 177, 0.514);
   display: flex;
   align-items: center;
@@ -666,7 +675,11 @@ button:hover {
   min-width: 50%;
 }
 
-@media screen and (max-width: 600px) {
+.manage_post{ 
+  width:100%
+}
+
+@media screen and (max-width: 800px) {
   .action-buttons {
     display: flex !important;
     align-items: center !important;
@@ -753,6 +766,8 @@ button:hover {
   max-width: 500px;
 }
 
+
+
 .usersform {
   display: flex;
   flex-direction: column;
@@ -774,6 +789,11 @@ button:hover {
   z-index: 100;
 }
 
+.alert h4 {
+    color: grey;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
 .alert {
   width: 400px;
   height: 200px;
@@ -1330,8 +1350,12 @@ textarea {
   height: 150px;
   padding: 0 10px;
 }
-.loader {
+.loader2 {
   display: block;
+}
+
+.userlist{
+  width: 100%;
 }
 
 .update-wraper {
@@ -1445,4 +1469,12 @@ textarea {
 }
 .imgBoard .close i {
   cursor: pointer;
+}
+
+.show-userdetail{
+  display: block !important;
+}
+
+.highlight-row{
+  background-color: var(--row-shades);
 }

@@ -4,7 +4,7 @@
 
                     <div class="usersform">
                     <div style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">
-                        <input type="text" name="Uusername" id="Uusername" placeholder="User Name " class="magicbox">
+                        <input type="text" name="Uusername" id="Uusername" placeholder="Username " class="magicbox">
                     </div>
                     <div style="animation: fadeInUp 0.5s ease-in 0.1s forwards; visibility:hidden;">
                         <input type="email" name="Uemail" id="Uemail" placeholder="User Email" class="magicbox">
@@ -12,14 +12,14 @@
                     
                     <div>
                         <select name="role" id="role" class="magicbox" style="animation: fadeInUp 0.5s ease-in 0.2s forwards; visibility:hidden;">
-                            <option style="color:grey;" value="Autor">Select Role</option>
+                            <option style="color:grey;" value="default">Select role</option>
                             <option value="Autor">Author</option>
                             <option value="Admin">Admin</option>
                         </select>
                     </div>
                     
                     <div class="action-button" style="animation: fadeInUp 0.5s ease-in 0.3s forwards; visibility:hidden;">
-                        <button type="button" onclick="ConfirmPassword()" id="addUser">Add User</button>
+                        <button class="adduser inactiveButton" type="button" onclick="ConfirmPassword()" id="addUser" disabled>Add User</button>
                         
                     </div>
                 </div>

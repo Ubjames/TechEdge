@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         $result = mysqli_fetch_assoc($runQuery);
         if($result){
-            if($result['passwordHash']== md5($password)){
+            if($result['passwordHash'] == md5($password)){
             $msg = ['success' => 'User verification succesful']; 
             echo json_encode($msg);
 

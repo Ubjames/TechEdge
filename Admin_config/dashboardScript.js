@@ -178,19 +178,18 @@ main3.onclick = () => {
 
 let userdetail = document.querySelector(".user-dropdown-details");
 function dropdownUserDetails() {
-  if (userdetail.style.display == "flex") {
-    userdetail.classList.remove("zoomIn");
-    userdetail.style.display = "none";
-  } else {
-    userdetail.classList.add("zoomIn");
-    userdetail.style.display = "flex";
+  userdetail.classList.add("zoomIn");
+  userdetail.classList.toggle("show-userdetail");
+
+  if (userdetail.className.includes("show-userdetail")) {
+    document.body.addEventListener("click", (e) => {
+      let ma = document.querySelector("#manage_acct");
+      if (e.target == ma) {
+        userdetail.classList.remove("show-userdetail");
+      }
+    });
   }
 }
-document.body.addEventListener("click", (e) => {
-  if (e.path.includes("div.user-dropdown-details")) {
-    userdetail.style.display = "none";
-  }
-});
 
 function expandmoreOption() {
   let updown = document.querySelector(".angle");
@@ -277,10 +276,18 @@ function confirmOperation() {
 
 let pcd = document.querySelector(".alert-container");
 let alert = pcd.firstElementChild;
+
 function ConfirmPassword() {
-  pcd.style.display = "flex";
-  alert.classList.add("slideIn");
-  alert.classList.remove("slideOut");
+  clearInterval(listerner);
+  let Uusername = document.querySelector("#Uusername").value;
+  let Uemail = document.querySelector("#Uemail").value;
+  let role = document.querySelector("#role").value;
+
+  if (Uusername.trim() != "" && Uemail.trim() != "" && role != "default") {
+    pcd.style.display = "flex";
+    alert.classList.add("slideIn");
+    alert.classList.remove("slideOut");
+  }
 }
 
 function closeConfirmBox() {
@@ -307,6 +314,16 @@ function push(pushbtn) {
 
 function floatMenu() {
   nav.classList.toggle("showmenu");
+
+  /* document.body.addEventListener('click', (e)=>{
+    if(nav.className.includes("showmenu")){
+      if(e.target != nav.firstElementChild){
+        // nav.classList.toggle("showmenu");
+        // console.log(e)
+        
+      }
+    }
+  }) */
 }
 
 function searching() {
@@ -336,26 +353,6 @@ function processUpdate(btn) {
   xhr.open("GET", "updateProfile.php", true);
   xhr.send();
 }
-
-/* function pickImageToUpload(displaybox) {
-  let file = document.getElementById("fileUpload");
-  let e = window.event;
-  if (file.files[0] && e.target.className.includes("fa-eye")) {
-    previewImage();
-  } else {
-    file.click();
-    file.onchange = () => {
-      let previewImg = document.querySelector(".dp img");
-      previewImg.style.display = "block";
-      document.querySelector(".emptyImgIcon").style.display = "none";
-      let reader = new FileReader();
-      reader.readAsDataURL(file.files[0]);
-      reader.onload = (e) => {
-        previewImg.setAttribute("src", e.target.result);
-      };
-    };
-  }
-} */
 
 function showMoreoption(param) {
   document.querySelector(".darkOption").style.display = "flex";
@@ -393,37 +390,41 @@ function closeImg() {
 }
 
 function createPost() {
+  setPageLoader();
   let xhr = new XMLHttpRequest();
 
   xhr.onreadystatechange = () => {
     if (xhr.readyState == 4 && xhr.status == 200) {
+      removePageLoader();
       contentContainer.innerHTML = xhr.responseText;
     }
   };
-  // xhr.onprogress = () => {
-  //   btn.innerHTML =
-  //     '<div class="loader"><span class="fas fa-sync-alt spin"></span></div>';
-  // };
 
   xhr.open("GET", "posts/create.php", true);
   xhr.send();
 }
+function setPageLoader() {
+  document.querySelector(".loader-container").classList.add("forSection");
+}
+function removePageLoader() {
+  document.querySelector(".loader-container").classList.remove("forSection");
+}
 
 function loadHomePage() {
+  setPageLoader();
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
     if (xhr.readyState == 4 && xhr.status == 200) {
+      removePageLoader();
       contentContainer.innerHTML = xhr.responseText;
     }
   };
-  // xhr.onprogress = () => {
-  // };
 
   xhr.open("GET", "lib/home.php", true);
   xhr.send();
 }
 
-function managePost() {
+/* function managePost() {
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -434,34 +435,322 @@ function managePost() {
 
   xhr.open("GET", "posts/manage.php", true);
   xhr.send();
-}
+} */
 
-function addUser() {
+function managePost() {
+  let url = "posts/manage.php";
+  fetch(url)
+    .then((response) => {
+      let data = response.text();
+      return data;
+    })
+    .then((data) => {
+      updatePosts(data);
+    });
+}
+function updatePosts(data) {
+  const parser = new DOMParser();
+  const document = parser.parseFromString(data, "text/html");
+  let mp_wraper = document.querySelector(".manage_post");
+  let grid_container = document.querySelector(".grid-container");
+  /* let serialNo = document.querySelector("#sn").innerHTML;
+  let postTitle = document.querySelector("#post-title").innerHTML;
+  let dateCreated = document.querySelector("#date-created").innerHTML;
+  let author = document.querySelector("#author").innerHTML; 
+  let actionBtns = document.querySelector(".action-buttons");*/
+
+  fetch("lib/fetchPost.php")
+    .then((response) => {
+      let postData = response.json();
+      return postData;
+    })
+    .then((postData) => {
+      let serialNumber = 0;
+      var counter = 0;
+      var animDuration = 100;
+      for (let i = 0; i < postData.length; i++) {
+        serialNumber++;
+        counter++;
+        animDuration += 100;
+        const element = postData[i];
+        let SN = document.createElement("div");
+        SN.setAttribute("class", "highlight-row");
+        SN.setAttribute(
+          "style",
+          "animation: fadeInUp 0.4s ease-in" +
+            " " +
+            animDuration +
+            "ms" +
+            " " +
+            "forwards; visibility:hidden;"
+        );
+        grid_container.appendChild(SN);
+        SN.innerHTML = serialNumber;
+
+        let PT = document.createElement("div");
+        PT.setAttribute("class", "highlight-row");
+        PT.setAttribute(
+          "style",
+          "animation: fadeInUp 0.4s ease-in" +
+            " " +
+            animDuration +
+            "ms" +
+            " " +
+            " forwards; visibility:hidden;"
+        );
+        grid_container.appendChild(PT);
+        PT.innerHTML = element.title;
+
+        let DC = document.createElement("div");
+        DC.setAttribute("class", "highlight-row");
+        DC.setAttribute(
+          "style",
+          "animation: fadeInUp 0.4s ease-in " +
+            " " +
+            animDuration +
+            "ms" +
+            " " +
+            " forwards; visibility:hidden;"
+        );
+        grid_container.appendChild(DC);
+        DC.innerHTML = element.createdAt;
+
+        let AR = document.createElement("div");
+        AR.setAttribute("class", "highlight-row");
+        AR.setAttribute(
+          "style",
+          "animation: fadeInUp 0.4s ease-in " +
+            " " +
+            animDuration +
+            "ms" +
+            " " +
+            " forwards; visibility:hidden;"
+        );
+        grid_container.appendChild(AR);
+        AR.innerHTML = element.author;
+
+        let BTN = document.createElement("div");
+        BTN.setAttribute("class", "action-buttons highlight-row");
+        BTN.setAttribute(
+          "style",
+          "animation: fadeInUp 0.4s ease-in" +
+            " " +
+            animDuration +
+            "ms" +
+            " " +
+            "forwards; visibility:hidden;"
+        );
+        grid_container.appendChild(BTN);
+        BTN.innerHTML =
+          '<button onclick="confirmOperation()" type="button" id="publish"><i class="fas fa-check"> </i></button> <button type="button" id="edit"><i class="fas fa-edit"></i></button> <button onclick="confirmOperation()" type="submit" name="delete" id="delete"><i class="fas fa-trash"></i></button>';
+
+        if (counter == 2) {
+          SN.classList.remove("highlight-row");
+          AR.classList.remove("highlight-row");
+          DC.classList.remove("highlight-row");
+          BTN.classList.remove("highlight-row");
+          PT.classList.remove("highlight-row");
+          counter = 0;
+        } else {
+          SN.classList.add("highlight-row");
+          AR.classList.add("highlight-row");
+          DC.classList.add("highlight-row");
+          BTN.classList.add("highlight-row");
+          PT.classList.add("highlight-row");
+        }
+      }
+
+      if (contentContainer.innerHTML != "") {
+        contentContainer.innerHTML = "";
+        contentContainer.appendChild(mp_wraper);
+      }
+    });
+}
+  var listener;
+function addUser(btn) {
+     listener = setInterval(() => {
+    let Uusername = document.querySelector("#Uusername").value;
+    let Uemail = document.querySelector("#Uemail").value;
+    let role = document.querySelector("#role").value;
+    let addUserBtn = document.querySelector(".adduser");
+
+    if (Uusername.trim() != "" && Uemail.trim() != "" && role != "default") {
+      addUserBtn.classList.remove("inactiveButton");
+      addUserBtn.removeAttribute("disabled", "disabled");
+    } else {
+      addUserBtn.classList.add("inactiveButton");
+      addUserBtn.setAttribute("disabled", "disabled");
+    }
+  }, 500);
+
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
     if (xhr.readyState == 4 && xhr.status == 200) {
       contentContainer.innerHTML = xhr.responseText;
     }
   };
-  // xhr.onprogress = () => {
-  // };
 
-  xhr.open("GET", "users/create.php", true);
+ xhr.open("GET", "users/create.php", true)
   xhr.send();
+  
 }
+setInterval(()=>{
+  if(!contentContainer.firstElementChild.className.includes("addusers-wrapper")){
+    clearInterval(listener);
+  }
+},400)
+
+
+function addNewUser() {
+  let pwd = document.querySelector("#actionPassword").value;
+  let Uusername = document.querySelector("#Uusername").value;
+  let Uemail = document.querySelector("#Uemail").value;
+  let role = document.querySelector("#role").value;
+
+  let pwdErr = document.querySelector(".alert-container > .alert p");
+  let form = new FormData();
+  form.append("password", pwd);
+  form.append("Uusername", Uusername);
+  form.append("Uemail", Uemail);
+  form.append("role", role);
+
+  let url = "lib/addUser.php";
+  let request = new Request(url, {
+    method: "POST",
+    body: form,
+  });
+  fetch(request)
+    .then((response) => {
+      let data = response.json();
+      return data;
+    })
+    .then((data) => {
+      if (!data["password_failed"]) {
+        pwdErr.innerText ="";
+        closeConfirmBox();
+      } else if(data["password_failed"]){
+        pwdErr.innerText = data["password_failed"]
+      }
+
+      if (data["invalid_user"]) {
+        failedAlert.style.display = "flex";
+        failedMassage.innerText = data["invalid_user"];
+      } else if(data["success"]){
+        successAlert.style.display = "flex";
+        successMassage.innerText = data["success"];
+      }
+    });
+}
+
 function manageUser() {
-  let xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      contentContainer.innerHTML = xhr.responseText;
-    }
-  };
-  // xhr.onprogress = () => {
-  // };
-
-  xhr.open("GET", "users/manage.php", true);
-  xhr.send();
+  let url = "users/manage.php";
+  fetch(url)
+    .then((response) => {
+      let data = response.text();
+      return data;
+    })
+    .then((data) => {
+      configData(data);
+    });
 }
+function configData(data) {
+  let parser = new DOMParser();
+  let document = parser.parseFromString(data, "text/html");
+  let userlist = document.querySelector(".userlist");
+  let userGrid = document.querySelector(".grid-container3");
+
+  fetch("lib/fetchUser.php")
+    .then((response) => {
+      let user = response.json();
+      return user;
+    })
+    .then((user) => {
+      let serialNumber = 0;
+      var counter = 0;
+      var animDuration = 100;
+      for (let i = 0; i < user.length; i++) {
+        serialNumber++;
+        animDuration += 100;
+        counter++;
+        const element = user[i];
+        let SN = document.createElement("div");
+        SN.setAttribute(
+          "style",
+          "animation: fadeInUp 0.5s ease-in" +
+            " " +
+            animDuration +
+            "ms" +
+            " " +
+            "forwards; visibility:hidden;"
+        );
+        SN.setAttribute("class", "highlight-row");
+        userGrid.appendChild(SN);
+        SN.innerHTML = serialNumber;
+
+        let UN = document.createElement("div");
+        UN.setAttribute(
+          "style",
+          "animation: fadeInUp 0.5s ease-in" +
+            " " +
+            animDuration +
+            "ms" +
+            " " +
+            "forwards; visibility:hidden;"
+        );
+        UN.setAttribute("class", "highlight-row");
+        userGrid.appendChild(UN);
+        UN.innerHTML = element.userName;
+
+        let AD = document.createElement("div");
+        AD.setAttribute(
+          "style",
+          "animation: fadeInUp 0.5s ease-in" +
+            " " +
+            animDuration +
+            "ms" +
+            " " +
+            "forwards; visibility:hidden;"
+        );
+        AD.setAttribute("class", "highlight-row highlight-row");
+        userGrid.appendChild(AD);
+        element.role > 0 ? (AD.innerHTML = "Admin") : (AD.innerHTML = "Author");
+
+        let BTN = document.createElement("div");
+        BTN.setAttribute("class", "action-buttons");
+        BTN.setAttribute(
+          "style",
+          "animation: fadeInUp 0.5s ease-in" +
+            " " +
+            animDuration +
+            "ms" +
+            " " +
+            "forwards; visibility:hidden;"
+        );
+        userGrid.appendChild(BTN);
+        BTN.innerHTML =
+          '<button type="button" id="delete" onclick="confirmOperation()"><i class="fas fa-trash"></i></button>';
+
+        if (counter == 2) {
+          SN.classList.remove("highlight-row");
+          UN.classList.remove("highlight-row");
+          AD.classList.remove("highlight-row");
+          BTN.classList.remove("highlight-row");
+          counter = 0;
+        } else {
+          SN.classList.add("highlight-row");
+          UN.classList.add("highlight-row");
+          AD.classList.add("highlight-row");
+          BTN.classList.add("highlight-row");
+        }
+      }
+
+      if (contentContainer.innerHTML != "") {
+        contentContainer.innerHTML = "";
+        contentContainer.appendChild(userlist);
+      }
+    });
+}
+
 function manageCat() {
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {

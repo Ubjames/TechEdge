@@ -71,7 +71,7 @@ include "message.php";
       <span id="user-name"></span>
       <span id="user-role"></span>
       <div class="ctrlBtn">
-      <button onclick="configProfile()">
+      <button id="manage_acct" onclick="configProfile()">
         Manage your Account
       </button>
       <button onclick="window.location = '../logout.php'">

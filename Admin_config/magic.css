@@ -7,6 +7,53 @@
   animation-name: fadeIn;
   animation-duration: 200ms;
 } */
+.loader-container{display: none;}
+.general{
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+.forSection{
+  position: absolute;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  width:77%;
+  height: calc(100vh - 60px);
+  top:60px;
+  right:0;
+}
+
+.inactiveButton:disabled{
+  cursor: not-allowed;
+  background-color: grey;
+}
+
+.loader{
+  width: 35px;
+  height: 35px;
+  border: 4px solid rgba(97, 192, 255, 0.295);
+  border-top: 4px solid rgb(35, 75, 255);
+  border-radius: 50%;
+  animation:loader 500ms linear infinite forwards;
+}
+
+@media screen and (max-width:500px){
+  .forSection{
+    position: absolute;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    width: 100% !important;
+    height: calc(100vh - 60px);
+    top:60px;
+    right:0;
+
+  }
+
+}
 
 .springZoomIn {
   animation-name: springZoomIn;
@@ -43,6 +90,17 @@
   animation: spin 600ms linear infinite forwards;
 }
 @keyframes spin {
+  from {
+    transform: rotate(0deg);
+    transform-origin: center center;
+  }
+  to {
+    transform: rotate(360deg);
+    transform-origin: center center;
+  }
+}
+
+@keyframes loader {
   from {
     transform: rotate(0deg);
     transform-origin: center center;

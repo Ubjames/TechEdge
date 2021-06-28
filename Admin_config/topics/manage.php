@@ -1,3 +1,4 @@
+<div class="catCon">
 
 <h2>Manage Topics</h2>
 <div class="grid-container2 ">
@@ -19,6 +20,7 @@
     </button>
   </div>
 
+</div>
 
 
 

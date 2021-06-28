@@ -23,7 +23,7 @@
                    <i class="fas  fa-angle-down ic"></i>
                </div>
                <div class="list-2">
-                    <a onclick="addUser()" href ="javascript:void(0)">Add</a>
+                    <a onclick="addUser(this)" href ="javascript:void(0)">Add</a>
                     <a onclick="manageUser()" href ="javascript:void(0)">Manage</a>
             </div>
            </div>
@@ -100,24 +100,15 @@
             <h4>For security reasons please enter your password to proceed</h4>
             <form>
                     
-            <input type="password" id="actionPassword" class="magicbox" placeholder="Password">
-            
+            <input type="password" name="password" id="actionPassword" class="magicbox" placeholder="Password">
+            <p style="color:red; margin-top:-1em; margin-bottom:5px;" class="passwordErr"></p>
             <div class="confirmButtons">
-                <input type="button" value="Proceed" class="magicbutton" id="proceed" >
+                <input type="button" value="Proceed" class="magicbutton" id="proceed" onclick="addNewUser()">
                 <input type="button" value="Cancel" class="magicbutton" id="cancel" onclick="closeConfirmBox()">
             </div>
             
             </form>
         </div>
-    </div>
-       
+    </div> 
        <section>
-           
-     <script>
-
-        /*  setTimeout(() => {
-             
-             afterload();
-             
-            }, 1000); */
-     </script> 
+  

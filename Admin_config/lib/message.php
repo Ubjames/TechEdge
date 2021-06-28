@@ -34,6 +34,11 @@
 
 
 
+  <div class="loader-container">
+  <div class="loader"></div>
+  </div> 
+
+
 <script>
   function closeMsg() {
     let msgs = document.querySelectorAll(".msg-wraper");
