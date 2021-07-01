@@ -13,7 +13,7 @@
                     <div>
                         <select name="role" id="role" class="magicbox" style="animation: fadeInUp 0.5s ease-in 0.2s forwards; visibility:hidden;">
                             <option style="color:grey;" value="default">Select role</option>
-                            <option value="Autor">Author</option>
+                            <option value="Author">Author</option>
                             <option value="Admin">Admin</option>
                         </select>
                     </div>

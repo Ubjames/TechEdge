@@ -30,5 +30,9 @@ if(!empty($content) && !empty($title)){
 
 }
 
+if(isset($_FILES)){
+    print_r($_FILES);
+}
+
 
 ?>

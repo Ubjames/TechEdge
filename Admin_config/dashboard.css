@@ -7,7 +7,7 @@
   --dark-body-bg: rgb(8 17 26 / 97%);
   --darkdivs: rgb(146 172 179 / 45%);
   --fore-color: rgb(104, 104, 104);
-  --row-shades:#c2c3c361;
+  --row-shades: #c2c3c361;
 }
 
 * {
@@ -349,7 +349,6 @@ nav .contdiv > .group-1 > .list > a:hover {
   background: rgb(18, 83, 109);
   color: #ffffff;
   border: none;
-
 }
 .name-plate {
   display: flex;
@@ -403,6 +402,7 @@ section {
     width: 100%;
   }
 }
+.topicForm,
 .postForm {
   width: 100%;
 }
@@ -430,6 +430,15 @@ aside > .publish {
   border-radius: 4px;
   box-shadow: 0px 0.3px 1px rgb(160, 160, 160);
 }
+
+aside .category {
+  background: #ffffff;
+  width: 250px;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0px 0.3px 1px rgb(160, 160, 160);
+  margin-top: 20px;
+}
 @media screen and (max-width: 850px) {
   .all-content-wrapper {
     display: flex;
@@ -456,6 +465,15 @@ aside > .publish {
   padding-bottom: 10px;
   cursor: pointer;
 }
+
+.cat-control {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(219, 219, 219);
+  padding-bottom: 10px;
+  cursor: pointer;
+}
+
 .fa-play {
   font-size: 11px;
   color: rgb(31, 31, 31);
@@ -470,11 +488,41 @@ aside > .publish {
   height: 0px;
   transition: ease-in-out 500ms;
   background-color: #edeff1;
-  padding:0 5px;
+  padding: 0 5px;
 }
+.cat-option {
+  position: relative;
+  overflow: hidden;
+  height: 0px;
+  transition: ease-in-out 500ms;
+  background-color: inherit;
+  padding: 0 5px;
+  overflow-y: scroll;
+}
+.cat-option .buttons {
+  margin-top: 5px;
+}
+
+.cat-option .buttons button {
+  padding: 5px;
+  border: none;
+  background-color: #fff;
+  color: var(--softgreen);
+  cursor: pointer;
+}
+.activeBtn {
+  border: 1px solid #d3d3d3a8 !important;
+  background-color: rgb(234 232 232 / 44%) !important;
+  border-radius: 5px 5px 0 0 !important;
+  border-bottom: none !important;
+  color: black !important;
+}
+
 .expand-options {
   height: 285px;
-
+}
+.expand-cat-options {
+  height: 200px;
 }
 
 .action-button {
@@ -495,11 +543,52 @@ aside > .publish {
   height: 100px;
   margin-bottom: 10px;
 }
+.add-catBtn button:hover {
+  background-color: inherit !important;
+  color: rgb(12, 99, 114) !important;
+}
+.add-catBtn button {
+  cursor: pointer;
+  border: none;
+  color: var(--softgreen);
+  background-color: inherit;
+}
+
+.cat-list {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(234 232 232 / 44%);
+  border: 1px solid #d3d3d3a8;
+  border-top: none;
+  font-size: 14px;
+  padding: 0 0 5px 10px;
+}
+.most-used-cat {
+  display: none;
+  flex-direction: column;
+  background-color: rgb(234 232 232 / 44%);
+  border: 1px solid #d3d3d3a8;
+  border-top: none;
+  font-size: 14px;
+  padding: 10px 0 5px 10px;
+}
+
+.cat-list div {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: start;
+}
+.cat-list div label {
+  margin-left: 10px;
+}
+
 .options > .status > button {
   font-size: 13px;
   border: none;
   background: none;
-  color: blue;
+  color: rgb(25, 65, 247);
   text-decoration: underline;
 }
 .post-method {
@@ -526,12 +615,12 @@ aside > .publish {
   /* width: 720px; */
   height: 50px;
 }
-.catCon{
+.catCon {
   width: 100%;
 }
 
-.topicDescr{
-  height: 200px!important;
+.topicDescr {
+  height: 200px !important;
   width: 100%;
   font-size: 16px;
 }
@@ -570,6 +659,14 @@ button:hover {
   background: rgb(0, 73, 107);
 }
 
+.grid-container2 .titleAndDescr i {
+  color: rgb(163, 163, 163);
+  margin-top: 5px;
+}
+.grid-container2 .titleAndDescr {
+  display: flex;
+  flex-direction: column;
+}
 .grid-container2 {
   display: grid;
   grid-template-columns: 10% 2fr 1fr;
@@ -675,8 +772,8 @@ button:hover {
   min-width: 50%;
 }
 
-.manage_post{ 
-  width:100%
+.manage_post {
+  width: 100%;
 }
 
 @media screen and (max-width: 800px) {
@@ -766,8 +863,6 @@ button:hover {
   max-width: 500px;
 }
 
-
-
 .usersform {
   display: flex;
   flex-direction: column;
@@ -790,9 +885,9 @@ button:hover {
 }
 
 .alert h4 {
-    color: grey;
-    margin-bottom: 20px;
-    font-weight: 400;
+  color: grey;
+  margin-bottom: 20px;
+  font-weight: 400;
 }
 .alert {
   width: 400px;
@@ -1354,7 +1449,7 @@ textarea {
   display: block;
 }
 
-.userlist{
+.userlist {
   width: 100%;
 }
 
@@ -1471,10 +1566,191 @@ textarea {
   cursor: pointer;
 }
 
-.show-userdetail{
+.show-userdetail {
   display: block !important;
 }
 
-.highlight-row{
+.highlight-row {
   background-color: var(--row-shades);
+}
+
+/* manage post styles - starts*/
+
+.post-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.post {
+  box-shadow: 0 0 6px rgb(173, 173, 173);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  background-color: #fff;
+}
+.picture {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+.picture img {
+  width: 100%;
+  height: auto;
+}
+.date-created {
+  color: grey;
+  font-size: 14px;
+  margin: 5px 10px 0px 10px;
+}
+.author {
+  color: grey;
+  margin: 5px 10px 0px 10px;
+}
+
+.title {
+  font-weight: 600;
+  margin: 5px 10px 0px 10px;
+}
+.content {
+  margin: 10px;
+  color: rgb(94, 93, 93);
+}
+
+.control-buttons {
+  position: absolute;
+  top: 8px;
+  right: -50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 170px;
+  transition: ease-in-out 300ms;
+  transform: translateX(0%);
+}
+.mobile-control-buttons {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 10px;
+}
+@media screen and (max-width: 1000px) {
+  .control-buttons {
+    position: absolute;
+    top: 8px;
+    right: -50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 170px;
+    transition: ease-in-out 300ms;
+    transform: translateX(0%);
+    display: none;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .mobile-control-buttons {
+    display: none;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 10px;
+  }
+}
+
+.mobile-control-buttons button:hover {
+  box-shadow: -5px 5px 5px lightgrey;
+}
+.mobile-control-buttons button {
+  width: 70px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 3px;
+  margin-left: 10px;
+  background-color: rgb(221, 221, 221);
+  cursor: pointer;
+  box-shadow: 0px 0px 2px grey;
+  transition: ease-in-out 300ms box-shadow;
+}
+.control-buttons button {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 3px;
+  box-shadow: -3px 5px 10px rgb(70, 69, 69);
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.control-buttons .publish {
+  color: rgb(46, 185, 70);
+}
+.control-buttons .edit {
+  color: rgb(59, 119, 197);
+}
+.control-buttons .delete {
+  color: rgb(218, 45, 45);
+}
+.mobile-control-buttons .publish {
+  color: #fff;
+  background-color: rgb(46, 185, 70);
+}
+.mobile-control-buttons .edit {
+  color: rgb(59, 119, 197);
+}
+.mobile-control-buttons .delete {
+  color: rgb(218, 45, 45);
+}
+
+.post:hover .control-buttons {
+  transform: translateX(-160%);
+}
+
+/* manage post styles - ends */
+
+.media {
+  margin-top: 10px;
+}
+.media .media-screen img {
+  width: 100%;
+  height: auto;
+}
+.media .media-screen i {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 5px;
+  color: #fff;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+.media .media-screen {
+  margin-top: 10px;
+  height: 200px;
+  width: 300px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  position: relative;
+  transition: ease-in-out 500ms height;
+}
+
+.media button {
+  width: 140px;
+  font-size: 17px;
+  justify-content: space-around;
+  color: var(--softgreen);
+}
+.media button:hover {
+  color: #fff;
 }

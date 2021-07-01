@@ -197,8 +197,13 @@ function expandmoreOption() {
   moreoption.classList.toggle("expand-options");
 
   updown.classList.toggle("rotate");
-  // updown.style.transform = "rotate(-90deg)";
-  // updown.style.transformOrigin = "0 0";
+}
+function expandCatOption() {
+  let updown = document.querySelector(".catangle");
+  let catoption = document.querySelector(".cat-option");
+
+  catoption.classList.toggle("expand-cat-options");
+  updown.classList.toggle("rotate");
 }
 
 body.addEventListener("mouseover", (e) => {
@@ -278,7 +283,7 @@ let pcd = document.querySelector(".alert-container");
 let alert = pcd.firstElementChild;
 
 function ConfirmPassword() {
-  clearInterval(listerner);
+  clearInterval(listener);
   let Uusername = document.querySelector("#Uusername").value;
   let Uemail = document.querySelector("#Uemail").value;
   let role = document.querySelector("#role").value;
@@ -424,19 +429,7 @@ function loadHomePage() {
   xhr.send();
 }
 
-/* function managePost() {
-  let xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      console.log(document.querySelector("#id"));
-      contentContainer.innerHTML = xhr.responseText;
-    }
-  };
-
-  xhr.open("GET", "posts/manage.php", true);
-  xhr.send();
-} */
-
+// here
 function managePost() {
   let url = "posts/manage.php";
   fetch(url)
@@ -451,13 +444,7 @@ function managePost() {
 function updatePosts(data) {
   const parser = new DOMParser();
   const document = parser.parseFromString(data, "text/html");
-  let mp_wraper = document.querySelector(".manage_post");
-  let grid_container = document.querySelector(".grid-container");
-  /* let serialNo = document.querySelector("#sn").innerHTML;
-  let postTitle = document.querySelector("#post-title").innerHTML;
-  let dateCreated = document.querySelector("#date-created").innerHTML;
-  let author = document.querySelector("#author").innerHTML; 
-  let actionBtns = document.querySelector(".action-buttons");*/
+  let post_wraper = document.querySelector(".post-wrapper");
 
   fetch("lib/fetchPost.php")
     .then((response) => {
@@ -465,110 +452,55 @@ function updatePosts(data) {
       return postData;
     })
     .then((postData) => {
-      let serialNumber = 0;
-      var counter = 0;
-      var animDuration = 100;
       for (let i = 0; i < postData.length; i++) {
-        serialNumber++;
-        counter++;
-        animDuration += 100;
         const element = postData[i];
-        let SN = document.createElement("div");
-        SN.setAttribute("class", "highlight-row");
-        SN.setAttribute(
-          "style",
-          "animation: fadeInUp 0.4s ease-in" +
-            " " +
-            animDuration +
-            "ms" +
-            " " +
-            "forwards; visibility:hidden;"
-        );
-        grid_container.appendChild(SN);
-        SN.innerHTML = serialNumber;
+        let post = document.createElement("div");
+        post.setAttribute("class", "post");
+        post_wraper.appendChild(post);
 
-        let PT = document.createElement("div");
-        PT.setAttribute("class", "highlight-row");
-        PT.setAttribute(
-          "style",
-          "animation: fadeInUp 0.4s ease-in" +
-            " " +
-            animDuration +
-            "ms" +
-            " " +
-            " forwards; visibility:hidden;"
-        );
-        grid_container.appendChild(PT);
-        PT.innerHTML = element.title;
+        let coverPicContainer = document.createElement("div");
+        coverPicContainer.setAttribute("class", "picture");
+        post.appendChild(coverPicContainer);
 
-        let DC = document.createElement("div");
-        DC.setAttribute("class", "highlight-row");
-        DC.setAttribute(
-          "style",
-          "animation: fadeInUp 0.4s ease-in " +
-            " " +
-            animDuration +
-            "ms" +
-            " " +
-            " forwards; visibility:hidden;"
-        );
-        grid_container.appendChild(DC);
-        DC.innerHTML = element.createdAt;
+        let coverPic = document.createElement("img");
+        coverPic.setAttribute("src", element.coverPicture);
+        coverPicContainer.appendChild(coverPic);
 
-        let AR = document.createElement("div");
-        AR.setAttribute("class", "highlight-row");
-        AR.setAttribute(
-          "style",
-          "animation: fadeInUp 0.4s ease-in " +
-            " " +
-            animDuration +
-            "ms" +
-            " " +
-            " forwards; visibility:hidden;"
-        );
-        grid_container.appendChild(AR);
-        AR.innerHTML = element.author;
+        let dateCreated = document.createElement("div");
+        dateCreated.setAttribute("class", "date-created");
+        post.appendChild(dateCreated);
+        dateCreated.innerHTML = element.createdAt;
 
-        let BTN = document.createElement("div");
-        BTN.setAttribute("class", "action-buttons highlight-row");
-        BTN.setAttribute(
-          "style",
-          "animation: fadeInUp 0.4s ease-in" +
-            " " +
-            animDuration +
-            "ms" +
-            " " +
-            "forwards; visibility:hidden;"
-        );
-        grid_container.appendChild(BTN);
-        BTN.innerHTML =
-          '<button onclick="confirmOperation()" type="button" id="publish"><i class="fas fa-check"> </i></button> <button type="button" id="edit"><i class="fas fa-edit"></i></button> <button onclick="confirmOperation()" type="submit" name="delete" id="delete"><i class="fas fa-trash"></i></button>';
+        let author = document.createElement("div");
+        author.setAttribute("class", "author");
+        post.appendChild(author);
+        author.innerHTML = element.author;
 
-        if (counter == 2) {
-          SN.classList.remove("highlight-row");
-          AR.classList.remove("highlight-row");
-          DC.classList.remove("highlight-row");
-          BTN.classList.remove("highlight-row");
-          PT.classList.remove("highlight-row");
-          counter = 0;
-        } else {
-          SN.classList.add("highlight-row");
-          AR.classList.add("highlight-row");
-          DC.classList.add("highlight-row");
-          BTN.classList.add("highlight-row");
-          PT.classList.add("highlight-row");
-        }
+        let title = document.createElement("div");
+        title.setAttribute("class", "title");
+        post.appendChild(title);
+        title.innerHTML = element.title;
+
+        let content = document.createElement("div");
+        content.setAttribute("class", "content");
+        post.appendChild(content);
+        element.content.length > 300
+          ? (content.innerHTML = element.content.substring(0, 300) + "...")
+          : (content.innerHTML = element.content);
+
+        post.innerHTML +=
+          '<div class="control-buttons"><button class="publish"><i class="fas fa-check"></i></button><button class="edit"> <i class="fas fa-edit"></i></button><button class="delete"> <i class="fas fa-trash"></i></button></div><div class="mobile-control-buttons"><button class="publish">Publish</button><button class="edit"> Edit</button><button class="delete"> Delete</button></div>';
       }
 
       if (contentContainer.innerHTML != "") {
         contentContainer.innerHTML = "";
-        contentContainer.appendChild(mp_wraper);
+        contentContainer.appendChild(post_wraper);
       }
     });
 }
-  var listener;
+var listener;
 function addUser(btn) {
-     listener = setInterval(() => {
+  listener = setInterval(() => {
     let Uusername = document.querySelector("#Uusername").value;
     let Uemail = document.querySelector("#Uemail").value;
     let role = document.querySelector("#role").value;
@@ -590,16 +522,19 @@ function addUser(btn) {
     }
   };
 
- xhr.open("GET", "users/create.php", true)
+  xhr.open("GET", "users/create.php", true);
   xhr.send();
-  
 }
-setInterval(()=>{
-  if(!contentContainer.firstElementChild.className.includes("addusers-wrapper")){
+setInterval(() => {
+  if (
+    !contentContainer.firstElementChild.className.includes("addusers-wrapper")
+  ) {
     clearInterval(listener);
   }
-},400)
-
+  if (!contentContainer.firstElementChild.className.includes("topicForm")) {
+    clearInterval(TopicListener);
+  }
+}, 400);
 
 function addNewUser() {
   let pwd = document.querySelector("#actionPassword").value;
@@ -626,16 +561,16 @@ function addNewUser() {
     })
     .then((data) => {
       if (!data["password_failed"]) {
-        pwdErr.innerText ="";
+        pwdErr.innerText = "";
         closeConfirmBox();
-      } else if(data["password_failed"]){
-        pwdErr.innerText = data["password_failed"]
+      } else if (data["password_failed"]) {
+        pwdErr.innerText = data["password_failed"];
       }
 
       if (data["invalid_user"]) {
         failedAlert.style.display = "flex";
         failedMassage.innerText = data["invalid_user"];
-      } else if(data["success"]){
+      } else if (data["success"]) {
         successAlert.style.display = "flex";
         successMassage.innerText = data["success"];
       }
@@ -751,7 +686,7 @@ function configData(data) {
     });
 }
 
-function manageCat() {
+function manageCa() {
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -764,15 +699,32 @@ function manageCat() {
   xhr.open("GET", "topics/manage.php", true);
   xhr.send();
 }
+let TopicListener;
 function createCat() {
+  TopicListener = setInterval(() => {
+    let Ttitle = document.querySelector("#title").value;
+    let Tdescr = document.querySelector(".topicDescr").value;
+    let Tbtn = document.querySelector(".topicBtn");
+
+    if (
+      Ttitle.trim() != "" &&
+      Tdescr.trim() != "" &&
+      Tdescr != "Add a description"
+    ) {
+      Tbtn.classList.remove("inactiveButton");
+      Tbtn.removeAttribute("disabled", "disabled");
+    } else {
+      Tbtn.classList.add("inactiveButton");
+      Tbtn.setAttribute("disabled", "disabled");
+    }
+  }, 500);
+
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
     if (xhr.readyState == 4 && xhr.status == 200) {
       contentContainer.innerHTML = xhr.responseText;
     }
   };
-  // xhr.onprogress = () => {
-  // };
 
   xhr.open("GET", "topics/create.php", true);
   xhr.send();
@@ -1033,12 +985,20 @@ function publishPost() {
   let content = document.getElementById("content");
   let slug = document.getElementById("slug");
   let metatitle = document.getElementById("metatitle");
+  let coverImage = document.querySelector("#coverImage");
 
   const form = new FormData();
   form.append("title", title.value);
   form.append("content", content.value);
   form.append("slug", slug.value);
   form.append("metatitle", metatitle.value);
+  
+  coverImage.onchange = () => {
+    if (coverImage.files[0]) {
+      form.append("coverImage", coverImage.file);
+
+    }
+  };
 
   const url = "lib/process_post.php";
   const request = new Request(url, {
@@ -1067,4 +1027,179 @@ function publishPost() {
           });
       }
     });
+}
+
+function addTopic() {
+  let Ttitle = document.querySelector("#title").value;
+  let Tdescr = document.querySelector(".topicDescr").value;
+
+  let form = new FormData();
+  form.append("title", Ttitle);
+  form.append("descr", Tdescr);
+
+  let url = "lib/addTopic.php";
+  let request = new Request(url, {
+    method: "POST",
+    body: form,
+  });
+  fetch(request)
+    .then((response) => {
+      let data = response.json();
+      return data;
+    })
+    .then((data) => {
+      if (data["success"]) {
+        successAlert.style.display = "flex";
+        successMassage.innerText = data["success"];
+      } else if (data["failed"]) {
+        failedAlert.style.display = "flex";
+        failedMassage.innerText = data["failed"];
+      }
+    });
+}
+
+//............
+function manageCat() {
+  fetch("topics/manage.php")
+    .then((response) => {
+      let cat = response.text();
+      return cat;
+    })
+    .then((cat) => {
+      configCatData(cat);
+    });
+}
+
+function configCatData(cat) {
+  let parser = new DOMParser();
+  let document = parser.parseFromString(cat, "text/html");
+  let catlist = document.querySelector(".catCon");
+  let catGrid = document.querySelector(".grid-container2");
+
+  fetch("lib/fetchTopic.php")
+    .then((response) => {
+      let catData = response.json();
+      return catData;
+    })
+    .then((catData) => {
+      let serialNumber = 0;
+      var counter = 0;
+      var animDuration = 100;
+      for (let i = 0; i < catData.length; i++) {
+        serialNumber++;
+        animDuration += 100;
+        counter++;
+        const element = catData[i];
+        let SN = document.createElement("div");
+        SN.setAttribute(
+          "style",
+          "animation: fadeInUp 0.5s ease-in" +
+            " " +
+            animDuration +
+            "ms" +
+            " " +
+            "forwards; visibility:hidden;"
+        );
+        SN.setAttribute("class", "highlight-row");
+        catGrid.appendChild(SN);
+        SN.innerHTML = serialNumber;
+
+        let catTitle = document.createElement("div");
+        catTitle.setAttribute(
+          "style",
+          "animation: fadeInUp 0.5s ease-in" +
+            " " +
+            animDuration +
+            "ms" +
+            " " +
+            "forwards; visibility:hidden;"
+        );
+        catTitle.setAttribute("class", "highlight-row titleAndDescr");
+        catGrid.appendChild(catTitle);
+        catTitle.innerHTML = element.title;
+
+        let catDescr = document.createElement("i");
+        catDescr.setAttribute("class", "descr");
+        catTitle.appendChild(catDescr);
+
+        element.descr.length > 100
+          ? (catDescr.innerText = element.descr.substring(0, 100) + "...")
+          : (catDescr.innerText = element.descr);
+
+        let BTN = document.createElement("div");
+        BTN.setAttribute("class", "action-buttons highlight-row");
+        BTN.setAttribute(
+          "style",
+          "animation: fadeInUp 0.5s ease-in" +
+            " " +
+            animDuration +
+            "ms" +
+            " " +
+            "forwards; visibility:hidden;"
+        );
+        catGrid.appendChild(BTN);
+        BTN.innerHTML =
+          '<button onclick="confirmOperation()" type="button" name="publish" id="publish"><i class="fas fa-check"></i></button><button type="button" name="edit" id="edit"><i class="fas fa-edit"></i></button><button onclick="confirmOperation()" type="button" name="delete" id="delete"><i class="fas fa-trash"></i></button>';
+
+        if (counter == 2) {
+          SN.classList.remove("highlight-row");
+          catTitle.classList.remove("highlight-row");
+          BTN.classList.remove("highlight-row");
+          counter = 0;
+        } else {
+          SN.classList.add("highlight-row");
+          catTitle.classList.add("highlight-row");
+          BTN.classList.add("highlight-row");
+        }
+      }
+
+      if (contentContainer.innerHTML != "") {
+        contentContainer.innerHTML = "";
+        contentContainer.appendChild(catlist);
+      }
+    });
+}
+
+function showAllCat(btn) {
+  let allCat = document.querySelector(".cat-list");
+  let mostUsedCat = document.querySelector(".most-used-cat");
+  let mostusedBtn = document.querySelector("#mostused-CatBtn");
+
+  if (mostusedBtn.className.includes("activeBtn")) {
+    mostusedBtn.classList.remove("activeBtn");
+    mostUsedCat.style.display = "none";
+    allCat.style.display = "flex";
+    btn.classList.add("activeBtn");
+  }
+
+  /* if (allCat.style.display == "none" ) {
+    allCat.style.display = "flex";
+    mostUsedCat.style.display = "none";
+  } */
+}
+
+function showMostUsed(btn) {
+  let mostUsedCat = document.querySelector(".most-used-cat");
+  let allCat = document.querySelector(".cat-list");
+  let allCatBtn = document.querySelector("#all-CatBtn");
+  let mostusedBtn = document.querySelector("#mostused-CatBtn");
+
+  if (allCatBtn.className.includes("activeBtn")) {
+    allCatBtn.classList.remove("activeBtn");
+    allCat.style.display = "none";
+    mostUsedCat.style.display = "flex";
+    btn.classList.add("activeBtn");
+  }
+}
+
+function addMedia() {
+  let e = window.event;
+  e.preventDefault();
+  let coverImage = document.querySelector("#coverImage");
+  coverImage.click();
+  coverImage.onchange = () => {
+    if (coverImage.files[0]) {
+      // console.log(coverImage.file);
+    }
+  };
 }

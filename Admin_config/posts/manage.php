@@ -1,30 +1,28 @@
-<div class="manage_post">
-  <h2>Manage posts</h2>
-  <div class="grid-container">
-    <div class="col-head">S/N</div>
-    <div class="col-head">TITLE</div>
-    <div class="col-head">DATE CREATED</div>
-    <div class="col-head">AUTHOR</div>
-    <div class="col-head">ACTION</div>
 
-    <!--  <div id="sn" style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">1</div>
+    <div class="post-wrapper">
 
-            <div id="post-title" style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">--</div>
 
-            <div id="date-created" style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">--</div>
+      <!-- <div class="post">
+          <div class="picture">
+              <img src="/26dc45cd31c4443ea4d05b44bac7b61c_1611238888380.jpg" alt="">
+          </div>
+            <div class="date-created">15 June, 2021</div>
+            <div class="author">Ubong James</div>
+            <div class="title">How to start blog in 10 min</div>
+            <div class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, deleniti. Nemo, a vitae autem quaerat obcaecati corrupti. Sunt facilis expedita placeat ex commodi, ullam quae sed eius dignissimos recusandae repellendus...</div>
 
-            <div id="author" style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">-- </div>
+            <div class="control-buttons">
+                <button class="publish"><i class="fas fa-check"></i></button>
+                <button class="edit"> <i class="fas fa-edit"></i></button>
+                <button class="delete"> <i class="fas fa-trash"></i></button>
+            </div>
+              <div class="mobile-control-buttons">
+                  <button class="publish">Publish</button>
+                  <button class="edit"> Edit</button>
+                  <button class="delete"> Delete</button>
+              </div>
+      </div> -->
 
-            <div class="action-buttons" style="animation: fadeInUp 0.5s ease-in 0ms forwards; visibility:hidden;">
-                <button onclick="confirmOperation()" type="button"  id="publish">
-                    <i class="fas fa-check"></i>
-                </button>
-                <button type="button" id="edit"><i class="fas fa-edit"></i></button>
-                <button onclick="confirmOperation()" type="submit" name="delete" id="delete"><i class="fas fa-trash"></i></button>
-            </div> -->
+      
+
   </div>
-</div>
-
-<?php
-  include "../lib/footer.php"
-  ?>

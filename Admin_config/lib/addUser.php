@@ -30,6 +30,7 @@ if(isset($_SESSION['UID']) && isset($_POST['password'])){
     if($verifed == 1){
         $query2 = "SELECT `userName`,`email`,`role` FROM `user` WHERE `userName`='$Uusername';";
         $run_query2 = mysqli_query($conn,$query2);
+
         if($run_query2){
             $user_data2 = mysqli_fetch_assoc($run_query2);
 
@@ -39,26 +40,30 @@ if(isset($_SESSION['UID']) && isset($_POST['password'])){
                 return $msg;
             }
 
-            if($role == "Admin" && $user_data['role'] == 0 ){
-                $update = "UPDATE user SET `role` = 1 WHERE `userName` ='$Uusername' ";
+
+
+            if($role == "Admin" && $user_data2['role'] == 0 ){
+                $update1 = "UPDATE user SET `role` = 1 WHERE `userName` ='$Uusername' ";
+                $run_update1 = mysqli_query($conn,$update1);
                 $msg = ['success' => 'Successfully added'.' '.$Uusername.' '.'as admin'];
                 echo json_encode($msg);
 
 
-            }else{
-                $msg = ["invalid_user"=> $Uusername. ' '. "is already an Admin"];
+            }else if($role =='Author' && $user_data2['role']==0){
+                $msg = ["invalid_user"=> $Uusername. ' '. "is already an Author"];
                 echo json_encode($msg);
-                // echo $user_data['role'];
                 return $msg;
             }
             
-            if($role == "Author" && $user_data['role'] == 0 ){
-                $update = "UPDATE user SET `role` = 1 WHERE `userName` ='$Uusername' ";
+            if($role == "Author" && $user_data2['role'] ==1 ){
+                $update2 = "UPDATE user SET `role` = 0 WHERE `userName` ='$Uusername' ";
+                $run_update2 = mysqli_query($conn,$update2);
 
                 $msg = ['success' => 'Successfully removed'.' '.$Uusername.' '.'as admin to an author'];
                 echo json_encode($msg);
-            }else{
-                $msg = ["invalid_user"=> $Uusername. ' '. "is already an Author"];
+
+            }else if($role == "Admin" && $user_data2['role']==1){
+                $msg = ["invalid_user"=> $Uusername. ' '. "is already an Admin"];
                 echo json_encode($msg);
                 return $msg;
             }
