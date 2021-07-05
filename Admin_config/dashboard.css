@@ -433,7 +433,7 @@ aside > .publish {
 
 aside .category {
   background: #ffffff;
-  width: 250px;
+  /* width: 250px; */
   padding: 10px;
   border-radius: 4px;
   box-shadow: 0px 0.3px 1px rgb(160, 160, 160);
@@ -1591,6 +1591,15 @@ textarea {
   cursor: pointer;
   background-color: #fff;
 }
+.post .view{
+  width: 100%;
+  height: 350px;
+  background-color: inherit;
+  position: absolute;
+  opacity: 0;
+  top: 0;
+}
+
 .picture {
   width: 100%;
   height: 200px;
@@ -1690,7 +1699,14 @@ textarea {
   cursor: pointer;
   background-color: #fff;
 }
-
+.post #postId{
+  position: absolute;
+  visibility: hidden;
+}
+.readerMode #postId{
+  position: absolute;
+  visibility: hidden;
+}
 .control-buttons .publish {
   color: rgb(46, 185, 70);
 }
@@ -1716,6 +1732,151 @@ textarea {
 }
 
 /* manage post styles - ends */
+
+
+/* reader style - starts*/
+.readerMode {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px grey;
+  border-radius: 10px;
+}
+.readerMode .ctrlBtn {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 40px;
+  /* box-shadow: 0px 0px 2px lightgrey; */
+  /* background: rgba(233, 232, 232, 0.288); */
+}
+.readerMode .ctrlBtn button:last-child {
+  margin-left: auto;
+  margin-right: 0;
+  background-color: inherit;
+  box-shadow: none;
+  color: red;
+}
+
+.readerMode .ctrlBtn button {
+  width: 70px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 3px;
+  margin-right: 10px;
+  background-color: rgb(221, 221, 221);
+  cursor: pointer;
+  box-shadow: 0px 0px 2px grey;
+  transition: ease-in-out 300ms box-shadow;
+}
+.readerMode .ctrlBtn button:nth-child(1) {
+  background-color: rgb(46, 185, 70);
+  color: #fff;
+  box-shadow: none;
+}
+.readerMode .ctrlBtn button:nth-child(2) {
+  color: rgb(228, 0, 0);
+  background-color: rgb(255, 241, 241);
+  box-shadow: none;
+}
+.readerMode .title {
+  text-transform: uppercase;
+  margin-top: 30px;
+  text-align: center;
+  font-size: 20px;
+  width: 100%;
+}
+.readerMode .author-info .author-img img {
+  width: 100%;
+  height: auto;
+}
+.readerMode .author-info .author-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px lightgrey;
+  border-bottom: 3px solid rgb(78, 146, 201);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+.readerMode .author-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: auto;
+  width: 250px;
+}
+
+.readerMode .author-info :last-child {
+  color: grey;
+}
+.readerMode .author-info :last-child div:first-child {
+  font-weight: 600;
+  font-size: 17px;
+}
+.readerMode .author-info :last-child div:last-child {
+  font-style: italic;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 330px) {
+  .readerMode .author-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    /* border:1px solid red */
+  }
+  .readerMode .author-info :last-child {
+    text-align: center;
+  }
+}
+.readerMode .post-body {
+  margin-top: 20px;
+}
+.readerMode .bottom-ctrlBtn {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.readerMode .bottom-ctrlBtn button {
+  margin-left: 10px;
+  width: 70px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 3px;
+  background-color: rgb(221, 221, 221);
+  cursor: pointer;
+  box-shadow: 0px 0px 2px grey;
+  transition: ease-in-out 300ms box-shadow;
+}
+.readerMode .bottom-ctrlBtn button:nth-child(1) {
+  background-color: rgb(46, 185, 70);
+  color: #fff;
+  box-shadow: none;
+}
+.readerMode .bottom-ctrlBtn button:nth-child(2) {
+  color: rgb(228, 0, 0);
+  background-color: rgb(255, 241, 241);
+  box-shadow: none;
+}
+/* reader style - ends */
+
+
 
 .media {
   margin-top: 10px;
@@ -1743,6 +1904,7 @@ textarea {
   border-radius: 3px;
   position: relative;
   transition: ease-in-out 500ms height;
+  overflow: hidden;
 }
 
 .media button {

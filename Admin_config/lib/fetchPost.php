@@ -6,6 +6,7 @@ if(isset($_SESSION['UID'])){
     $UID = $_SESSION['UID'];
     $query = "SELECT
     p.title,
+    p.postId,
     p.createdAt,
     p.coverPicture,
     p.content,
@@ -13,7 +14,9 @@ if(isset($_SESSION['UID'])){
 FROM
     post p
 INNER JOIN USER u ON
-    p.authorId = u.userId";
+    p.authorId = u.userId
+    WHERE p.published = 0";
+    
 
     $run_query = mysqli_query($conn, $query);
 

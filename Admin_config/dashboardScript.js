@@ -395,18 +395,24 @@ function closeImg() {
 }
 
 function createPost() {
-  setPageLoader();
-  let xhr = new XMLHttpRequest();
+  fetch("posts/create.php")
+    .then((response) => {
+      return response.text();
+    })
+    .then((res) => {
+      if (contentContainer.innerHTML != "") {
+        contentContainer.innerHTML = "";
+      }
+      
+      let parser = new DOMParser();
+      let document = parser.parseFromString(res, "text/html");
+      // contentContainer.appendChild(document);
 
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      removePageLoader();
-      contentContainer.innerHTML = xhr.responseText;
-    }
-  };
+      loadCategory(document);
+      return document;
+    });
 
-  xhr.open("GET", "posts/create.php", true);
-  xhr.send();
+  
 }
 function setPageLoader() {
   document.querySelector(".loader-container").classList.add("forSection");
@@ -458,6 +464,11 @@ function updatePosts(data) {
         post.setAttribute("class", "post");
         post_wraper.appendChild(post);
 
+        let ID = document.createElement("div");
+        ID.setAttribute("id", "postId");
+        post.appendChild(ID);
+        ID.innerText = element.postId;
+
         let coverPicContainer = document.createElement("div");
         coverPicContainer.setAttribute("class", "picture");
         post.appendChild(coverPicContainer);
@@ -489,7 +500,7 @@ function updatePosts(data) {
           : (content.innerHTML = element.content);
 
         post.innerHTML +=
-          '<div class="control-buttons"><button class="publish"><i class="fas fa-check"></i></button><button class="edit"> <i class="fas fa-edit"></i></button><button class="delete"> <i class="fas fa-trash"></i></button></div><div class="mobile-control-buttons"><button class="publish">Publish</button><button class="edit"> Edit</button><button class="delete"> Delete</button></div>';
+          '<div class="control-buttons"><button onclick="approvePost(this)" class="publish"><i class="fas fa-check"></i></button><button onclick="viewPost(this)" class="edit"> <i class="fas fa-eye"></i></button><button onclick="deletePost(this)" class="delete"> <i class="fas fa-trash"></i></button></div><div class="mobile-control-buttons"><button class="publish" onclick="approvePost(this)">Publish</button><button class="edit" onclick="viewPost(this)"> View</button><button class="delete" onclick="deletePost(this)"> Delete</button></div>';
       }
 
       if (contentContainer.innerHTML != "") {
@@ -498,6 +509,7 @@ function updatePosts(data) {
       }
     });
 }
+
 var listener;
 function addUser(btn) {
   listener = setInterval(() => {
@@ -534,7 +546,7 @@ setInterval(() => {
   if (!contentContainer.firstElementChild.className.includes("topicForm")) {
     clearInterval(TopicListener);
   }
-}, 400);
+}, 500);
 
 function addNewUser() {
   let pwd = document.querySelector("#actionPassword").value;
@@ -736,8 +748,6 @@ function manageProfile() {
       contentContainer.innerHTML = xhr.responseText;
     }
   };
-  // xhr.onprogress = () => {
-  // };
 
   xhr.open("GET", "lib/setting.php", true);
   xhr.send();
@@ -980,6 +990,34 @@ function loadDataToAppropratePlaces(data) {
     : (userROLE.innerHTML = "Author");
 }
 
+var coverImage_isset = false;
+function addMedia() {
+  let e = window.event;
+  e.preventDefault();
+  let coverImage = document.querySelector("#coverImage");
+  let mediaScreen = document.querySelector(".media-screen");
+  coverImage.click();
+  coverImage.onchange = () => {
+    if (coverImage.files[0]) {
+      coverImage_isset = true;
+
+      let reader = new FileReader();
+      reader.readAsDataURL(coverImage.files[0]);
+      reader.onload = (e) => {
+        mediaScreen.style.display = "flex";
+        mediaScreen.lastElementChild.setAttribute("src", e.target.result);
+      };
+    }
+  };
+}
+
+function removeCoverImage() {
+  let coverImage = (document.querySelector("#coverImage").value = "");
+  let mediaScreen = (document.querySelector(".media-screen").style.display =
+    "none");
+  mediaScreen.lastElementChild.setAttribute("src", "");
+}
+
 function publishPost() {
   let title = document.getElementById("title");
   let content = document.getElementById("content");
@@ -992,13 +1030,11 @@ function publishPost() {
   form.append("content", content.value);
   form.append("slug", slug.value);
   form.append("metatitle", metatitle.value);
-  
-  coverImage.onchange = () => {
-    if (coverImage.files[0]) {
-      form.append("coverImage", coverImage.file);
-
-    }
-  };
+  console.log(coverImage_isset);
+  if (coverImage_isset) {
+    let CI = coverImage.files[0];
+    form.append("coverImage", CI);
+  }
 
   const url = "lib/process_post.php";
   const request = new Request(url, {
@@ -1014,6 +1050,9 @@ function publishPost() {
       if (data["failed"]) {
         failedAlert.style.display = "flex";
         failedMassage.innerHTML = data["failed"];
+      } else if (data["invalidImage"]) {
+        document.querySelector(".coverImage-error").innerText =
+          data["invalidImage"];
       } else if (data["success"]) {
         successAlert.style.display = "flex";
         successMassage.innerHTML = data["success"];
@@ -1024,6 +1063,9 @@ function publishPost() {
             content.value = "";
             slug.value = "";
             metatitle.value = "";
+            coverImage.value = "";
+
+            document.querySelector(".coverImage-error").innerText = "";
           });
       }
     });
@@ -1182,7 +1224,7 @@ function showMostUsed(btn) {
   let mostUsedCat = document.querySelector(".most-used-cat");
   let allCat = document.querySelector(".cat-list");
   let allCatBtn = document.querySelector("#all-CatBtn");
-  let mostusedBtn = document.querySelector("#mostused-CatBtn");
+  // let mostusedBtn = document.querySelector("#mostused-CatBtn");
 
   if (allCatBtn.className.includes("activeBtn")) {
     allCatBtn.classList.remove("activeBtn");
@@ -1192,14 +1234,88 @@ function showMostUsed(btn) {
   }
 }
 
-function addMedia() {
+function deletePost(btn) {
+  let confirmOp = confirm(
+    "Are you sure want delete this post, this operation can not be undone."
+  );
+  if (confirmOp == true) {
+    let activePostID =
+      btn.parentElement.parentElement.firstElementChild.textContent;
+
+    let url = `lib/deletePost.php?postId=${activePostID}`;
+    fetch(url)
+      .then((response) => {
+        return response.json();
+      })
+      .then((res) => {
+        if (res["success"]) {
+          managePost();
+        }
+      });
+  } else {
+    return;
+  }
+}
+function viewPost(btn) {
   let e = window.event;
-  e.preventDefault();
-  let coverImage = document.querySelector("#coverImage");
-  coverImage.click();
-  coverImage.onchange = () => {
-    if (coverImage.files[0]) {
-      // console.log(coverImage.file);
-    }
-  };
+  let activePostID =
+    btn.parentElement.parentElement.firstElementChild.textContent;
+
+  let url = `lib/readPost.php?postId=${activePostID}`;
+  fetch(url)
+    .then((response) => {
+      return response.json();
+    })
+    .then((res) => {
+      let reader = document.createElement("div");
+      reader.setAttribute("class", "readerMode");
+      if (contentContainer.innerHTML != "") {
+        contentContainer.innerHTML = "";
+        contentContainer.appendChild(reader);
+      }
+      reader.innerHTML += `<div id="postId">${res["postId"]}</div>`;
+      reader.innerHTML += `<div class="ctrlBtn">
+      <button onclick="approvePost(this)">Approve</button>
+      <button onclick="deletePost(this)">Delete</button>
+      <button onclick="closeReaderMode()">Close</button> </div>`;
+      reader.innerHTML += `<div class="title">${res["title"]}</div>`;
+      reader.innerHTML += `    <div class="author-info">
+      <div class="author-img">
+          <img src="${res["passport"]}" >
+      </div>
+      <div>
+          <div>${res["author"]}</div>
+          <div>${res["createdAt"]}</div>
+      </div>
+  </div>`;
+      reader.innerHTML += `<div class="post-body">${res["content"]}</div>
+<div class="bottom-ctrlBtn">
+  <button onclick="approvePost(this)">Approve</button>
+  <button onclick="deletePost(this)">Delete</button>
+</div>`;
+    });
+}
+
+function closeReaderMode() {
+  return managePost();
+}
+
+
+function loadCategory(document) {
+  let url = "lib/fetchTopic.php";
+  fetch(url)
+    .then((response) => {
+      return response.json();
+    })
+    .then((res) => {
+      let catList = document.querySelector(".cat-list");
+      for (let i = 0; i < res.length; i++) {
+        const element = res[i];
+        // console.log(element.title)
+        console.log(catList.innerHTML+= `<div>
+              <input type="radio" name="Category" id="cat">
+              <label for="${element.title}">${element.title}</label>
+              </div>`);
+      }
+    });
 }

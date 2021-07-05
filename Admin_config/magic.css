@@ -7,7 +7,8 @@
   animation-name: fadeIn;
   animation-duration: 200ms;
 } */
-.loader-container{display: none;
+.loader-container{
+  display: none;
   background-color: #ffffff83;
   z-index: 200;
 }
@@ -25,8 +26,9 @@
   align-items: center;
   width:77%;
   height: calc(100vh - 60px);
-  top:60px;
   right:0;
+  top:60px;
+  /* width:100%; */
 }
 
 .inactiveButton:disabled{

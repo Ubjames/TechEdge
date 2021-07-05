@@ -13,8 +13,9 @@
                         <i class="fas fa-images"></i>
                         <span>Add Media</span>
                     </button>
+                    <span style="color:red" class="coverImage-error"></span>
                     <div class="media-screen">
-                        <i class="fas fa-times-circle remove-image"></i>
+                        <i class="fas fa-times-circle" onclick="removeCoverImage()"></i>
                         <img src="" >
                     </div>
                     
@@ -90,18 +91,7 @@
                                 <input type="checkbox" name="uncategorized" id="uncat">
                                 <label for="uncat">Uncategorized</label>
                             </div>
-                            <div>
-                                <input type="radio" name="" id="cat">
-                                <label for="cat">lifetyle</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="" id="cat">
-                                <label for="cat">Grphics design</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="" id="cat">
-                                <label for="cat">frontend development</label>
-                            </div>
+                            
                             
                         </div>
                         <!-- most used -->
@@ -140,7 +130,7 @@
 
     <script defer>
         ClassicEditor
-    .create( document.querySelector( '#content' ), {
+    .create( document.querySelector( '#content' ),{
         toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
         heading: {
             options: [
