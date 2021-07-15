@@ -10,4 +10,6 @@
     <link rel="stylesheet" type="text/css" href="././fontawesome-free-5.13.1-web/css/all.css">
     <script defer src="././dashboardScript.js"></script>
     
+    <!-- <script defer src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script> -->
+    
 </head>

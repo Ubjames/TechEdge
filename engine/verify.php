@@ -5,7 +5,7 @@ $msg =[];
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-        if(!isset($_SESSION['UID'])){
+        if(!isset($_SESSION['temp_id'])){
             header("location: ../login.php");
         }
 
@@ -13,8 +13,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $msg = ['failed' => 'Passsword field is required']; 
             echo json_encode($msg);
         } 
-        else if(isset($_SESSION['UID'])){
-        $UID = $_SESSION['UID'];
+        else if(isset($_SESSION['temp_id'])){
+        $UID = $_SESSION['temp_id'];
         $query = "SELECT * FROM `user` WHERE `userId` = '$UID' LIMIT 1;";
         $runQuery = mysqli_query($conn, $query);
 
@@ -23,6 +23,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             if($result['passwordHash'] == md5($password)){
             $msg = ['success' => 'User verification succesful']; 
             echo json_encode($msg);
+            $_SESSION['UID'] = $_SESSION['temp_id'];
 
 
             }else{

@@ -1707,6 +1707,10 @@ textarea {
   position: absolute;
   visibility: hidden;
 }
+.cat-list #catId{
+  position: absolute;
+  visibility: hidden;
+}
 .control-buttons .publish {
   color: rgb(46, 185, 70);
 }

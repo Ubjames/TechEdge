@@ -15,7 +15,8 @@ FROM
     post p
 INNER JOIN USER u ON
     p.authorId = u.userId
-    WHERE p.published = 0";
+    WHERE p.published = 0
+    ORDER BY p.createdAT DESC";
     
 
     $run_query = mysqli_query($conn, $query);

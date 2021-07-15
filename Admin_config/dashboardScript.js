@@ -13,6 +13,7 @@ let conts = document.getElementsByClassName("magicbox");
 let switcher = document.querySelector(".modeSwitcher");
 let thumb = document.querySelector(".mode-thumb");
 let custombox = document.querySelectorAll(".magicbox");
+/* console.log(custombox) */
 let failedAlert = document.querySelector(".failed");
 let failedMassage = document.querySelector(".failed p");
 let successAlert = document.querySelector(".success");
@@ -73,7 +74,6 @@ function closeMobliesearch() {
 }
 
 let is_dark;
-
 let onpageload = localStorage.getItem("theme") || "";
 if ((onpageload = !null && onpageload == "darkmode")) {
   is_dark = true;
@@ -395,24 +395,16 @@ function closeImg() {
 }
 
 function createPost() {
+  if (nav.className.includes("showmenu")) {
+    nav.classList.remove("showmenu");
+  }
   fetch("posts/create.php")
     .then((response) => {
       return response.text();
     })
     .then((res) => {
-      if (contentContainer.innerHTML != "") {
-        contentContainer.innerHTML = "";
-      }
-      
-      let parser = new DOMParser();
-      let document = parser.parseFromString(res, "text/html");
-      // contentContainer.appendChild(document);
-
-      loadCategory(document);
-      return document;
+      loadCategory(res);
     });
-
-  
 }
 function setPageLoader() {
   document.querySelector(".loader-container").classList.add("forSection");
@@ -421,22 +413,50 @@ function removePageLoader() {
   document.querySelector(".loader-container").classList.remove("forSection");
 }
 
+// here
 function loadHomePage() {
   setPageLoader();
-  let xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState == 4 && xhr.status == 200) {
+  fetch("lib/home.php")
+    .then((response) => {
+      return response.text();
+    })
+    .then((data) => {
+      let parser = new DOMParser();
+      let document = parser.parseFromString(data, "text/html");
+      let x = document.querySelector(".home-page-wrapper");
+      contentContainer.innerHTML = "";
       removePageLoader();
-      contentContainer.innerHTML = xhr.responseText;
-    }
-  };
+      let magicboxes = document.querySelectorAll(".magicbox");
+      let DOMdivs = [
+        document.querySelector(".post"),
+        document.querySelector(".grid-container2"),
+        document.querySelector(".grid-container3"),
+        document.querySelector(".publish"),
+        document.querySelector(".category"),
+      ];
+      localStorage.setItem("magicboxes", magicboxes);
+      /* if ((onpageloads = !null && onpageloads == "darkmode")){
+        magicboxes.forEach((x)=>{
+          x.classList.add("container-bg");
+        })
+     
+      DOMdivs.forEach((div) => {
+        if (div != null) {
+          div.classList.add("fordark");
+        }
+      }); 
+    
+        
+    } */
 
-  xhr.open("GET", "lib/home.php", true);
-  xhr.send();
+      contentContainer.appendChild(x);
+    });
 }
 
-// here
 function managePost() {
+  if (nav.className.includes("showmenu")) {
+    nav.classList.remove("showmenu");
+  }
   let url = "posts/manage.php";
   fetch(url)
     .then((response) => {
@@ -458,10 +478,16 @@ function updatePosts(data) {
       return postData;
     })
     .then((postData) => {
+      let animDuration = 100;
       for (let i = 0; i < postData.length; i++) {
         const element = postData[i];
+
         let post = document.createElement("div");
         post.setAttribute("class", "post");
+        post.setAttribute(
+          "style",
+          `animation: fadeInUp-bigDivs 0.5s ease-in ${animDuration}ms forwards; visibility: hidden`
+        );
         post_wraper.appendChild(post);
 
         let ID = document.createElement("div");
@@ -501,6 +527,7 @@ function updatePosts(data) {
 
         post.innerHTML +=
           '<div class="control-buttons"><button onclick="approvePost(this)" class="publish"><i class="fas fa-check"></i></button><button onclick="viewPost(this)" class="edit"> <i class="fas fa-eye"></i></button><button onclick="deletePost(this)" class="delete"> <i class="fas fa-trash"></i></button></div><div class="mobile-control-buttons"><button class="publish" onclick="approvePost(this)">Publish</button><button class="edit" onclick="viewPost(this)"> View</button><button class="delete" onclick="deletePost(this)"> Delete</button></div>';
+        animDuration += 100;
       }
 
       if (contentContainer.innerHTML != "") {
@@ -512,6 +539,9 @@ function updatePosts(data) {
 
 var listener;
 function addUser(btn) {
+  if (nav.className.includes("showmenu")) {
+    nav.classList.remove("showmenu");
+  }
   listener = setInterval(() => {
     let Uusername = document.querySelector("#Uusername").value;
     let Uemail = document.querySelector("#Uemail").value;
@@ -547,6 +577,35 @@ setInterval(() => {
     clearInterval(TopicListener);
   }
 }, 500);
+
+/* setInterval(() => {
+
+  if (
+    contentContainer.firstElementChild.className.includes("add-content-wrapper")
+  ) {
+    ClassicEditor
+    .create( document.querySelector( '#content' ),{
+        toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+        heading: {
+            options: [
+                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+            ]
+        }
+    } )
+    .catch( error => {
+        console.log( error );
+        
+    } );
+    setTimeout(() => {
+        let ck = document.querySelector('.ck-blurred')
+        
+        ck.style.height="400px";
+    }, 1000);
+  }
+}, 500);
+ */
 
 function addNewUser() {
   let pwd = document.querySelector("#actionPassword").value;
@@ -590,6 +649,9 @@ function addNewUser() {
 }
 
 function manageUser() {
+  if (nav.className.includes("showmenu")) {
+    nav.classList.remove("showmenu");
+  }
   let url = "users/manage.php";
   fetch(url)
     .then((response) => {
@@ -619,7 +681,9 @@ function configData(data) {
         serialNumber++;
         animDuration += 100;
         counter++;
+
         const element = user[i];
+
         let SN = document.createElement("div");
         SN.setAttribute(
           "style",
@@ -713,6 +777,9 @@ function manageCa() {
 }
 let TopicListener;
 function createCat() {
+  if (nav.className.includes("showmenu")) {
+    nav.classList.remove("showmenu");
+  }
   TopicListener = setInterval(() => {
     let Ttitle = document.querySelector("#title").value;
     let Tdescr = document.querySelector(".topicDescr").value;
@@ -754,6 +821,9 @@ function manageProfile() {
 }
 
 function configProfile() {
+  if (nav.className.includes("showmenu")) {
+    nav.classList.remove("showmenu");
+  }
   let url = "lib/setting.php";
   fetch(url)
     .then((response) => {
@@ -1018,7 +1088,12 @@ function removeCoverImage() {
   mediaScreen.lastElementChild.setAttribute("src", "");
 }
 
+function getCatId(cat) {
+  window.catId = cat.parentElement.firstElementChild.textContent;
+}
+
 function publishPost() {
+  let unCatbtn = document.querySelector(".cat-list #uncat");
   let title = document.getElementById("title");
   let content = document.getElementById("content");
   let slug = document.getElementById("slug");
@@ -1030,10 +1105,12 @@ function publishPost() {
   form.append("content", content.value);
   form.append("slug", slug.value);
   form.append("metatitle", metatitle.value);
-  console.log(coverImage_isset);
   if (coverImage_isset) {
     let CI = coverImage.files[0];
     form.append("coverImage", CI);
+  }
+  if (unCatbtn.checked !== true) {
+    form.append("catId", window.catId);
   }
 
   const url = "lib/process_post.php";
@@ -1066,6 +1143,7 @@ function publishPost() {
             coverImage.value = "";
 
             document.querySelector(".coverImage-error").innerText = "";
+            removeCoverImage();
           });
       }
     });
@@ -1093,6 +1171,12 @@ function addTopic() {
       if (data["success"]) {
         successAlert.style.display = "flex";
         successMassage.innerText = data["success"];
+        document
+          .querySelector(".closeSuccMsg")
+          .addEventListener("click", () => {
+            document.querySelector("#title").value = "";
+            document.querySelector(".topicDescr").value = "";
+          });
       } else if (data["failed"]) {
         failedAlert.style.display = "flex";
         failedMassage.innerText = data["failed"];
@@ -1102,6 +1186,9 @@ function addTopic() {
 
 //............
 function manageCat() {
+  if (nav.className.includes("showmenu")) {
+    nav.classList.remove("showmenu");
+  }
   fetch("topics/manage.php")
     .then((response) => {
       let cat = response.text();
@@ -1300,22 +1387,85 @@ function closeReaderMode() {
   return managePost();
 }
 
+function loadCategory(res) {
+  let parser = new DOMParser();
+  let document = parser.parseFromString(res, "text/html");
+  let contentWrapper = document.querySelector(".all-content-wrapper");
+  let catList = document.querySelector(".cat-list");
 
-function loadCategory(document) {
   let url = "lib/fetchTopic.php";
   fetch(url)
     .then((response) => {
       return response.json();
     })
-    .then((res) => {
-      let catList = document.querySelector(".cat-list");
-      for (let i = 0; i < res.length; i++) {
-        const element = res[i];
-        // console.log(element.title)
-        console.log(catList.innerHTML+= `<div>
-              <input type="radio" name="Category" id="cat">
-              <label for="${element.title}">${element.title}</label>
-              </div>`);
+    .then((data) => {
+      for (let i = 0; i < data.length; i++) {
+        const element = data[i];
+        catList.innerHTML += `<div  style="cursor:pointer";>
+                <div id="catId">${element.catId}</div>
+              <input type="radio" onclick="getCatId(this)" name="Category" id="${element.title}">
+            <label for="${element.title}">${element.title}</label>
+              </div>`;
       }
+
+      if (contentContainer.innerHTML != "") {
+        contentContainer.innerHTML = "";
+      }
+      contentContainer.appendChild(contentWrapper);
     });
 }
+
+function uncategorized(btn) {
+  let cats = document.querySelectorAll(".cat-list input[type=radio]");
+  if (btn.checked) {
+    cats.forEach((element) => {
+      element.setAttribute("disabled", "disabled");
+      element.checked = false;
+    });
+  } else {
+    cats.forEach((element) => {
+      element.removeAttribute("disabled", "disabled");
+    });
+  }
+}
+
+// FOR CKEDITOR FUNCATINALITY
+setTimeout(()=>{
+
+  if(contentContainer.firstElementChild.className.includes('all-content-wrapper')){
+    let cont = document.querySelector('.all-content-wrapper')
+    let scriptLink = document.createElement('script')
+         scriptLink = document.createElement('script')
+    scriptLink.setAttribute('src',"https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js");
+    
+    let script = document.createElement('script')
+    script.setAttribute('defer','defer')
+
+    cont.appendChild(scriptLink)
+    cont.appendChild(script)
+    script.innerHTML = `        ClassicEditor
+    .create( document.querySelector( '#content' ),{
+        toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+        heading: {
+            options: [
+                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+            ]
+        }
+    } )
+    .catch( error => {
+        console.log( error );
+        
+    } );
+    
+    setTimeout(() => {
+        let ck = document.querySelector('.ck-blurred')
+        
+        ck.style.height="400px";
+    }, 100); `
+
+
+    
+  }
+},1000)

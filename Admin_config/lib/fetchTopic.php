@@ -2,7 +2,7 @@
 require_once "../../engine/connection.php";
 
     
-    $query = "SELECT * FROM `category`";
+    $query = "SELECT * FROM `category` WHERE approved = 1";
     $run_query = mysqli_query($conn, $query);
 
         $arr = [];

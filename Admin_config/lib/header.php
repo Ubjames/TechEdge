@@ -16,7 +16,7 @@ include "message.php";
   <form action="" method="post">
     <input type="search" name="search" id="mobile-adminsearch" />
 
-    <button class="searchIcon si" type="submit">
+    <button class="searchIcon si" type="button" onclick="search()">
       <i class="fas fa-search"></i>
     </button>
   </form>
@@ -36,12 +36,10 @@ include "message.php";
         type="submit"
         value="Search"
         name="submitsearch"
-        id="submitsearch"
+        id="submitsearch" onclick="search()"
       />
-      <!-- <div class="loader">
-        <span class="fas fa-sync-alt spin"></span>
-      </div> -->
-      <button class="searchIcon si" type="submit">
+
+      <button class="searchIcon si" type="submit" onclick="search()">
         <i class="fas fa-search myicon" onclick="processSeacrch()"></i>
       </button>
     </form>

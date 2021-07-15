@@ -38,6 +38,7 @@ $msg = [];
 if(isset($_POST) && $coverPicture_available == 1){
    
     $postCheck = 0;
+    $catId = $_POST['catId'];
     $title = trim($_POST['title']);
     $content = htmlspecialchars(trim($_POST['content']));
     $slug = trim($_POST['slug']);
@@ -47,8 +48,8 @@ if(isset($_POST) && $coverPicture_available == 1){
         $imagePATH = "lib/". htmlspecialchars($target_file);
         $uid = $_SESSION['UID'];
         $defaultSlug = empty($slug) ? $title: $slug;
-        $sql_query = "INSERT INTO `post`(`authorId`,`title`,`createdAt`,`content`, `slug`, `coverPicture`)
-        VALUES('$uid','$title', now(),'$content', '$defaultSlug', '$imagePATH');";
+        $sql_query = "INSERT INTO `post`(`authorId`,`catId`,`title`,`createdAt`,`content`, `slug`, `coverPicture`)
+        VALUES('$uid','$catId','$title', now(),'$content', '$defaultSlug', '$imagePATH');";
 
         if(!mysqli_query($conn, $sql_query)){
             // echo mysqli_error($conn);

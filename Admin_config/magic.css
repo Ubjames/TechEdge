@@ -7,57 +7,55 @@
   animation-name: fadeIn;
   animation-duration: 200ms;
 } */
-.loader-container{
+.loader-container {
   display: none;
   background-color: #ffffff83;
   z-index: 200;
 }
-.general{
+.general {
   display: flex !important;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100vh;
 }
-.forSection{
+.forSection {
   position: absolute;
   display: flex !important;
   justify-content: center;
   align-items: center;
-  width:77%;
+  width: 77%;
   height: calc(100vh - 60px);
-  right:0;
-  top:60px;
+  right: 0;
+  top: 60px;
   /* width:100%; */
 }
 
-.inactiveButton:disabled{
+.inactiveButton:disabled {
   cursor: not-allowed;
   background-color: grey;
 }
 
-.loader{
+.loader {
   width: 35px;
   height: 35px;
   border: 4px solid rgba(97, 192, 255, 0.295);
   border-top: 4px solid rgb(35, 75, 255);
   border-radius: 50%;
-  animation:loader 500ms linear infinite forwards;
+  animation: loader 500ms linear infinite forwards;
 }
 
-@media screen and (max-width:500px){
-  .forSection{
+@media screen and (max-width: 500px) {
+  .forSection {
     position: absolute;
     display: flex !important;
     justify-content: center;
     align-items: center;
     width: 100% !important;
     height: calc(100vh - 60px);
-    top:60px;
-    right:0;
-
+    top: 60px;
+    right: 0;
   }
-
 }
 
 .springZoomIn {
@@ -165,6 +163,17 @@
   from {
     opacity: 0;
     transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+    visibility: visible;
+  }
+}
+@keyframes fadeInUp-bigDivs {
+  from {
+    opacity: 0;
+    transform: translateY(20%);
   }
   to {
     opacity: 1;
@@ -285,4 +294,8 @@
 .magicInputLabel {
   position: relative;
   margin-top: 15px;
+}
+
+input:disabled ~ label {
+  color: grey;
 }
