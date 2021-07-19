@@ -119,7 +119,7 @@
 
     
     <div class="contact">
-        <h3>Connects with us</h3>
+        <h3>Connect with us</h3>
         <div>
         <a href="index.html"><i class="fab fa-facebook"></i></a>
         <a href="index.html"><i class="fab fa-twitter"></i></a>

@@ -1,12 +1,19 @@
-/* .fadeInUp {
-  animation-name: fadeInUp;
+/* .fadeInUp2 {
+  animation-name: fadeInUp2;
   animation-duration: 1000ms;
 } */
 
-/* .fadeIn {
-  animation-name: fadeIn;
-  animation-duration: 200ms;
-} */
+.fadeIn2 {
+  animation-name: fadeIn2;
+  animation-duration: 1000ms;
+}
+.direction {
+  animation-name: direction;
+  animation-duration: 800ms;
+  animation-iteration-count: infinite;
+  /* animation-fill-mode: forwards; */
+}
+
 .loader-container {
   display: none;
   background-color: #ffffff83;
@@ -73,7 +80,19 @@
 .slideIn {
   animation-name: slideIn;
   animation-duration: 500ms;
+  animation-fill-mode: forwards;
 }
+.slideInTop {
+  animation-name: slideInTop;
+  animation-duration: 1000ms;
+  animation-fill-mode: forwards;
+}
+.slideInBottom {
+  animation-name: slideInBottom;
+  animation-duration: 1000ms;
+  animation-fill-mode: forwards;
+}
+
 .slideInRight {
   animation-name: slideInRight;
   animation-duration: 400ms;
@@ -150,13 +169,14 @@
   }
 }
 
-@keyframes fadeIn {
+@keyframes fadeIn2 {
   from {
-    opacity: 0;
+    filter: brightness(10%);
+    /* opacity: 0; */
   }
   to {
-    opacity: 1;
-    visibility: visible;
+    /* opacity: 1; */
+    filter: brightness(30%);
   }
 }
 @keyframes fadeInUp {
@@ -193,6 +213,27 @@
   }
 }
 
+@keyframes slideInTop {
+  from {
+    opacity: 0;
+    transform: translateY(-120%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+}
+@keyframes slideInBottom {
+  from {
+    opacity: 0;
+    transform: translateY(120%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(50%);
+  }
+}
+
 @keyframes slideInRight {
   from {
     opacity: 0;
@@ -223,6 +264,14 @@
   to {
     opacity: 0;
     transform: translateY(-100%);
+  }
+}
+@keyframes direction {
+  from {
+    transform: translateY(-30%);
+  }
+  to {
+    transform: translateY(90%);
   }
 }
 
@@ -298,4 +347,11 @@
 
 input:disabled ~ label {
   color: grey;
+}
+
+.default-off{
+  border:none; background-color: inherit; cursor: pointer;
+}
+.default-off:focus{
+  outline: none;
 }

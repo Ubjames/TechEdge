@@ -1555,7 +1555,7 @@ textarea {
   height: auto;
 }
 .imgBoard .close {
-  width: 100%;
+  /* width: 100%; */
   color: #fff;
   position: absolute;
   top: 20px;
