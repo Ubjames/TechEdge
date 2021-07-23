@@ -5,6 +5,9 @@ include 'blog.head.php';
 
 <section class="home">
     <div class="mobile-menu-btn">
+        <div class="logo-con">
+            <a href="./"><img src="Admin_config/Assets/techedge-logo_short.png" alt="techgede logo"></a>
+        </div>
         <button class="default-off" onclick="showMobileNav()"> 
             <i class="fas fa-bars"></i>
         </button>
@@ -14,17 +17,17 @@ include 'blog.head.php';
         <button class="default-off" onclick="closeMobileNav()"> 
             <i class="fas fa-times"></i>
         </button>
-        <a href="./"><img src="Admin_config/Assets/logo1.png" alt="techgede logo"></a>
+        <a href="./"><img src="Admin_config/Assets/techedge-logo_short.png" alt="techgede logo"></a>
         <div class="nav-btn">
             <button style="animation:fadeInUp 1.3s 0ms forwards; visibility:hidden"> <i class="fas fa-home"></i>
                 <span>HOME</span>
             </button>
-            <button style="animation:fadeInUp 1.3s 400ms forwards; visibility:hidden" onclick="showTutorials(this)">
+            <button style="animation:fadeInUp 1.3s 400ms forwards; visibility:hidden" onclick="m_showTutorials(this)">
                 <i class="fas fa-book-open"></i>
                 <span>TUTORIALS</span></i>
                 <span class="drop-angle">&#9662;</span>
             </button>
-            <div class="tutorial-dropdown">
+            <div class="m-tutorial-dropdown">
                 <ul>
                     <li>Frontend development</li>
                     <li>Graphics Design</li>
@@ -34,14 +37,14 @@ include 'blog.head.php';
                     <li>RDMS</li>
                 </ul>
             </div>
-            <button style="animation:fadeInUp 1.3s 800ms forwards; visibility:hidden" onclick="showServices(this)">
+            <button style="animation:fadeInUp 1.3s 800ms forwards; visibility:hidden" onclick="m_showServices(this)">
                 <i class="fas fa-flag"></i>
                 <span>SERVICES</span>
                 <span class="drop-angle">&#9662;</span>
             </button>
         </div>
 
-        <div class="service-dropdown">
+        <div class="m-service-dropdown">
             <ul>
                 <li>Virtual Training</li>
                 <li>Offline Classes</li>
@@ -50,8 +53,13 @@ include 'blog.head.php';
         </div>
     <div class="dropdown-wrapper"></div>
     </div>
-    <nav>
-        <a href="./"><img src="Admin_config/Assets/logo1.png" alt="techgede logo"></a>
+
+
+    <!-- DESKTOP NAVIGATION BAR -->
+    <nav class="">
+        <div class="logo-con">
+            <a href="./"><img src="Admin_config/Assets/techedge-logo_short.png" alt="techgede logo"></a>
+        </div>
         <div class="nav-btn">
             <button> <i class="fas fa-home"></i>
                 <span>HOME</span>
@@ -111,12 +119,12 @@ include 'blog.head.php';
           <div id="4" onclick="setImage(this)"></div>
     </div>
     <button class="direction"> 
-       <a href="#pullup"><i class="fas fa-angle-down"></i></a> 
+       <a href="#_"><i class="fas fa-angle-down"></i></a> 
     </button>
 </section>
 
-<section class="horizontal-recent-post" id="pullup">
-    <button class="control-angles left">
+<section class="horizontal-recent-post" id="_">
+    <button class="control-angles left" onclick="nextRecentPost()">
         <i class="fas fa-angle-left"></i>
     </button>
 
@@ -324,7 +332,7 @@ include 'blog.head.php';
     </aside>
 </section>
 
-<button id="totop" onclick="topFunction()">
+<button id="totop" onclick="topFunction()" class="zoomIn2">
 <i class="fas fa-angle-double-up"></i>
 </button>
 

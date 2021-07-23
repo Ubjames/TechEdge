@@ -35,7 +35,7 @@ position: relative; width: 100%; overflow: hidden; padding: 0 0 20px 0;
 position: absolute; width: 100%; z-index: 5; top: 0; left: 0; right: 0; padding: 15px; display: none; justify-content: right;
 }
 .home .mobile-menu-btn button{
-margin-left: auto; color:#fff;font-size: 1.2rem; cursor: pointer;
+margin-left: auto; color:#fff;font-size: 1.5rem; cursor: pointer;
 }
 
 .bg-images img{
@@ -45,17 +45,24 @@ margin-left: auto; color:#fff;font-size: 1.2rem; cursor: pointer;
 nav{
   position: absolute; top:0; display: flex; justify-content: space-between; width: 100%; z-index: 2; padding: 10px 30px;
 }
+.nav-scroll .nav-btn button, .nav-scroll button {
+  color:hsl(var(--fore-hue),var(--fore-stat),var(--fore-light)) !important;
+}
+.nav-scroll{
+  position: fixed !important; top:0; display: flex; justify-content: space-between; width: 100%; z-index: 2; padding: 10px 30px; background-color: #fff; box-shadow: 0 2px 15px rgb(158, 168, 179);
+}
+
 @media screen and (max-width:450px) {
   nav{
     position: absolute; top:0; display: none; justify-content: space-between; width: 100%; z-index: 2; padding: 10px 30px;
   }
   .home .mobile-menu-btn{
-    position: absolute; width: 100%; z-index: 5; top: 0; left: 0; right: 0; padding: 15px; display: flex; justify-content: right;
+    position: absolute; width: 100%; z-index: 5; top: 0; left: 0; right: 0; padding: 0 15px; display: flex; justify-content: right;
   }
 
 }
 .mobile-nav{
-  display: none; flex-direction: column; width: 100%; background: #ffffff; height: auto; padding: 20px; position: fixed; top:0; z-index: 10;
+  display: none; flex-direction: column; width: 100%; background: #ffffff; height: auto; padding: 5px 10px 10px 20px; position: fixed; top:0; z-index: 10;
 }
 
 nav a > img{
@@ -68,7 +75,7 @@ nav a > img{
   width: 50px; 
 }
 .mobile-nav > button {
-  position: fixed; top: 20px; right: 25px; font-size: 1.5rem; color: grey;
+  position: fixed; top: 10px; right: 20px; font-size: 1.5rem; color: grey;
 }
 .mobile-nav .nav-btn{
   display: flex; flex-direction: column; width: 100%;  align-items: flex-start;
@@ -84,13 +91,13 @@ nav .nav-btn button{
    border: none; background-color: inherit; color: #fff; margin-left: 10px; cursor: pointer; transition: ease-in-out 250ms; width: 150px; padding: 15px 0;  font-size: 1rem;
 }
 nav .nav-btn button:hover{
-  color: rgb(167, 166, 166)
+  color: rgb(167, 166, 166);
 }
 nav .nav-btn button:focus .mobile-nav .nav-btn button:focus{
   outline: none;
 }
-.mobile-nav .tutorial-dropdown, .mobile-nav .service-dropdown{
-background-color: #fff; padding: 0 10px; width: auto; cursor: pointer; transition: ease-in-out 400ms; overflow: hidden; height: 0px;
+.mobile-nav .m-tutorial-dropdown, .mobile-nav .m-service-dropdown{
+background-color: #fff; padding: 0 10px; width: auto; transition: ease-in-out 400ms; overflow: hidden; height: 0; cursor: pointer;
 }
 nav .tutorial-dropdown, nav .service-dropdown{
   position: absolute; top:50px;background-color: #fff; border-radius:4px; padding: 0 10px; width: auto; cursor: pointer; transition: ease-in-out 400ms; overflow: hidden; height: 0px; z-index: 5;
@@ -108,21 +115,27 @@ nav .service-dropdown{
 .show2{
   height: 150px !important;
 }
+.m-show1{
+  height: 180px !important;
+}
+.m-show2{
+  height: 100px !important;
+}
 
- nav .dropdown-wrapper{
+.dropdown-wrapper{
   width: 100%; height: 100vh; position: fixed; top: 0; left: 0; display: none;
 }
 
 nav .tutorial-dropdown ul, nav .service-dropdown ul{
   list-style:none; 
 }
-.mobile-nav .tutorial-dropdown ul, .mobile-nav .service-dropdown ul{
+.mobile-nav .m-tutorial-dropdown ul, .mobile-nav .m-service-dropdown ul{
   list-style:none;margin-left: 10px;
 }
 nav .tutorial-dropdown ul li, nav .service-dropdown ul li{
   padding:10px; border-radius: 3px;
 }
-.mobile-nav .tutorial-dropdown ul li, .mobile-nav .service-dropdown ul li{
+.mobile-nav .m-tutorial-dropdown ul li, .mobile-nav .m-service-dropdown ul li{
   padding:5px; border-radius: 3px; font-size: 15px; color: grey;
 }
 nav .tutorial-dropdown ul li:first-child, nav .service-dropdown ul li:first-child{
@@ -131,7 +144,7 @@ nav .tutorial-dropdown ul li:first-child, nav .service-dropdown ul li:first-chil
 nav .tutorial-dropdown ul li:hover, nav .service-dropdown ul li:hover{
   background-color: #ececec;transition: ease-in-out 200ms;
 }
-.mobile-nav .tutorial-dropdown ul li:hover, .mobile-nav .service-dropdown ul li:hover{
+.mobile-nav .m-tutorial-dropdown ul li:hover, .mobile-nav .m-service-dropdown ul li:hover{
   text-decoration:underline #009ee7;
 }
 
@@ -178,11 +191,17 @@ section .direction{
 }
 
 @media screen and (max-width:750px) {
+  nav .nav-btn button:first-child{
+    width: 90px;
+  }
+  nav .nav-btn button > i{
+    margin-right: 5px;
+  }
   section .info div h1{
     font-size: 2rem;
   }
   section .info div p{
-    font-size: 14px; color:rgb(212, 212, 212);
+    font-size: 14px; 
   }
   section .direction{ display: none;}
   section .info button{
@@ -195,32 +214,33 @@ section .direction{
       border: none; background-color: inherit; color: #fff; margin-left: 0; cursor: pointer; transition: ease-in-out 250ms; width: 120px; padding: 15px 0;  font-size: 0.9rem;
    }
    nav{
-     padding:10px 20px;
+     padding:10px 20px !important;
    }
 }
 @media screen and (max-width:500px) {
   section .info div h1{
-    font-size: 1.5rem;
+    font-size: 5vw;
   }
   section .info div p{
-    font-size: 13px; color:rgb(212, 212, 212);
+    font-size: 3vw; color:rgb(212, 212, 212);
   }
   section .direction{ display: none;}
   section .info button{
-    font-size: 13px; width: 130px; color:#fff; height: 40px; border: 1px solid rgb(72, 150, 240); border-radius: 50px; background-color: inherit; cursor:  pointer; transition: ease-in-out 200ms; margin-top: -20px;
+    font-size: 12px; width: 120px; color:#fff; height: 38px; border: 1px solid rgb(72, 150, 240); border-radius: 50px; background-color: inherit; cursor:  pointer; transition: ease-in-out 200ms; margin-top: -30px;
   }
-  section .dots{
-    display: flex; width: 100%; justify-content: center; align-items: center; z-index: 5; margin-top: -20px; transform: translate(0%, 0%);
+
+    section .dots{
+      display: flex; width: 100%; justify-content: center; align-items: center; z-index: 5; margin-top: -20px; transform: translate(0%, 0%);
     }
 
 }
 
 /* POST STYLES */
 .horizontal-recent-post {
- overflow-x:hidden;display: flex; align-items: center; padding: 0 10px;
+ overflow-x:hidden;display: flex; align-items: center; padding: 0 20px;
 }
 .postSlider{
-  display: flex; width:100%;  padding: 10px 20px; overflow-x: scroll; margin: 0 10px;
+  display: flex; width:100%;  padding: 10px 20px; overflow-x: scroll; margin: 0 50px; transition: ease-in-out 700ms;
 }
 .postSlider::-webkit-scrollbar{
   width: 0;
@@ -239,7 +259,7 @@ a{
 }
 
 .postSlider .post {
-  box-shadow: 0 0 6px rgb(173, 173, 173); border-radius: 4px; overflow: hidden; position: relative; cursor: pointer; width: 300px;min-width: 350px;  margin:0 15px;
+  box-shadow: 0 0 6px rgb(173, 173, 173); border-radius: 4px; overflow: hidden; position: relative; cursor: pointer; width: 300px;min-width: 350px;  margin:0 20px; transition: ease-in-out 700ms;
 }
 
 .postSlider .picture {
@@ -377,7 +397,7 @@ a{
 
  .posts > .readBtn{
   position: absolute; width: 100%; height: 50px; background-image:linear-gradient(0deg, #ffffff, #ffffff5b);
-  bottom: 0; z-index: 5; display: flex; justify-content: center; align-items: center;
+  bottom: 0; z-index: 1; display: flex; justify-content: center; align-items: center;
 }
 .posts .readBtn button:hover{
   background-color: hsl(var(--fore-hue),var(--fore-stat),var(--hover-fore-light));
@@ -559,6 +579,17 @@ form input[type=submit]:hover {
  #totop{display: none;}
 @media screen and (max-width:450px) {
   #totop{
-  width: 50px; height: 50px; opacity: 80%; color:#ffffff; border-radius: 50px; background: hsl(var(--fore-hue),var(--fore-stat),var(--fore-light)); position: fixed; display: flex; justify-content: center; align-items: center; bottom: 30px; right: 20px; border: none; font-size: 20px; z-index: 20; cursor: pointer; 
+  width: 50px; height: 50px; color:#ffffff; border-radius: 50px; background: hsl(var(--fore-hue),var(--fore-stat),var(--fore-light)); position: fixed; display: flex; justify-content: center; align-items: center; bottom: 30px; right: 20px; border: none; font-size: 20px; z-index: 20; cursor: pointer; 
 }
+}
+
+.mobile-menu-btn{
+  height: 60px;
+}
+
+nav .logo-con, .mobile-menu-btn .logo-con{
+  width:40px; height: 50px; display: flex; justify-content: center; align-items: center; margin-top: 5px;
+}
+nav .logo-con img, .mobile-menu-btn .logo-con img{
+  width: 100%; height: auto;
 }

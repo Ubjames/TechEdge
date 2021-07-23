@@ -21,14 +21,11 @@ INNER JOIN USER u ON
 
     $run_query = mysqli_query($conn, $query);
 
-    // if(mysqli_fetch_assoc($run_query)){
-
         $arr = [];
          while ($row = mysqli_fetch_assoc($run_query)) {
             array_push($arr,$row);
             } 
             echo json_encode($arr);
-    // }
     
     }
 
