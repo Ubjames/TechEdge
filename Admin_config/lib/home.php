@@ -1,4 +1,5 @@
 <div class="home-page-wrapper" style="width: 100%">
+  
   <div class="summary">
     <div
       class="magicbox s-data"
@@ -10,7 +11,7 @@
         </div>
         <h5>Posts</h5>
       </div>
-      <h2>213</h2>
+      <h2 id="postCount"></h2>
     </div>
     <div
       class="magicbox s-data"
@@ -22,7 +23,7 @@
         </div>
         <h5>Users</h5>
       </div>
-      <h2>9</h2>
+      <h2 id="userCount"></h2>
     </div>
     <div
       class="magicbox s-data"
@@ -34,7 +35,7 @@
         </div>
         <h5>Categories</h5>
       </div>
-      <h2>18</h2>
+      <h2 id="catCount"></h2>
     </div>
     <div
       class="magicbox s-data"
@@ -46,7 +47,7 @@
         </div>
         <h5>Media</h5>
       </div>
-      <h2>403</h2>
+      <h2 id="mediaCount"></h2>
     </div>
 
     <div
@@ -62,7 +63,7 @@
         </div>
         <h5>Comments</h5>
       </div>
-      <h2>23</h2>
+      <h2 id="commentCount"></h2>
     </div>
 
     <div
@@ -78,7 +79,7 @@
         </div>
         <h5>Favourites</h5>
       </div>
-      <h2>9</h2>
+      <h2 id="favCount"></h2>
     </div>
 
     <div
@@ -94,7 +95,7 @@
         </div>
         <h5>Views</h5>
       </div>
-      <h2>18</h2>
+      <h2 id="viewersCount"></h2>
     </div>
     <div
       class="magicbox s-data"
@@ -109,10 +110,12 @@
         </div>
         <h5>Inbox</h5>
       </div>
-      <h2>13</h2>
+      <h2 id="msgCount"></h2>
     </div>
   </div>
 
+  
+<!-- graphical presentation (charts) and toehr info -->
   <div
     class="bottom-section"
     style="animation: fadeIn 0.5s ease-in 250ms forwards; visibility: hidden"

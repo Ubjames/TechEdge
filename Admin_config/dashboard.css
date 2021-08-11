@@ -1576,7 +1576,7 @@ textarea {
 
 /* manage post styles - starts*/
 
-.post-wrapper {
+.post-wrapper,.media-wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
@@ -1591,6 +1591,21 @@ textarea {
   cursor: pointer;
   background-color: #fff;
 }
+.media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 0 0 6px rgb(173, 173, 173);
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #fff;
+}
+.media img{
+  width: 100%;
+  height: auto;
+}
+
 .post .view{
   width: 100%;
   height: 350px;

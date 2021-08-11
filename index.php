@@ -124,7 +124,7 @@ include 'blog.head.php';
 </section>
 
 <section class="horizontal-recent-post" id="_">
-    <button class="control-angles left" onclick="nextRecentPost()">
+    <!-- <button class="control-angles left" onclick="nextRecentPost()">
         <i class="fas fa-angle-left"></i>
     </button>
 
@@ -147,65 +147,41 @@ include 'blog.head.php';
                 <div id="postId"></div>
         </div>
     </a>
-    <a href="">
-        <div class="post">
-                
-            <div class="picture">
-                <img src="/Admin_config/Assets/images (19).jpeg" alt="">
-            </div>
-                <div class="date-created"> <i class="fas fa-calendar"></i> <span>15 June, 2021</span> </div>
-                <div class="author"> <i class="fas fa-user"></i> <span> Ubong James</span></div>
-                <div class="title">How to start blog in 10 min</div>
-                <div class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, deleniti. Nemo, a vitae autem quaerat obcaecati us...</div>
-
-                <div class="btn">
-                    <button class="view magicButton2">View</button>
-                </div>
-                
-                <div id="postId"></div>
-        </div>
-    </a>
-    <a href="">
-        <div class="post">
-                
-            <div class="picture">
-                <img src="/Admin_config/Assets/images (19).jpeg" alt="">
-            </div>
-                <div class="date-created"> <i class="fas fa-calendar"></i> <span>15 June, 2021</span> </div>
-                <div class="author"> <i class="fas fa-user"></i> <span> Ubong James</span></div>
-                <div class="title">How to start blog in 10 min</div>
-                <div class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, deleniti. Nemo, a vitae autem quaerat obcaecati us...</div>
-
-                <div class="btn">
-                    <button class="view magicButton2">View</button>
-                </div>
-                
-                <div id="postId"></div>
-        </div>
-    </a>
-    <a href="">
-        <div class="post">
-                
-            <div class="picture">
-                <img src="/Admin_config/Assets/images (19).jpeg" alt="">
-            </div>
-                <div class="date-created"> <i class="fas fa-calendar"></i> <span>15 June, 2021</span> </div>
-                <div class="author"> <i class="fas fa-user"></i> <span> Ubong James</span></div>
-                <div class="title">How to start blog in 10 min</div>
-                <div class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, deleniti. Nemo, a vitae autem quaerat obcaecati us...</div>
-
-                <div class="btn">
-                    <button class="view magicButton2">View</button>
-                </div>
-                
-                <div id="postId"></div>
-        </div>
-    </a>
     
 </div>
     <button class="control-angles right">
         <i class="fas fa-angle-right"></i>
-    </button>
+    </button> -->
+
+    <div class="slider-wrap">
+        <div class="slider">
+        <ul>
+            <li> 
+                <div class="post">
+                    <a href="">
+                    
+                <div class="picture">
+                    <img src="/Admin_config/Assets/images (19).jpeg" alt="">
+                </div>
+                    <div class="date-created"> <i class="fas fa-calendar"></i> <span>15 June, 2021</span> </div>
+                    <div class="author"> <i class="fas fa-user"></i> <span> Ubong James</span></div>
+                    <div class="title">How to start blog in 10 min</div>
+                    <div class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, deleniti. Nemo, a vitae autem quaerat obcaecati us...</div>
+    
+                    <div class="btn">
+                        <button class="view magicButton2">View</button>
+                    </div>
+                    
+                    <div id="postId"></div>
+                </a> 
+            </div>
+    </li>
+        </ul>
+        </div>
+        <a href="#" class="slider-arrow sa-left"><i class="fas fa-angle-left"></i></a> 
+        <a href="#" class="slider-arrow sa-right "><i class="fas fa-angle-right"></i></a> 
+    </div>
+       
 </section>
 <div class="main-search">
         <input type="text" name="search" id="main-search" placeholder="Search for post...">
@@ -218,7 +194,6 @@ include 'blog.head.php';
     <div class="recent-post">
         <div class="posts">
 
-        
             <div class="title">How to monetize your blog in 10min</div>
             <div class="author-info">
                 <div class="author-img">
@@ -335,8 +310,6 @@ include 'blog.head.php';
 <button id="totop" onclick="topFunction()" class="zoomIn2">
 <i class="fas fa-angle-double-up"></i>
 </button>
-
-
 
 
 

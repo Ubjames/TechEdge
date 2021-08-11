@@ -48,7 +48,7 @@
                </div>
 
            </div>
-           <div class="group-3">
+           <div class="group-3" onclick="getMedia()">
                <div  class="main-3">
                <i class="fa fa-images"></i>
                    <p class="item ">Media</p>

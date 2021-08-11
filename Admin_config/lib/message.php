@@ -1,4 +1,4 @@
-<div class="failed msg-wraper">
+<div class="failed msg-wraper" onclick="closeMsg()">
   <div class="msg-body springZoomIn">
     <i onclick="closeMsg()" class="fas fa-times-circle closeFailMsg"></i>
     <div class="msg-logo">
@@ -17,7 +17,7 @@
 
 
 <!-- SUCCESS MESSAGE -->
-<div class="success msg-wraper">
+<div class="success msg-wraper" onclick="closeMsg()">
   <div class="msg-body springZoomIn">
     <i onclick="closeMsg()" class="fas fa-times-circle closeSuccMsg"></i>
     <div class="msg-logo">

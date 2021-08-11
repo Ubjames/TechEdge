@@ -5,32 +5,6 @@ require_once "../../engine/connection.php";
 $msg= [];
 $UID = $_SESSION['UID'];
 header('Content-type: application/json;');
-// charset=utf-8
-if(isset($_FILES)){
-
-    $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES["file"]["name"]);
-    $uploadOk = 0;
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-
-    // Check if file already exists
-    if(!file_exists($target_file)) {
-        // Allow certain file formats
-        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-            $msg = ["failed"=> "Sorry, only JPG, JPEG, PNG & GIF files are allowed."];
-            echo json_encode($msg);
-     }else if(move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-         $imgagePATH = 'lib/'. htmlspecialchars($target_file);
-         $updatePhoto = "UPDATE `user` SET `passport` = '$imgagePATH' WHERE `userId` = '$UID';";
-         $uploadOk = 1;
-         mysqli_query($conn, $updatePhoto);
-        $smg = ["success" => "Your photo has been uploaded Successfully"];
-        echo json_encode($msg); 
-    }
-     
-    }
- 
-}
 
 if(isset($_POST)){
     $required = ['firstname','middlename','lastname','username','email','phone','address','bio',
@@ -137,19 +111,18 @@ if(isset($_POST)){
             }
         }
         
-        
-        if($uploadOk ==1){
             $msg = ['success'=> 'Your data was updated successfully'];
             echo json_encode($msg);
-        }
-        else{
-            $msg = ["failed" => "Sorry, there was an error updating some of your data"];
-            echo json_encode($msg);
-        }
+
         
     }
-    
+    else{
+        $msg = ["failed" => "Sorry, there was an error updating some of your data"];
+        echo json_encode($msg);
     }
+    
+    
+}
     
 }
 

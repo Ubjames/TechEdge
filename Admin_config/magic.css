@@ -213,6 +213,16 @@
     visibility: visible;
   }
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+}
 @keyframes fadeInUp-bigDivs {
   from {
     opacity: 0;

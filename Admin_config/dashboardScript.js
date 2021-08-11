@@ -421,36 +421,59 @@ function loadHomePage() {
       return response.text();
     })
     .then((data) => {
-      let parser = new DOMParser();
-      let document = parser.parseFromString(data, "text/html");
-      let x = document.querySelector(".home-page-wrapper");
-      contentContainer.innerHTML = "";
-      removePageLoader();
-      let magicboxes = document.querySelectorAll(".magicbox");
-      let DOMdivs = [
-        document.querySelector(".post"),
-        document.querySelector(".grid-container2"),
-        document.querySelector(".grid-container3"),
-        document.querySelector(".publish"),
-        document.querySelector(".category"),
-      ];
-      localStorage.setItem("magicboxes", magicboxes);
-      /* if ((onpageloads = !null && onpageloads == "darkmode")){
-        magicboxes.forEach((x)=>{
-          x.classList.add("container-bg");
-        })
-     
-      DOMdivs.forEach((div) => {
-        if (div != null) {
-          div.classList.add("fordark");
-        }
-      }); 
-    
-        
-    } */
-
-      contentContainer.appendChild(x);
+      autoCounter(data);
     });
+}
+
+function autoCounter(data) {
+  let parser = new DOMParser();
+  let document = parser.parseFromString(data, "text/html");
+  let x = document.querySelector(".home-page-wrapper");
+  let num_posts = document.querySelector("#postCount");
+  let num_users = document.querySelector("#userCount");
+  let num_cats = document.querySelector("#catCount");
+  let num_media = document.querySelector("#mediaCount");
+  let num_comment = document.querySelector("#commentCount");
+  let num_fav = document.querySelector("#favCount");
+  let num_msg = document.querySelector("#msgCount");
+  let num_viewers = document.querySelector("#viewersCount");
+  contentContainer.innerHTML = "";
+  removePageLoader();
+  let magicboxes = document.querySelectorAll(".magicbox");
+  let DOMdivs = [
+    document.querySelector(".post"),
+    document.querySelector(".grid-container2"),
+    document.querySelector(".grid-container3"),
+    document.querySelector(".publish"),
+    document.querySelector(".category"),
+  ];
+  localStorage.setItem("magicboxes", magicboxes);
+  /* if ((onpageloads = !null && onpageloads == "darkmode")){
+    magicboxes.forEach((x)=>{
+      x.classList.add("container-bg");
+    })
+ 
+  DOMdivs.forEach((div) => {
+    if (div != null) {
+      div.classList.add("fordark");
+    }
+  }); 
+
+    
+} */
+
+  fetch("lib/autoCounter.php")
+    .then((response) => {
+      return response.json();
+    })
+    .then((res) => {
+      num_posts.innerText = res[0]["Number_Of_Posts"];
+      num_users.innerText = res[1]["Number_Of_Users"];
+      num_cats.innerText = res[2]["Number_Of_categories"];
+      num_media.innerText = res[3]["postCovers"];
+    });
+
+  contentContainer.appendChild(x);
 }
 
 function managePost() {
@@ -968,7 +991,7 @@ function saveUpdate() {
     const data = file.files[0];
     form.append("file", data);
 
-    const url = "lib/saveUpdate.php";
+    const url = "lib/upload_profile_photo.php";
     const request = new Request(url, {
       method: "POST",
       body: form,
@@ -978,50 +1001,58 @@ function saveUpdate() {
         response.json();
         return response;
       })
-      .then((response) => {
-        // console.log(response);
+      .then((res) => {
+        console.log(res);
+        if (res["failed"]) {
+          failedAlert.style.display = "flex";
+          failedMassage.innerHTML = res["failed"];
+        }
+        if (res["success"]) {
+          updateOtherInfo();
+        }
       });
+  } else {
+    updateOtherInfo();
   }
+  function updateOtherInfo() {
+    let xhr = new XMLHttpRequest();
+    let sex = document.getElementById("sex").value;
+    let country = document.getElementById("country").value;
+    let bio = document.getElementById("bio").value;
+    let firstName = document.getElementById("firstName").value;
+    let lastname = document.getElementById("lastname").value;
+    let Othernames = document.getElementById("Othernames").value;
+    let username = document.getElementById("username").value;
+    let email = document.getElementById("email").value;
+    let phone = document.getElementById("phone").value;
+    let address = document.getElementById("address").value;
 
-  let xhr = new XMLHttpRequest();
-  let sex = document.getElementById("sex").value;
-  let country = document.getElementById("country").value;
-  let bio = document.getElementById("bio").value;
-  let firstName = document.getElementById("firstName").value;
-  let lastname = document.getElementById("lastname").value;
-  let Othernames = document.getElementById("Othernames").value;
-  let username = document.getElementById("username").value;
-  let email = document.getElementById("email").value;
-  let phone = document.getElementById("phone").value;
-  let address = document.getElementById("address").value;
+    xhr.open("POST", "lib/saveUpdate.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-  xhr.open("POST", "lib/saveUpdate.php", true);
-  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    let data = `firstname=${firstName}&lastname=${lastname}&username=${username}&email=${email}&phone=${phone}&address=${address}&bio=${bio}&country=${country}&sex=${sex}&middlename=${Othernames}`;
 
-  let data = `firstname=${firstName}&lastname=${lastname}&username=${username}&email=${email}&phone=${phone}&address=${address}&bio=${bio}&country=${country}&sex=${sex}&middlename=${Othernames}`;
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        let response = JSON.parse(xhr.responseText);
 
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      let response = JSON.parse(xhr.responseText);
-
-      if (response["failed"]) {
-        failedAlert.style.display = "flex";
-        failedMassage.innerHTML = response["failed"];
-      } else if (response["success"]) {
-        successAlert.style.display = "flex";
-        successMassage.innerHTML = response["success"];
-        document
-          .querySelector(".closeSuccMsg")
-          .addEventListener("click", () => {
-            configProfile();
-          });
+        if (response["failed"]) {
+          failedAlert.style.display = "flex";
+          failedMassage.innerHTML = response["failed"];
+        } else if (response["success"]) {
+          successAlert.style.display = "flex";
+          successMassage.innerHTML = response["success"];
+          document
+            .querySelector(".closeSuccMsg")
+            .addEventListener("click", () => {
+              configProfile();
+            });
+        }
       }
-    }
-  };
-  // xhr.onprogress = () => {
-  // };
+    };
 
-  xhr.send(data);
+    xhr.send(data);
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -1430,19 +1461,23 @@ function uncategorized(btn) {
 }
 
 // FOR CKEDITOR FUNCATINALITY
-setTimeout(()=>{
+setTimeout(() => {
+  if (
+    contentContainer.firstElementChild.className.includes("all-content-wrapper")
+  ) {
+    let cont = document.querySelector(".all-content-wrapper");
+    let scriptLink = document.createElement("script");
+    scriptLink = document.createElement("script");
+    scriptLink.setAttribute(
+      "src",
+      "https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"
+    );
 
-  if(contentContainer.firstElementChild.className.includes('all-content-wrapper')){
-    let cont = document.querySelector('.all-content-wrapper')
-    let scriptLink = document.createElement('script')
-         scriptLink = document.createElement('script')
-    scriptLink.setAttribute('src',"https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js");
-    
-    let script = document.createElement('script')
-    script.setAttribute('defer','defer')
+    let script = document.createElement("script");
+    script.setAttribute("defer", "defer");
 
-    cont.appendChild(scriptLink)
-    cont.appendChild(script)
+    cont.appendChild(scriptLink);
+    cont.appendChild(script);
     script.innerHTML = `        ClassicEditor
     .create( document.querySelector( '#content' ),{
         toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
@@ -1463,9 +1498,38 @@ setTimeout(()=>{
         let ck = document.querySelector('.ck-blurred')
         
         ck.style.height="400px";
-    }, 100); `
-
-
-    
+    }, 100); `;
   }
-},1000)
+}, 1000);
+
+function getMedia() {
+  fetch("lib/fetchMedia")
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+
+      let mediaWrapper = document.createElement('div')
+          mediaWrapper.setAttribute('class','media-wrapper')
+
+      let animDuration = 100;
+      for (let i = 0; i < data.length; i++) {
+        const element = data[i];
+        console.log(element.CoverPicture)
+          animDuration+=100;
+          mediaWrapper.innerHTML +=
+          `<div class="media" style="animation: fadeInUp-bigDivs 0.5s ease-in ${animDuration}ms forwards; visibility: hidden">
+          <a href="${element.CoverPicture}">
+          <img src="${element.CoverPicture}">
+          </a>
+        </div>`
+        
+      }
+
+      if(contentContainer.innerHTML!=''){
+        contentContainer.innerHTML ='';
+        contentContainer.appendChild(mediaWrapper);
+      }
+
+    });
+}

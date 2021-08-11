@@ -128,7 +128,7 @@
   class="btn"
   style="animation: fadeInUp 0.3s ease-in 1000ms forwards; visibility: hidden"
 >
-  <button class="magicbutton2" onclick="saveUpdate(this)"><i class="fas fa-save"></i> Save</button>
+  <button class="magicbutton2" onclick="saveUpdate(this)"><i class="fas fa-save"></i> <span>Save</span></button>
 </div>
 </div>
 
